@@ -3,15 +3,15 @@ import { FaInstagram } from "react-icons/fa";
 
 const SocialMediaSection: React.FC = () => {
   return (
-    <section className="py-12 px-4 bg-gradient-to-r from-black via-[#0a0a1a] to-black text-white">
+    <section className="py-12 px-4 bg-black text-white">
       <div className="max-w-4xl mx-auto text-center">
         <img
           src="/assets/logo-tattoo.webp"
           alt="Studio Tattoo"
-          className="mx-auto mb-6 w-32 h-32 object-cover rounded-full border-4 border-[#00BFFF] shadow-xl"
+          className="mx-auto mb-6 w-32 h-32 object-cover rounded-full border-4 border-[#00b4d8] shadow-xl"
         />
 
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#00BFFF] drop-shadow-md">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#00b4d8] drop-shadow-md">
           Conecte-se com o Studio Tattoo
         </h2>
 
@@ -25,7 +25,7 @@ const SocialMediaSection: React.FC = () => {
             href="https://www.instagram.com/imperio_dos_aromass?igsh=MWs4OXh5Mjg0eW5hYw%3D%3D&utm_source=qr"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-col items-center transition-transform hover:scale-110 text-[#00BFFF] hover:text-blue-300"
+            className="flex flex-col items-center transition-transform hover:scale-110 text-[#ff6f00] hover:text-[#00b4d8]"
           >
             <FaInstagram className="w-10 h-10 mb-2" />
             <span className="text-sm font-medium">Instagram</span>

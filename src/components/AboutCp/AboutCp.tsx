@@ -9,7 +9,7 @@ function AboutCp() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Bloco de Informações */}
           <div className="flex flex-col gap-8">
-            <div className="flex items-center gap-4" data-aos="fade-down" data-aos-delay="550">
+            <div className="flex items-center gap-4"  >
               <div className="w-20 h-20 relative">
                 <img
                   src="/assets/businesimg/logo.png"
@@ -19,8 +19,7 @@ function AboutCp() {
               </div>
               <h2
                 className="text-white text-4xl font-bold"
-                data-aos="fade-down"
-                data-aos-delay="300"
+                
               >
                 Nosso Estúdio
               </h2>
@@ -29,8 +28,7 @@ function AboutCp() {
             <div className="flex flex-col gap-4">
               <p
                 className="text-white text-lg"
-                data-aos="fade-right"
-                data-aos-delay="300"
+               
               >
                 Atendemos em nossa sede localizada no coração da cidade. Venha conhecer nosso
                 espaço e desfrutar de um ambiente acolhedor e criativo!
@@ -54,15 +52,14 @@ function AboutCp() {
           <div className="flex flex-col gap-6">
             <h3
               className="text-white text-3xl font-semibold"
-              data-aos="fade-down"
-              data-aos-delay="200"
+             
             >
               Nosso Espaço
             </h3>
             <div
               className="grid grid-cols-1 sm:grid-cols-2 gap-4"
-              data-aos="fade-up"
-              data-aos-delay="200"
+              
+             
             >
               {[1, 2, 3, 4].map((i) => (
                 <div

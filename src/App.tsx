@@ -15,7 +15,7 @@ import Cart from "./components/Cart/Cart";
 import ProductPage from "./pages/ProductPage";
 import AboutPiercer from "./components/AboutPiercer/AboutPiercer";
 import AboutCp from "./components/AboutCp/AboutCp";
-import ScrollTop from "./components/ScrollTop copy/ScrollTop";
+import ScrollTop from "./components/ScrollTop/ScrollTop";
 function AppContent() {
   const { items, total, toggleCart } = useCart();
 
