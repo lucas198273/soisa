@@ -14,8 +14,10 @@ import { CartProvider, useCart } from "../contexts/CartContext";
 import Cart from "./components/Cart/Cart";
 import ProductPage from "./pages/ProductPage";
 import AboutPiercer from "./components/AboutPiercer/AboutPiercer";
-import AboutCp from "./components/AboutCp/AboutCp";
 import ScrollTop from "./components/ScrollTop/ScrollTop";
+import ScrollToTopOnRouteChange from "./components/ScrollToTopOnRouteChange/ScrollToTopOnRouteChange";
+
+// dentro do componente AppContent
 function AppContent() {
   const { items, total, toggleCart } = useCart();
 
@@ -24,29 +26,30 @@ function AppContent() {
   }, []);
 
   return (
-    
     <div className="min-h-screen flex flex-col ">
       <Header onCartClick={() => toggleCart(true)} cartItemCount={items.length} />
-        <ScrollTop/>
+
+      {/* Scroll automático para topo em mudança de rota */}
+      <ScrollToTopOnRouteChange />
+
+      {/* Botão para voltar ao topo manualmente */}
+      <ScrollTop />
+
       <Routes>
         <Route
           path="/"
           element={
             <main className="pt-20 min-h-screen flex flex-col">
               <Hero />
-              
               <div className="py-8">
-                 <Service />               
+                <Service />
               </div>
               <AboutPiercer />
               <div className="py-8">
-                 <Service />               
+                <Service />
               </div>
-
               <ProductInfoSection />
-              
               <SocialMediaSection />
-
             </main>
           }
         />
@@ -54,10 +57,9 @@ function AppContent() {
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/products" element={<ProductPage />} />
       </Routes>
-          <AboutCp/>
+
       <Footer />
 
-      {/* Força re-render do Cart usando key que muda com items.length e total */}
       <Cart
         key={`${items.length}-${total.toFixed(2)}`}
         onClose={() => toggleCart(false)}
@@ -65,6 +67,7 @@ function AppContent() {
     </div>
   );
 }
+
 
 export default function App() {
   return (
