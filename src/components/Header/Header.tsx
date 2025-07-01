@@ -34,12 +34,12 @@ export default function Header({ onCartClick, cartItemCount }: HeaderProps) {
         {/* Logo central */}
         <div className="absolute left-1/2 transform -translate-x-1/2 flex-shrink-0">
           <Link to="/" className="flex items-center">
-            <img
-              src="/assets/logo.webp"
-              alt="Tattoo Studio"
-              className="h-16 w-auto object-contain filter grayscale hover:filter-none transition duration-300"
-              loading="eager"
-            />
+           <img
+          src="/assets/logo.webp"
+          alt="Tattoo Studio"
+          className="h-23 w-auto object-contain"
+        />
+
           </Link>
         </div>
 
