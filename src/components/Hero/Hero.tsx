@@ -57,7 +57,7 @@ export default function Hero() {
           data-aos-duration="1000"
         >
           <img
-            src="/assets/artista/img3.png"
+            src="/assets/grafit.jpg"
             alt="Artista tatuador"
             className="w-full max-w-md h-auto rounded-lg shadow-2xl transition-transform duration-300 hover:scale-105 object-contain"
           />
