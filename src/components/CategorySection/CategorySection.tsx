@@ -1,56 +1,21 @@
+// src/components/CategorySection.tsx
 import useEmblaCarousel from "embla-carousel-react";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
-interface TattooItem {
-  name: string;
-  image: string;
-}
+import { products } from "../../data/Product";// importa os dados centralizados
 
 interface CategorySectionProps {
-  category: string;
+  category: "tattoo" | "piercing"; // força a categoria válida
 }
 
 export default function CategorySection({ category }: CategorySectionProps) {
-  // Inicia AOS uma vez quando o componente monta
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
   }, []);
 
-  const tattoos: Record<string, TattooItem[]> = {
-    fineline: [
-      { name: "Retrato de Leão", image: "/assets/fineline/fnl1.jpeg" },
-      { name: "Retrato de Leão", image: "/assets/fineline/fnl2.jpeg" },
-      { name: "Retrato de Leão", image: "/assets/fineline/fnl3.jpeg" },
-      { name: "Retrato de Leão", image: "/assets/fineline/fnl4.jpeg" },
-      { name: "Rosto Feminino", image: "/assets/fineline/fnl5.jpeg" },
-      { name: "Rosto Feminino", image: "/assets/fineline/fnl6.jpeg" },
-      { name: "Rosto Feminino", image: "/assets/fineline/fnl7.jpeg" },
-      { name: "Rosto Feminino", image: "/assets/fineline/fnl8.jpeg" },
-      { name: "Rosto Feminino", image: "/assets/fineline/fnl9.jpeg" },
-      { name: "Rosto Feminino", image: "/assets/fineline/fnl10.jpeg" },
-    ],
-    blackwork: [
-      { name: "Caveira Sombria", image: "/assets/blackwork/blk1.jpeg" },
-      { name: "Caveira Sombria", image: "/assets/blackwork/blk2.jpeg" },
-      { name: "Caveira Sombria", image: "/assets/blackwork/blk3.jpeg" },
-      { name: "Caveira Sombria", image: "/assets/blackwork/blk4.jpeg" },
-      { name: "Caveira Sombria", image: "/assets/blackwork/blk5.jpeg" },
-      { name: "Serpente Tribal", image: "/assets/blackwork/blk6.jpeg" },
-      { name: "Navegação", image: "/assets/blackwork/blk7.jpeg" },
-      { name: "Navegação", image: "/assets/blackwork/blk8.jpeg" },
-      { name: "Navegação", image: "/assets/blackwork/blk9.jpeg" },
-      { name: "Navegação", image: "/assets/blackwork/blk10.jpeg" },
-      { name: "Navegação", image: "/assets/blackwork/blk11.jpeg" },
-      { name: "Navegação", image: "/assets/blackwork/blk12.jpeg" },
-      { name: "Navegação", image: "/assets/blackwork/blk13.jpeg" },
-      { name: "Navegação", image: "/assets/blackwork/blk14.jpeg" },
-    ],
-  };
-
-  const items: TattooItem[] = tattoos[category] ?? [];
+  const filteredItems = products.filter((item) => item.category === category);
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
 
   return (
@@ -59,15 +24,15 @@ export default function CategorySection({ category }: CategorySectionProps) {
         className="text-3xl font-semibold text-center text-white mb-6 capitalize"
         data-aos="fade-up"
       >
-        {category}
+        {category === "tattoo" ? "Tatuagens" : "Piercings"}
       </h3>
 
       <div className="relative">
         <div className="overflow-hidden w-full" ref={emblaRef}>
           <div className="flex gap-4 px-2">
-            {items.map((item, idx) => (
+            {filteredItems.map((item, idx) => (
               <div
-                key={idx}
+                key={item.id}
                 className="
                   flex-none 
                   w-[60%] sm:w-1/2 
@@ -92,7 +57,7 @@ export default function CategorySection({ category }: CategorySectionProps) {
                   hover:-translate-y-2
                 ">
                   <img
-                    src={item.image}
+                    src={item.imageUrl}
                     alt={item.name}
                     className="
                       w-full 

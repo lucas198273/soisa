@@ -3,34 +3,80 @@
 export interface Product {
   id: string;
   name: string;
-  description: string;
-  price: number;
-  available: boolean;
+  description?: string;
+  price?: number;
+  available?: boolean;
   imageUrl: string;
-  notes: string[];
-  category: "tattoo" | "piercing"; // Adicionando a propriedade category
+  notes?: string[];
+  category: "tattoo" | "piercing";
 }
 
 export const products: Product[] = [
   // --- Tattoos ---
   {
     id: "tattoo1",
-    name: "Tatuagem Blackwork",
-    description: "Traços fortes em preto sólido, estilo impactante.",
-    price: 250,
-    available: true,
-    imageUrl: "/assets/blackwork/blk1.jpeg",
-    notes: ["Preto sólido", "Design geométrico", "Impactante"],
+    name: "Tatuagem 1",
+    imageUrl: "/assets/soisa/img-s1.webp",
     category: "tattoo",
   },
   {
     id: "tattoo2",
-    name: "Tatuagem Fineline",
-    description: "Estilo delicado com traços finos e detalhados.",
-    price: 200,
-    available: true,
-    imageUrl: "/assets/fineline/fnl10.jpeg",
-    notes: ["Traços finos", "Detalhes minimalistas", "Elegante"],
+    name: "Tatuagem 2",
+    imageUrl: "/assets/soisa/img-s2.webp",
+    category: "tattoo",
+  },
+  {
+    id: "tattoo3",
+    name: "Tatuagem 3",
+    imageUrl: "/assets/soisa/img-s3.webp",
+    category: "tattoo",
+  },
+  {
+    id: "tattoo4",
+    name: "Tatuagem 4",
+    imageUrl: "/assets/soisa/img-s4.webp",
+    category: "tattoo",
+  },
+  {
+    id: "tattoo5",
+    name: "Tatuagem 5",
+    imageUrl: "/assets/soisa/img-s5.webp",
+    category: "tattoo",
+  },
+  {
+    id: "tattoo6",
+    name: "Tatuagem 6",
+    imageUrl: "/assets/soisa/img-s6.webp",
+    category: "tattoo",
+  },
+  {
+    id: "tattoo7",
+    name: "Tatuagem 7",
+    imageUrl: "/assets/soisa/img-s7.webp",
+    category: "tattoo",
+  },
+  {
+    id: "tattoo8",
+    name: "Tatuagem 8",
+    imageUrl: "/assets/soisa/img-s8.webp",
+    category: "tattoo",
+  },
+  {
+    id: "tattoo9",
+    name: "Tatuagem 9",
+    imageUrl: "/assets/soisa/img-s9.webp",
+    category: "tattoo",
+  },
+  {
+    id: "tattoo10",
+    name: "Tatuagem 10",
+    imageUrl: "/assets/soisa/img-s10.webp",
+    category: "tattoo",
+  },
+  {
+    id: "tattoo11",
+    name: "Tatuagem 11",
+    imageUrl: "/assets/soisa/img-s11.webp",
     category: "tattoo",
   },
 
@@ -41,7 +87,7 @@ export const products: Product[] = [
     description: "Argola ou ponto de luz discreto.",
     price: 60,
     available: true,
-    imageUrl: "/assets/blackwork/blk1.jpeg",
+    imageUrl: "/assets/sol/img-sol-1.webp",
     notes: ["Cicatrização rápida", "Material hipoalergênico"],
     category: "piercing",
   },
@@ -51,7 +97,7 @@ export const products: Product[] = [
     description: "Joia curva com brilho ou detalhe.",
     price: 80,
     available: true,
-    imageUrl: "/assets/piercings/umbigo.jpg",
+    imageUrl: "/assets/sol/img-sol-2.webp",
     notes: ["Muito procurado", "Requer cuidado pós"],
     category: "piercing",
   },
@@ -61,7 +107,7 @@ export const products: Product[] = [
     description: "Estilo moderno e marcante.",
     price: 70,
     available: true,
-    imageUrl: "/assets/piercings/sobrancelha.jpg",
+    imageUrl: "/assets/sol/img-sol-3.webp",
     notes: ["Estilo alternativo", "Visual forte"],
     category: "piercing",
   },
@@ -71,7 +117,7 @@ export const products: Product[] = [
     description: "Pequeno e discreto, ótimo para quem ama detalhe.",
     price: 65,
     available: true,
-    imageUrl: "/assets/piercings/tragus.jpg",
+    imageUrl: "/assets/sol/img-sol-4.webp",
     notes: ["Joias pequenas", "Estética sutil"],
     category: "piercing",
   },
@@ -81,7 +127,7 @@ export const products: Product[] = [
     description: "Visual marcante com diversas opções de argola.",
     price: 90,
     available: true,
-    imageUrl: "/assets/piercings/septo.jpg",
+    imageUrl: "/assets/sol/img-sol-5.webp",
     notes: ["Popular", "Opções de joias variadas"],
     category: "piercing",
   },
@@ -91,7 +137,7 @@ export const products: Product[] = [
     description: "Clássico furo com joias variadas.",
     price: 50,
     available: true,
-    imageUrl: "/assets/piercings/lobulo.jpg",
+    imageUrl: "/assets/sol/img-sol-6.webp",
     notes: ["Básico", "Joia simples ou alargador"],
     category: "piercing",
   },
@@ -101,7 +147,7 @@ export const products: Product[] = [
     description: "Dois furos unidos por uma única barra.",
     price: 100,
     available: true,
-    imageUrl: "/assets/piercings/industrial.jpg",
+    imageUrl: "/assets/sol/img-sol-7.webp",
     notes: ["Estilo alternativo", "Tempo de cicatrização maior"],
     category: "piercing",
   },
@@ -111,7 +157,7 @@ export const products: Product[] = [
     description: "Posição especial no ouvido interno.",
     price: 85,
     available: true,
-    imageUrl: "/assets/piercings/rook.jpg",
+    imageUrl: "/assets/sol/img-sol-8.webp",
     notes: ["Exclusivo", "Design diferenciado"],
     category: "piercing",
   },
@@ -121,7 +167,7 @@ export const products: Product[] = [
     description: "Furo lateral superior da orelha.",
     price: 70,
     available: true,
-    imageUrl: "/assets/piercings/cartilagem.jpg",
+    imageUrl: "/assets/sol/img-sol-9.webp",
     notes: ["Estilo discreto", "Cicatrização lenta"],
     category: "piercing",
   },
@@ -131,8 +177,18 @@ export const products: Product[] = [
     description: "Posicionado abaixo do lábio inferior.",
     price: 90,
     available: true,
-    imageUrl: "/assets/piercings/labret.jpg",
+    imageUrl: "/assets/sol/img-sol-10.webp",
     notes: ["Diferenciado", "Visual ousado"],
+    category: "piercing",
+  },
+  {
+    id: "piercing11",
+    name: "Piercing Helix Duplo",
+    description: "Dois furos na cartilagem com joias combinadas.",
+    price: 95,
+    available: true,
+    imageUrl: "/assets/sol/img-sol-11.webp",
+    notes: ["Estilo moderno", "Muito procurado"],
     category: "piercing",
   },
 ];

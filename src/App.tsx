@@ -15,7 +15,9 @@ import Cart from "./components/Cart/Cart";
 import ProductPage from "./pages/ProductPage";
 import AboutPiercer from "./components/AboutPiercer/AboutPiercer";
 import ScrollTop from "./components/ScrollTop/ScrollTop";
+import CategorySection from "./components/CategorySection/CategorySection";
 import ScrollToTopOnRouteChange from "./components/ScrollToTopOnRouteChange/ScrollToTopOnRouteChange";
+
 
 // dentro do componente AppContent
 function AppContent() {
@@ -41,13 +43,13 @@ function AppContent() {
           element={
             <main className="pt-20 min-h-screen flex flex-col">
               <Hero />
-              <div className="py-8">
-                <Service />
-              </div>
+                 <section>
+                  <CategorySection category="tattoo" />
+                </section>
               <AboutPiercer />
-              <div className="py-8">
-                <Service />
-              </div>
+               <section>
+                  <CategorySection category="piercing" />
+                </section>
               <ProductInfoSection />
               <SocialMediaSection />
             </main>

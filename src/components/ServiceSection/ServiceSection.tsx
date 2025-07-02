@@ -1,8 +1,7 @@
 import CategorySection from "../CategorySection/CategorySection"
 
 export default function Service() {
-  // Aqui basta listar os nomes das categorias existentes em `CategorySection`
-  const categories = ["fineline", "blackwork"];
+  const categories = ["tattoo", "piercing"]; // apenas as categorias válidas
 
   return (
     <section className="bg-black py-20 px-4 md:px-8 lg:px-16">
@@ -11,7 +10,7 @@ export default function Service() {
       </h2>
 
       {categories.map((category) => (
-        <CategorySection key={category} category={category} />
+        <CategorySection key={category} category={category as "tattoo" | "piercing"} />
       ))}
 
       <footer className="mt-12 text-center text-gray-500 text-sm">
