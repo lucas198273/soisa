@@ -1,16 +1,11 @@
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useNavigate } from "react-router-dom";
 
 export default function ArtistaPreview() {
-  const navigate = useNavigate();
-
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
   }, []);
-
-  
 
   return (
     <section className="flex flex-col items-center py-8 px-4 bg-[#0a0a0a]">
@@ -19,36 +14,34 @@ export default function ArtistaPreview() {
         data-aos="fade-up"
       >
         {/* Card Tatuador */}
-        <div className="bg-black bg-opacity-60 rounded-xl shadow-lg p-5 w-full md:flex-1 hover:scale-[1.02] transition-transform duration-300">
+        <div className="bg-black bg-opacity-60 rounded-xl shadow-lg p-4 md:p-5 w-full md:flex-1 hover:scale-[1.02] transition-transform duration-300 min-h-[300px]">
           <img
             src="/assets/imgsoisa.jpg"
             alt="Tatuador"
-            className="w-full object-contain rounded-md mb-4 bg-black"
+            className="w-full h-40 md:h-48 object-contain rounded-md mb-3 md:mb-4 bg-black"
           />
-          <div className="text-white">
+          <div className="text-white px-2 md:px-0">
             <h3 className="text-2xl font-bold mb-2 text-[#00b4d8]">Tatuador</h3>
             <p className="text-gray-300 mb-4">
               Mais de 10 anos criando tatuagens únicas. Conheça o estilo,
               inspirações e trajetória deste artista.
             </p>
-           
           </div>
         </div>
 
         {/* Card Piercer */}
-        <div className="bg-black bg-opacity-60 rounded-xl shadow-lg p-5 w-full md:flex-1 hover:scale-[1.02] transition-transform duration-300">
+        <div className="bg-black bg-opacity-60 rounded-xl shadow-lg p-4 md:p-5 w-full md:flex-1 hover:scale-[1.02] transition-transform duration-300 min-h-[300px]">
           <img
-            src="/assets/artista/piercer.png"
+            src="/assets/imgsol.png"
             alt="Body Piercer"
-            className="w-full object-contain rounded-md mb-4 bg-black"
+            className="w-full h-40 md:h-48 object-contain rounded-md mb-3 md:mb-4 bg-black"
           />
-          <div className="text-white">
+          <div className="text-white px-2 md:px-0">
             <h3 className="text-2xl font-bold mb-2 text-[#00b4d8]">Body Piercer</h3>
             <p className="text-gray-300 mb-4">
               Especialista em perfurações corporais com segurança e estilo.
               Conheça o profissional e seu trabalho.
             </p>
-        
           </div>
         </div>
       </div>

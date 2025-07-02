@@ -113,14 +113,16 @@ const ProductPage = () => {
                     key={p.id}
                     className="bg-zinc-900 p-4 rounded-lg shadow-lg border-2 border-blue-800 flex flex-col items-center text-center relative h-72"
                   >
-                    <Link to={`/product/${p.id}`} className="block w-full h-full">
+                    <Link to={`/product/${p.id}`} className="block w-full h-full flex flex-col justify-between">
                       <img
                         src={p.imageUrl}
                         alt={p.name}
-                        className="w-full h-full object-cover rounded-md mx-auto"
+                        className="w-full h-48 object-cover rounded-md mx-auto"
                       />
-                      <h3 className="text-lg font-medium text-blue-300 mt-2">{p.name}</h3>
-                      <p className="font-bold text-yellow-500">R$ {p.price?.toFixed(2)}</p>
+                      <div className="w-full">
+                        <h3 className="text-lg font-medium text-blue-300 mt-2">{p.name}</h3>
+                        {p.price && <p className="font-bold text-yellow-500">R$ {p.price.toFixed(2)}</p>}
+                      </div>
                     </Link>
                   </div>
                 ))}
