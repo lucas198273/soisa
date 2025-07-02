@@ -42,11 +42,11 @@ function AppContent() {
           element={
             <main className="pt-20 min-h-screen flex flex-col">
               <Hero />
-                 <section>
+                 <section className="bg-blue-900 py-10">
                   <CategorySection category="tattoo" />
                 </section>
               <AboutPiercer />
-               <section>
+               <section className="bg-blue-900" >
                   <CategorySection category="piercing" />
                 </section>
               <ProductInfoSection />
