@@ -7,7 +7,6 @@ import Header from "./components/Header/Header";
 import Hero from "./components/Hero/Hero";
 import About from "./pages/About";
 import Footer from "./components/Footer/Footer";
-import Service from "./components/ServiceSection/ServiceSection";
 import SocialMediaSection from "./components/SocialMidia/SocialMIdia";
 import ProductInfoSection from "./components/ProductInfoSection/ProductInfoSection";
 import { CartProvider, useCart } from "../contexts/CartContext";
