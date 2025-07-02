@@ -1,13 +1,14 @@
-// src/components/CategorySection.tsx
 import useEmblaCarousel from "embla-carousel-react";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { products } from "../../data/Product";// importa os dados centralizados
+import { products } from "../../data/Product";
+import { useCart } from "../../../contexts/CartContext";
+import { toast } from "react-toastify";
 
 interface CategorySectionProps {
-  category: "tattoo" | "piercing"; // força a categoria válida
+  category: "tattoo" | "piercing";
 }
 
 export default function CategorySection({ category }: CategorySectionProps) {
@@ -17,6 +18,39 @@ export default function CategorySection({ category }: CategorySectionProps) {
 
   const filteredItems = products.filter((item) => item.category === category);
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const { addItem } = useCart();
+
+  const handleAddToCart = (product: any) => {
+    if (product.available && product.price) {
+      addItem({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        imageUrl: product.imageUrl,
+      });
+      toast.success(`${product.name} adicionado ao carrinho!`, {
+        position: "top-right",
+        autoClose: 3000,
+      });
+    } else {
+      toast.error("Este item não pode ser adicionado ao carrinho!", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+    }
+  };
+
+  const handleWhatsApp = (product: any) => {
+    const mensagem = encodeURIComponent(
+      `Olá! Tenho interesse no serviço "${product.name}" por R$${product.price?.toFixed(2) || "valor a combinar"}.`
+    );
+    const whatsappLink = `https://wa.me/5531994340017?text=${mensagem}`;
+    window.open(whatsappLink, "_blank");
+    toast.info(`Mensagem enviada para o WhatsApp sobre ${product.name}!`, {
+      position: "top-right",
+      autoClose: 3000,
+    });
+  };
 
   return (
     <div className="mb-16">
@@ -43,14 +77,11 @@ export default function CategorySection({ category }: CategorySectionProps) {
                 data-aos-delay={idx * 50}
               >
                 <div className="
-                  bg-[#111] 
+                  relative 
                   rounded-xl 
                   overflow-hidden 
                   h-[360px] 
-                  flex 
-                  items-center 
-                  justify-center 
-                  shadow-[0_8px_20px_rgba(0,0,0,0.3)] 
+                  shadow-lg 
                   transition-transform 
                   duration-300 
                   ease-out 
@@ -69,6 +100,27 @@ export default function CategorySection({ category }: CategorySectionProps) {
                       hover:scale-105 
                     "
                   />
+                  {category === "piercing" && (
+                    <div className="absolute bottom-0 left-0 w-full p-3 bg-black bg-opacity-70 flex justify-center gap-2">
+                      <button
+                        onClick={() => handleAddToCart(item)}
+                        className={`px-4 py-2 font-semibold rounded-full transition ${
+                          item.available && item.price
+                            ? "bg-blue-600 hover:bg-blue-700 text-white"
+                            : "bg-gray-400 text-white cursor-not-allowed"
+                        }`}
+                        disabled={!item.available || !item.price}
+                      >
+                        Adicionar
+                      </button>
+                      <button
+                        onClick={() => handleWhatsApp(item)}
+                        className="px-4 py-2 rounded-lg font-semibold bg-green-700 text-white hover:bg-green-800"
+                      >
+                        WhatsApp
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
@@ -87,7 +139,7 @@ export default function CategorySection({ category }: CategorySectionProps) {
             text-white 
             p-2 
             rounded-full 
-            z-10
+            z-10 
             hover:bg-[#d43c2d]
           "
           aria-label="Anterior"
@@ -105,7 +157,7 @@ export default function CategorySection({ category }: CategorySectionProps) {
             text-white 
             p-2 
             rounded-full 
-            z-10
+            z-10 
             hover:bg-[#d43c2d]
           "
           aria-label="Próximo"

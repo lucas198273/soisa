@@ -22,7 +22,7 @@ const SocialMediaSection: React.FC = () => {
         <div className="flex justify-center gap-8 flex-wrap">
           {/* Instagram */}
           <a
-            href="https://www.instagram.com/imperio_dos_aromass?igsh=MWs4OXh5Mjg0eW5hYw%3D%3D&utm_source=qr"
+            href="https://www.instagram.com/italosoisa1/"
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-col items-center transition-transform hover:scale-110 text-[#ff6f00] hover:text-[#00b4d8]"

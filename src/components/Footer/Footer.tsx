@@ -10,7 +10,7 @@ export default function Footer() {
 
         <div className="flex space-x-6 text-2xl">
           <a
-            href="https://www.instagram.com/imperio_dos_aromass?igsh=MWs4OXh5Mjg0eW5hYw%3D%3D&utm_source=qr"
+            href="https://www.instagram.com/italosoisa1/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#00b4d8] hover:text-white transition-colors duration-300"

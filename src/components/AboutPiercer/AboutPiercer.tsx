@@ -7,7 +7,7 @@ export default function AboutPiercer() {
         {/* Imagem da profissional à esquerda */}
         <div className="w-full md:w-1/2 flex justify-center">
           <img
-            src="/assets/piercer.png" // Substitua com a imagem real da profissional
+            src="/assets/imgsol.png" // Substitua com a imagem real da profissional
             alt="Body Piercer residente"
             className="w-[80%] md:w-[26rem] rounded-lg shadow-2xl hover:scale-105 transition-transform duration-300"
             loading="lazy"
