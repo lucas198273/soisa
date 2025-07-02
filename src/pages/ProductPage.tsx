@@ -46,9 +46,15 @@ const ProductPage = () => {
         price: product.price,
         imageUrl: product.imageUrl,
       });
-      toast.success(`${product.name} adicionado ao carrinho!`);
+      toast.success(`${product.name} adicionado ao carrinho!`, {
+        position: "top-right",
+        autoClose: 3000,
+      });
     } else {
-      toast.error("Este item não pode ser adicionado ao carrinho!");
+      toast.error("Este item não pode ser adicionado ao carrinho!", {
+        position: "top-right",
+        autoClose: 3000,
+      });
     }
   };
 
@@ -58,7 +64,10 @@ const ProductPage = () => {
     );
     const whatsappLink = `https://wa.me/553198749678?text=${mensagem}`;
     window.open(whatsappLink, "_blank");
-    toast.info(`Mensagem enviada para o WhatsApp sobre ${product.name}!`);
+    toast.info(`Mensagem enviada para o WhatsApp sobre ${product.name}!`, {
+      position: "top-right",
+      autoClose: 3000,
+    });
   };
 
   const isTattoo = (product: any) => product.category === "tattoo";
@@ -78,7 +87,7 @@ const ProductPage = () => {
                 .map((p) => (
                   <div
                     key={p.id}
-                    className="bg-zinc-900 p-4 rounded-lg shadow-lg border-2 border-blue-800 flex flex-col items-center text-center relative h-72" // Altura fixa para consistência
+                    className="bg-zinc-900 p-4 rounded-lg shadow-lg border-2 border-blue-800 flex flex-col items-center text-center relative h-72"
                   >
                     <Link to={`/product/${p.id}`} className="block w-full h-full">
                       <img
@@ -102,7 +111,7 @@ const ProductPage = () => {
                 .map((p) => (
                   <div
                     key={p.id}
-                    className="bg-zinc-900 p-4 rounded-lg shadow-lg border-2 border-blue-800 flex flex-col items-center text-center relative h-72" // Altura fixa para consistência
+                    className="bg-zinc-900 p-4 rounded-lg shadow-lg border-2 border-blue-800 flex flex-col items-center text-center relative h-72"
                   >
                     <Link to={`/product/${p.id}`} className="block w-full h-full">
                       <img
@@ -242,7 +251,7 @@ const ProductPage = () => {
             }
           >
             {products
-              .filter((p) => p.id !== id)
+              .filter((p) => p.id !== id && p.category === selectedProduct.category)
               .slice(0, 6)
               .map((p) => (
                 <div key={p.id} className="cursor-pointer p-2" onClick={() => handleProductClick(p.id)}>

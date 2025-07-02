@@ -6,13 +6,13 @@ const SocialMediaSection: React.FC = () => {
     <section className="py-12 px-4 bg-black text-white">
       <div className="max-w-4xl mx-auto text-center">
         <img
-          src="/assets/logo-tattoo.webp"
+          src="/assets/logo.webp"
           alt="Studio Tattoo"
-          className="mx-auto mb-6 w-32 h-32 object-cover rounded-full border-4 border-[#00b4d8] shadow-xl"
+          className="mx-auto mb-6 w-38 h-38 object-cover rounded-full border-4 border-[#00b4d8] shadow-xl"
         />
 
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#00b4d8] drop-shadow-md">
-          Conecte-se com o Studio Tattoo
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#00b4d8] drop-shadow-md graffiti-font">
+          Ítalo Soisa Tattoo
         </h2>
 
         <p className="mb-6 text-lg italic text-gray-300">
@@ -35,5 +35,18 @@ const SocialMediaSection: React.FC = () => {
     </section>
   );
 };
+
+// Adicionando estilo inline para a fonte (pode ser movido para um CSS externo)
+const styles = `
+  @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
+  .graffiti-font {
+    font-family: 'Bangers', cursive;
+  }
+`;
+
+const styleSheet = document.createElement("style");
+styleSheet.textContent = styles;
+document.head.appendChild(styleSheet);
 
 export default SocialMediaSection;
