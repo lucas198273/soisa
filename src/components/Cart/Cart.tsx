@@ -31,7 +31,7 @@ ${itensFormatados}
 Por favor, poderia me confirmar a disponibilidade, formas de pagamento e opções de entrega?
     `.trim();
 
-    const link = `https://wa.me/553198749678?text=${encodeURIComponent(mensagem)}`;
+    const link = `https://wa.me/5531971705728?text=${encodeURIComponent(mensagem)}`;
     window.open(link, "_blank");
   };
 

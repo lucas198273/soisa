@@ -62,7 +62,7 @@ const ProductPage = () => {
     const mensagem = encodeURIComponent(
       `Olá! Tenho interesse no serviço "${product.name}" por R$${product.price?.toFixed(2) || "valor a combinar"}.`
     );
-    const whatsappLink = `https://wa.me/553198749678?text=${mensagem}`;
+    const whatsappLink = `https://wa.me/5531971705728?text=${mensagem}`;
     window.open(whatsappLink, "_blank");
     toast.info(`Mensagem enviada para o WhatsApp sobre ${product.name}!`, {
       position: "top-right",
@@ -113,7 +113,7 @@ const ProductPage = () => {
                     key={p.id}
                     className="bg-zinc-900 p-4 rounded-lg shadow-lg border-2 border-blue-800 flex flex-col items-center text-center relative h-72"
                   >
-                    <Link to={`/product/${p.id}`} className="block w-full h-full flex flex-col justify-between">
+                    <Link to={`/product/${p.id}`} className="block w-full h-full  flex-col justify-between">
                       <img
                         src={p.imageUrl}
                         alt={p.name}
