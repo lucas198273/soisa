@@ -41,7 +41,7 @@ export const products: Product[] = [
     description: "Argola ou ponto de luz discreto.",
     price: 60,
     available: true,
-    imageUrl: "/assets/piercings/nariz.jpg",
+    imageUrl: "/assets/blackwork/blk1.jpeg",
     notes: ["Cicatrização rápida", "Material hipoalergênico"],
     category: "piercing",
   },
