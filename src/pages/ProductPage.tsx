@@ -39,7 +39,7 @@ const ProductPage = () => {
   };
 
   const handleAddToCart = (product: any) => {
-    if (product.available) {
+    if (product.available && product.price) {
       addItem({
         id: product.id,
         name: product.name,
@@ -48,13 +48,13 @@ const ProductPage = () => {
       });
       toast.success(`${product.name} adicionado ao carrinho!`);
     } else {
-      toast.error("Este item não está disponível!");
+      toast.error("Este item não pode ser adicionado ao carrinho!");
     }
   };
 
   const handleWhatsApp = (product: any) => {
     const mensagem = encodeURIComponent(
-      `Olá! Tenho interesse no serviço "${product.name}" por R$${product.price.toFixed(2)}.`
+      `Olá! Tenho interesse no serviço "${product.name}" por R$${product.price?.toFixed(2) || "valor a combinar"}.`
     );
     const whatsappLink = `https://wa.me/553198749678?text=${mensagem}`;
     window.open(whatsappLink, "_blank");
@@ -78,13 +78,13 @@ const ProductPage = () => {
                 .map((p) => (
                   <div
                     key={p.id}
-                    className="bg-zinc-900 p-4 rounded-lg shadow-lg border-2 border-blue-800 flex flex-col items-center text-center relative"
+                    className="bg-zinc-900 p-4 rounded-lg shadow-lg border-2 border-blue-800 flex flex-col items-center text-center relative h-72" // Altura fixa para consistência
                   >
-                    <Link to={`/product/${p.id}`} className="block w-full">
+                    <Link to={`/product/${p.id}`} className="block w-full h-full">
                       <img
                         src={p.imageUrl}
                         alt={p.name}
-                        className="w-full h-52 object-contain rounded-md mx-auto"
+                        className="w-full h-full object-cover rounded-md mx-auto"
                       />
                       <h3 className="text-lg font-medium text-blue-300 mt-2">{p.name}</h3>
                     </Link>
@@ -102,16 +102,16 @@ const ProductPage = () => {
                 .map((p) => (
                   <div
                     key={p.id}
-                    className="bg-zinc-900 p-4 rounded-lg shadow-lg border-2 border-blue-800 flex flex-col items-center text-center relative"
+                    className="bg-zinc-900 p-4 rounded-lg shadow-lg border-2 border-blue-800 flex flex-col items-center text-center relative h-72" // Altura fixa para consistência
                   >
-                    <Link to={`/product/${p.id}`} className="block w-full">
+                    <Link to={`/product/${p.id}`} className="block w-full h-full">
                       <img
                         src={p.imageUrl}
                         alt={p.name}
-                        className="w-full h-52 object-contain rounded-md mx-auto"
+                        className="w-full h-full object-cover rounded-md mx-auto"
                       />
                       <h3 className="text-lg font-medium text-blue-300 mt-2">{p.name}</h3>
-                      <p className="font-bold text-yellow-500">R$ {p.price.toFixed(2)}</p>
+                      <p className="font-bold text-yellow-500">R$ {p.price?.toFixed(2)}</p>
                     </Link>
                   </div>
                 ))}
@@ -147,12 +147,14 @@ const ProductPage = () => {
 
           <div className="w-full md:w-2/3 space-y-4">
             <h1 className="text-3xl font-bold text-blue-400">{selectedProduct.name}</h1>
-            <p className="text-blue-200">{selectedProduct.description}</p>
-            {!isTattoo(selectedProduct) && (
+            {selectedProduct.description && (
+              <p className="text-blue-200">{selectedProduct.description}</p>
+            )}
+            {!isTattoo(selectedProduct) && selectedProduct.price && (
               <p className="text-xl font-bold text-yellow-400">R$ {selectedProduct.price.toFixed(2)}</p>
             )}
             <div className="flex flex-col sm:flex-row gap-4">
-              {!isTattoo(selectedProduct) && (
+              {!isTattoo(selectedProduct) && selectedProduct.available !== undefined && (
                 <>
                   <button
                     onClick={() => handleAddToCart(selectedProduct)}
@@ -172,6 +174,14 @@ const ProductPage = () => {
                     {selectedProduct.available ? "Pedir pelo WhatsApp" : "Encomendar pelo WhatsApp"}
                   </button>
                 </>
+              )}
+              {isTattoo(selectedProduct) && (
+                <button
+                  onClick={() => handleWhatsApp(selectedProduct)}
+                  className="px-6 py-2 rounded-lg font-semibold bg-green-700 text-white hover:bg-green-800"
+                >
+                  Consultar Valor no WhatsApp
+                </button>
               )}
             </div>
             <button
@@ -239,10 +249,10 @@ const ProductPage = () => {
                   <img
                     src={p.imageUrl}
                     alt={p.name}
-                    className="w-full h-32 object-contain rounded-md shadow-md border-2 border-blue-800 mx-auto"
+                    className="w-full h-32 object-cover rounded-md shadow-md border-2 border-blue-800 mx-auto"
                   />
                   <p className="mt-2 text-center font-medium text-blue-300">{p.name}</p>
-                  {!isTattoo(p) && <p className="text-center font-bold text-yellow-500">R$ {p.price.toFixed(2)}</p>}
+                  {!isTattoo(p) && p.price && <p className="text-center font-bold text-yellow-500">R$ {p.price.toFixed(2)}</p>}
                 </div>
               ))}
           </Carousel>

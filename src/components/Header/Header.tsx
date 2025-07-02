@@ -27,7 +27,7 @@ export default function Header({ onCartClick, cartItemCount }: HeaderProps) {
           <nav className="hidden md:flex space-x-8 font-bold text-white text-base items-center">
             <Link to="/" className="hover:text-[#00b4d8] transition-colors duration-200">Início</Link>
             <Link to="/about" className="hover:text-[#00b4d8] transition-colors duration-200">Sobre</Link>
-            <Link to="/products" className="hover:text-[#00b4d8] transition-colors duration-200">Tatuagens</Link>
+            <Link to="/products" className="hover:text-[#00b4d8] transition-colors duration-200">Tatuagens e Piercings</Link>
           </nav>
         </div>
 
@@ -90,7 +90,7 @@ export default function Header({ onCartClick, cartItemCount }: HeaderProps) {
             onClick={() => setMenuOpen(false)}
             className="block text-white hover:text-[#00b4d8] transition-colors duration-200"
           >
-            Tatuagens
+            Tatuagens e Piercings
           </Link>
         </nav>
       </div>
