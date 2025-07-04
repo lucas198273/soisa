@@ -123,7 +123,7 @@ export const products: Product[] = [
   },
   {
     id: "piercing5",
-    name: "Piercing Orelha Orbital ",
+    name: "Piercing Orelha Helix ",
     description: "Visual marcante com diversas opções de argola.",
     price: 90,
     available: true,
