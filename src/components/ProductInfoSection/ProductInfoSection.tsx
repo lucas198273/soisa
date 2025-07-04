@@ -7,7 +7,7 @@ const TattooStudioInfoSection: React.FC = () => {
     AOS.init({ duration: 1000, once: true });
   }, []);
 
-  const mensagemWhatsApp = `Olá! 😊 Gostaria de agendar um horário para tatuagem. Poderia me informar sobre disponibilidade, valores e cuidados pré e pós procedimento?`;
+  const mensagemWhatsApp = `Olá! 😊 Gostaria de agendar um horário para tatuagem. Poderia me informar sobre disponibilidade?`;
   const linkWhatsApp = `https://wa.me/5531971705728?text=${encodeURIComponent(mensagemWhatsApp)}`;
 
   return (

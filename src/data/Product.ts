@@ -103,7 +103,7 @@ export const products: Product[] = [
   },
   {
     id: "piercing3",
-    name: "Piercing na Orelha Industrial",
+    name: "Aplicações Personalizadas",
     description: "Estilo moderno e marcante.",
     price: 70,
     available: true,
@@ -133,7 +133,7 @@ export const products: Product[] = [
   },
   {
     id: "piercing6",
-    name: "Piercing Orelha Anti  Hélix ",
+    name: "Aplicações Personalizadas ",
     description: "Clássico furo com joias variadas.",
     price: 50,
     available: true,
@@ -153,8 +153,8 @@ export const products: Product[] = [
   },
   {
     id: "piercing8",
-    name: "Piercing Orelha Lobulo ",
-    description: "Posição especial no ouvido interno.",
+    name: "Aplicações Personalizadas ",
+    description: " Dois furos na cartilagem com joias combinadas.",
     price: 85,
     available: true,
     imageUrl: "/assets/sol/img-sol-8.webp",
@@ -163,7 +163,7 @@ export const products: Product[] = [
   },
   {
     id: "piercing9",
-    name: "Piercing na Tragus",
+    name: "Aplicações Personalizadas",
     description: "Furo lateral superior da orelha.",
     price: 70,
     available: true,
@@ -174,7 +174,7 @@ export const products: Product[] = [
   {
     id: "piercing10",
     name: "Piercing Orelha Snug ",
-    description: "Posicionado abaixo do lábio inferior.",
+    description: "Perfuração Snug.",
     price: 90,
     available: true,
     imageUrl: "/assets/sol/img-sol-10.webp",
@@ -183,7 +183,7 @@ export const products: Product[] = [
   },
   {
     id: "piercing11",
-    name: "Piercing Orelha Conch e Trou  ",
+    name: "Aplicações Personalizada ",
     description: "Dois furos na cartilagem com joias combinadas.",
     price: 95,
     available: true,
@@ -192,7 +192,7 @@ export const products: Product[] = [
     category: "piercing",
   },  {
     id: "piercing12",
-    name: "Piercing Orelha Hélix  ",
+    name: "Aplicações Personalizadas",
     description: "Argola ou ponto de luz discreto.",
     price: 60,
     available: true,
