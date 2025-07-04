@@ -10,7 +10,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 const ProductPage = () => {
   const { id } = useParams<{ id?: string }>();
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
-  const [showDetails, setShowDetails] = useState(false);
   const [showScroll, setShowScroll] = useState(false);
   const { addItem } = useCart();
 
@@ -30,7 +29,6 @@ const ProductPage = () => {
 
   const handleProductClick = (id: string) => {
     setSelectedProduct(products.find((p) => p.id === id) || products[0]);
-    setShowDetails(false);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -78,7 +76,7 @@ const ProductPage = () => {
         <section className="px-4 max-w-7xl mx-auto">
           <h1 className="text-3xl font-bold text-blue-400 mb-10 text-center">Tatuagens e Piercings</h1>
 
-          {/* Seção de Tatuagens */}
+          {/* Tatuagens */}
           <div className="mb-12">
             <h2 className="text-2xl font-semibold text-blue-400 mb-6 text-center">Tatuagens</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -87,22 +85,26 @@ const ProductPage = () => {
                 .map((p) => (
                   <div
                     key={p.id}
-                    className="bg-zinc-900 p-4 rounded-lg shadow-lg border-2 border-blue-800 flex flex-col items-center text-center relative h-72"
+                    className="bg-zinc-900 p-4 rounded-lg shadow-lg border-2 border-blue-800 flex flex-col items-center text-center relative"
                   >
-                    <Link to={`/product/${p.id}`} className="block w-full h-full">
-                      <img
-                        src={p.imageUrl}
-                        alt={p.name}
-                        className="w-full h-full object-cover rounded-md mx-auto"
-                      />
-                      <h3 className="text-lg font-medium text-blue-300 mt-2">{p.name}</h3>
+                    <img
+                      src={p.imageUrl}
+                      alt={p.name}
+                      className="w-full h-48 object-cover rounded-md mx-auto"
+                    />
+                    <h3 className="text-lg font-medium text-blue-300 mt-2">{p.name}</h3>
+                    <Link
+                      to={`/product/${p.id}`}
+                      className="mt-3 inline-block px-4 py-2 bg-blue-700 text-white rounded-full hover:bg-blue-800 transition"
+                    >
+                      Ver mais
                     </Link>
                   </div>
                 ))}
             </div>
           </div>
 
-          {/* Seção de Piercings */}
+          {/* Piercings */}
           <div className="mb-12">
             <h2 className="text-2xl font-semibold text-blue-400 mb-6 text-center">Piercings</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -111,24 +113,26 @@ const ProductPage = () => {
                 .map((p) => (
                   <div
                     key={p.id}
-                    className="bg-zinc-900 p-4 rounded-lg shadow-lg border-2 border-blue-800 flex flex-col items-center text-center relative h-72"
+                    className="bg-zinc-900 p-4 rounded-lg shadow-lg border-2 border-blue-800 flex flex-col items-center text-center relative"
                   >
-                    <Link to={`/product/${p.id}`} className="block w-full h-full  flex-col justify-between">
-                      <img
-                        src={p.imageUrl}
-                        alt={p.name}
-                        className="w-full h-48 object-cover rounded-md mx-auto"
-                      />
-                      <div className="w-full">
-                        <h3 className="text-lg font-medium text-blue-300 mt-2">{p.name}</h3>
-                        {p.price && <p className="font-bold text-yellow-500">R$ {p.price.toFixed(2)}</p>}
-                      </div>
+                    <img
+                      src={p.imageUrl}
+                      alt={p.name}
+                      className="w-full h-48 object-cover rounded-md mx-auto"
+                    />
+                    <h3 className="text-lg font-medium text-blue-300 mt-2">{p.name}</h3>
+                    <Link
+                      to={`/product/${p.id}`}
+                      className="mt-3 inline-block px-4 py-2 bg-blue-700 text-white rounded-full hover:bg-blue-800 transition"
+                    >
+                      Ver mais
                     </Link>
                   </div>
                 ))}
             </div>
           </div>
         </section>
+
         {showScroll && (
           <button
             onClick={scrollToTop}
@@ -142,7 +146,11 @@ const ProductPage = () => {
     );
   }
 
-  if (!selectedProduct) return <div className="text-center py-10">Carregando tatuagens e piercings...</div>;
+  if (!selectedProduct) {
+    return <div className="text-center py-10">Carregando tatuagens e piercings...</div>;
+  }
+
+  const otherCategory = selectedProduct.category === "tattoo" ? "piercing" : "tattoo";
 
   return (
     <div className="relative pt-24 bg-black text-white">
@@ -195,27 +203,12 @@ const ProductPage = () => {
                 </button>
               )}
             </div>
-            <button
-              onClick={() => setShowDetails(!showDetails)}
-              className="px-6 py-2 bg-blue-900 hover:bg-blue-800 text-white font-semibold rounded-full transition"
-            >
-              {showDetails ? "Ocultar Detalhes" : "Exibir Detalhes"}
-            </button>
-            {showDetails && selectedProduct.notes && (
-              <div className="mt-4 bg-zinc-800 p-4 rounded-lg border-l-4 border-yellow-500">
-                <h2 className="text-lg font-semibold text-blue-300">Detalhes Técnicos:</h2>
-                <ul className="list-disc pl-6 text-blue-200">
-                  {selectedProduct.notes.map((note: string, i: number) => (
-                    <li key={i}>{note}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
           </div>
         </div>
 
+        {/* Carrossel da mesma categoria */}
         <div className="mb-12 text-center">
-          <h2 className="text-2xl font-semibold text-blue-400 mb-6">Outros Serviços</h2>
+          <h2 className="text-2xl font-semibold text-blue-400 mb-6">Outros {selectedProduct.category === "tattoo" ? "Tatuagens" : "Piercings"}</h2>
           <Carousel
             showArrows
             showThumbs={false}
@@ -263,7 +256,45 @@ const ProductPage = () => {
                     className="w-full h-32 object-cover rounded-md shadow-md border-2 border-blue-800 mx-auto"
                   />
                   <p className="mt-2 text-center font-medium text-blue-300">{p.name}</p>
-                  {!isTattoo(p) && p.price && <p className="text-center font-bold text-yellow-500">R$ {p.price.toFixed(2)}</p>}
+                  {!isTattoo(p) && p.price && (
+                    <p className="text-center font-bold text-yellow-500">R$ {p.price.toFixed(2)}</p>
+                  )}
+                </div>
+              ))}
+          </Carousel>
+        </div>
+
+        {/* Carrossel da outra categoria */}
+        <div className="mb-12 text-center">
+          <h2 className="text-2xl font-semibold text-blue-400 mb-6">
+            Conheça também nossos {otherCategory === "tattoo" ? "Tatuagens" : "Piercings"}
+          </h2>
+          <Carousel
+            showArrows
+            showThumbs={false}
+            infiniteLoop
+            centerMode
+            centerSlidePercentage={33.33}
+            emulateTouch
+            showStatus={false}
+            showIndicators={false}
+            dynamicHeight={false}
+            className="carousel-custom mx-auto"
+          >
+            {products
+              .filter((p) => p.category === otherCategory)
+              .slice(0, 6)
+              .map((p) => (
+                <div key={p.id} className="cursor-pointer p-2" onClick={() => handleProductClick(p.id)}>
+                  <img
+                    src={p.imageUrl}
+                    alt={p.name}
+                    className="w-full h-32 object-cover rounded-md shadow-md border-2 border-blue-800 mx-auto"
+                  />
+                  <p className="mt-2 text-center font-medium text-blue-300">{p.name}</p>
+                  {!isTattoo(p) && p.price && (
+                    <p className="text-center font-bold text-yellow-500">R$ {p.price.toFixed(2)}</p>
+                  )}
                 </div>
               ))}
           </Carousel>
