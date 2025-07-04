@@ -48,7 +48,7 @@ function AboutCp() {
                   className="relative h-48 rounded-md overflow-hidden group"
                 >
                   <img
-                    src={`/assets/businesimg/img${i}.jpeg`}
+                    src={`/assets/businesimg/img-es-${i}.webp`}
                     alt={`Foto do Estúdio ${i}`}
                     className="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
                   />

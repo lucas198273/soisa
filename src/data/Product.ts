@@ -83,7 +83,7 @@ export const products: Product[] = [
   // --- Piercings ---
   {
     id: "piercing1",
-    name: "Piercing no Nariz",
+    name: "Piercing Nostril",
     description: "Argola ou ponto de luz discreto.",
     price: 60,
     available: true,
@@ -103,7 +103,7 @@ export const products: Product[] = [
   },
   {
     id: "piercing3",
-    name: "Piercing na Sobrancelha",
+    name: "Piercing na Orelha Industrial",
     description: "Estilo moderno e marcante.",
     price: 70,
     available: true,
@@ -113,7 +113,7 @@ export const products: Product[] = [
   },
   {
     id: "piercing4",
-    name: "Piercing no Tragus",
+    name: "Piercing Microdermal",
     description: "Pequeno e discreto, ótimo para quem ama detalhe.",
     price: 65,
     available: true,
@@ -123,7 +123,7 @@ export const products: Product[] = [
   },
   {
     id: "piercing5",
-    name: "Piercing no Septo",
+    name: "Piercing Orelha Orbital ",
     description: "Visual marcante com diversas opções de argola.",
     price: 90,
     available: true,
@@ -133,7 +133,7 @@ export const products: Product[] = [
   },
   {
     id: "piercing6",
-    name: "Piercing no Lóbulo",
+    name: "Piercing Orelha Anti  Hélix ",
     description: "Clássico furo com joias variadas.",
     price: 50,
     available: true,
@@ -143,7 +143,7 @@ export const products: Product[] = [
   },
   {
     id: "piercing7",
-    name: "Piercing Industrial",
+    name: "Piercing Nostril",
     description: "Dois furos unidos por uma única barra.",
     price: 100,
     available: true,
@@ -153,7 +153,7 @@ export const products: Product[] = [
   },
   {
     id: "piercing8",
-    name: "Piercing no Rook",
+    name: "Piercing Orelha Lobulo ",
     description: "Posição especial no ouvido interno.",
     price: 85,
     available: true,
@@ -163,7 +163,7 @@ export const products: Product[] = [
   },
   {
     id: "piercing9",
-    name: "Piercing na Cartilagem",
+    name: "Piercing na Tragus",
     description: "Furo lateral superior da orelha.",
     price: 70,
     available: true,
@@ -173,7 +173,7 @@ export const products: Product[] = [
   },
   {
     id: "piercing10",
-    name: "Piercing Labret",
+    name: "Piercing Orelha Snug ",
     description: "Posicionado abaixo do lábio inferior.",
     price: 90,
     available: true,
@@ -183,7 +183,7 @@ export const products: Product[] = [
   },
   {
     id: "piercing11",
-    name: "Piercing Helix Duplo",
+    name: "Piercing Orelha Conch e Trou  ",
     description: "Dois furos na cartilagem com joias combinadas.",
     price: 95,
     available: true,
@@ -192,7 +192,7 @@ export const products: Product[] = [
     category: "piercing",
   },  {
     id: "piercing12",
-    name: "Piercing no Nariz",
+    name: "Piercing Orelha Hélix  ",
     description: "Argola ou ponto de luz discreto.",
     price: 60,
     available: true,

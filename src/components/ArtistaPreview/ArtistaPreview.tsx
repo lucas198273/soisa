@@ -23,8 +23,10 @@ export default function ArtistaPreview() {
           <div className="text-white px-2 md:px-0">
             <h3 className="text-2xl font-bold mb-2 text-[#00b4d8]">Tatuador</h3>
             <p className="text-gray-300 mb-4">
-              Mais de 10 anos criando tatuagens únicas. Conheça o estilo,
-              inspirações e trajetória deste artista.
+            Sou Ítalo, mais conhecido como Soisa.
+Com 20 anos de experiência na tatuagem, atuo com especialidade em lettering, tattoos coloridas, blackwork, preto e sombra e newschool. Em 2019, tive trabalhos premiados nas categorias lettering e newschool, reconhecendo meu compromisso com a técnica e a criatividade.
+
+Prezando sempre por respeito, dedicação e um atendimento personalizado, meu objetivo é transformar cada tatuagem em uma experiência única e marcante para quem confia no meu trabalho.
             </p>
           </div>
         </div>
@@ -39,8 +41,12 @@ export default function ArtistaPreview() {
           <div className="text-white px-2 md:px-0">
             <h3 className="text-2xl font-bold mb-2 text-[#00b4d8]">Body Piercer</h3>
             <p className="text-gray-300 mb-4">
-              Especialista em perfurações corporais com segurança e estilo.
-              Conheça o profissional e seu trabalho.
+              Me chamo Suellem, mas sou conhecida como Sol.
+Atuo no ramo das perfurações há cerca de 8 anos, com experiência em todos os tipos – das mais básicas às íntimas. Minha especialidade, e também a mais procurada pelos clientes, é o microdermal, conhecido pela praticidade e resultado impecável.
+
+O que mais me encanta no meu trabalho é ver o brilho no olhar e o sorriso de quem realiza o sonho de aplicar aquela joia tão desejada. Valorizo a autoestima de cada pessoa e procuro sempre oferecer um atendimento personalizado, acolhendo mulheres, homens e crianças com cuidado, respeito e atenção a cada detalhe.
+
+Meu compromisso é proporcionar uma experiência única e segura em cada perfuração.
             </p>
           </div>
         </div>
