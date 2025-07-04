@@ -265,40 +265,60 @@ const ProductPage = () => {
         </div>
 
         {/* Carrossel da outra categoria */}
-        <div className="mb-12 text-center">
-          <h2 className="text-2xl font-semibold text-blue-400 mb-6">
-            Conheça também nossos {otherCategory === "tattoo" ? "Tatuagens" : "Piercings"}
-          </h2>
-          <Carousel
-            showArrows
-            showThumbs={false}
-            infiniteLoop
-            centerMode
-            centerSlidePercentage={33.33}
-            emulateTouch
-            showStatus={false}
-            showIndicators={false}
-            dynamicHeight={false}
-            className="carousel-custom mx-auto"
-          >
-            {products
-              .filter((p) => p.category === otherCategory)
-              .slice(0, 6)
-              .map((p) => (
-                <div key={p.id} className="cursor-pointer p-2" onClick={() => handleProductClick(p.id)}>
-                  <img
-                    src={p.imageUrl}
-                    alt={p.name}
-                    className="w-full h-32 object-cover rounded-md shadow-md border-2 border-blue-800 mx-auto"
-                  />
-                  <p className="mt-2 text-center font-medium text-blue-300">{p.name}</p>
-                  {!isTattoo(p) && p.price && (
-                    <p className="text-center font-bold text-yellow-500">R$ {p.price.toFixed(2)}</p>
-                  )}
-                </div>
-              ))}
-          </Carousel>
-        </div>
+        <Carousel
+  showArrows
+  showThumbs={false}
+  infiniteLoop
+  centerMode
+  centerSlidePercentage={33.33}
+  emulateTouch
+  showStatus={false}
+  showIndicators={false}
+  dynamicHeight={false}
+  className="carousel-custom mx-auto"
+  renderArrowPrev={(onClickHandler, hasPrev, label) =>
+    hasPrev && (
+      <button
+        type="button"
+        onClick={onClickHandler}
+        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-blue-700 hover:bg-blue-800 text-white p-2 rounded-full shadow-lg z-10"
+        aria-label={label}
+      >
+        <ChevronLeft size={20} />
+      </button>
+    )
+  }
+  renderArrowNext={(onClickHandler, hasNext, label) =>
+    hasNext && (
+      <button
+        type="button"
+        onClick={onClickHandler}
+        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue-700 hover:bg-blue-800 text-white p-2 rounded-full shadow-lg z-10"
+        aria-label={label}
+      >
+        <ChevronRight size={20} />
+      </button>
+    )
+  }
+>
+  {products
+    .filter((p) => p.category === otherCategory)
+    .slice(0, 6)
+    .map((p) => (
+      <div key={p.id} className="cursor-pointer p-2" onClick={() => handleProductClick(p.id)}>
+        <img
+          src={p.imageUrl}
+          alt={p.name}
+          className="w-full h-32 object-cover rounded-md shadow-md border-2 border-blue-800 mx-auto"
+        />
+        <p className="mt-2 text-center font-medium text-blue-300">{p.name}</p>
+        {!isTattoo(p) && p.price && (
+          <p className="text-center font-bold text-yellow-500">R$ {p.price.toFixed(2)}</p>
+        )}
+      </div>
+    ))}
+</Carousel>
+
       </section>
 
       {showScroll && (
