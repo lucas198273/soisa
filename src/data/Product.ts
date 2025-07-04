@@ -1,4 +1,5 @@
 // src/data/products.ts
+// ✅ Atualização da interface Product no arquivo: src/data/products.ts
 
 export interface Product {
   id: string;
@@ -9,10 +10,14 @@ export interface Product {
   imageUrl: string;
   notes?: string[];
   category: "tattoo" | "piercing";
+  materials?: {
+    type: string;
+    price: number;
+  }[];
 }
 
 export const products: Product[] = [
-  // --- Tattoos ---
+
   {
     id: "tattoo1",
     name: "Tatuagem 1",
@@ -80,124 +85,187 @@ export const products: Product[] = [
     category: "tattoo",
   },
 
-  // --- Piercings ---
+  // ...demais tatuagens (sem alterações)
+
+  // --- Piercings com múltiplos materiais ---
   {
     id: "piercing1",
-    name: "Piercing Nostril",
-    description: "Argola ou ponto de luz discreto.",
-    price: 60,
+    name: "Aplicação Personalizada",
+  description: "Perfurações personalizadas próximas ao lóbulo.",
     available: true,
-    imageUrl: "/assets/sol/img-sol-12.webp",
-    notes: ["Cicatrização rápida", "Material hipoalergênico"],
+    imageUrl: "/assets/sol/img-sol-1.webp",
+    notes: ["Joias pequenas", "Estética sutil"],
     category: "piercing",
-  },
-  {
+    materials: [
+    { type: "Joia simples", price: 80 },
+         { type: "Aço cirúrgico", price: 120 },
+             { type: "Titânio", price: 220 }
+    ]
+  },  {
     id: "piercing2",
-    name: "Piercing no Umbigo",
-    description: "Joia curva com brilho ou detalhe.",
-    price: 80,
+    name: "Piercing Umbigo",
+    description: "Pequeno e discreto, ótimo para quem ama detalhe.",
     available: true,
     imageUrl: "/assets/sol/img-sol-2.webp",
-    notes: ["Muito procurado", "Requer cuidado pós"],
+    notes: ["Joias pequenas", "Estética sutil"],
     category: "piercing",
-  },
-  {
+    materials: [
+     
+      { type: "Titânio", price: 220 }
+    ]
+  }, {
     id: "piercing3",
-    name: "Aplicações Personalizadas",
-    description: "Estilo moderno e marcante.",
-    price: 70,
+    name: "Aplicação Personalizada",
+  description: "Perfurações personalizadas próximas ao lóbulo.",
     available: true,
     imageUrl: "/assets/sol/img-sol-3.webp",
-    notes: ["Estilo alternativo", "Visual forte"],
+    notes: ["Joias pequenas", "Estética sutil"],
     category: "piercing",
-  },
-  {
+    materials: [
+     
+      { type: "Joia simples", price: 80 },
+         { type: "Aço cirúrgico", price: 120 },
+             { type: "Titânio", price: 220 }
+    ]
+  },{
     id: "piercing4",
     name: "Piercing Microdermal",
     description: "Pequeno e discreto, ótimo para quem ama detalhe.",
-    price: 65,
     available: true,
     imageUrl: "/assets/sol/img-sol-4.webp",
     notes: ["Joias pequenas", "Estética sutil"],
     category: "piercing",
-  },
-  {
+    materials: [
+     
+  
+             { type: "Titânio", price: 220 }
+    ]
+  },{
     id: "piercing5",
-    name: "Piercing Orelha Helix ",
-    description: "Visual marcante com diversas opções de argola.",
-    price: 90,
+    name: "Aplicação Personalizada",
+    description: "Perfurações personalizadas próximas ao lóbulo.",
     available: true,
     imageUrl: "/assets/sol/img-sol-5.webp",
-    notes: ["Popular", "Opções de joias variadas"],
+    notes: ["Joias pequenas", "Estética sutil"],
     category: "piercing",
-  },
-  {
+    materials: [
+     
+    { type: "Joia simples", price: 80 },
+         { type: "Aço cirúrgico", price: 120 },
+             { type: "Titânio", price: 220 }
+    ]
+  },{
     id: "piercing6",
-    name: "Aplicações Personalizadas ",
-    description: "Clássico furo com joias variadas.",
-    price: 50,
+    name: "Aplicação Personalizada",
+    description: "Perfurações personalizadas próximas ao lóbulo.",
     available: true,
     imageUrl: "/assets/sol/img-sol-6.webp",
-    notes: ["Básico", "Joia simples ou alargador"],
+    notes: ["Joias pequenas", "Estética sutil"],
     category: "piercing",
-  },
-  {
+    materials: [
+     
+    { type: "Joia simples", price: 80 },
+         { type: "Aço cirúrgico", price: 120 },
+             { type: "Titânio", price: 220 }
+    ]
+  },{
     id: "piercing7",
-    name: "Piercing Nostril",
-    description: "Dois furos unidos por uma única barra.",
-    price: 100,
+     name: "Piercing Nostril",
+  description: "Argola ou ponto de luz discreto, ideal para quem busca estilo com delicadeza.",
     available: true,
     imageUrl: "/assets/sol/img-sol-7.webp",
-    notes: ["Estilo alternativo", "Tempo de cicatrização maior"],
+    notes: ["Joias pequenas", "Estética sutil"],
     category: "piercing",
-  },
-  {
+    materials: [
+     
+    { type: "Joia simples", price: 80 },
+         { type: "Aço cirúrgico", price: 120 },
+             { type: "Titânio", price: 220 }
+    ]
+  },{
     id: "piercing8",
-    name: "Aplicações Personalizadas ",
-    description: " Dois furos na cartilagem com joias combinadas.",
-    price: 85,
+name: "Aplicação Personalizada",
+    description: "Perfurações personalizadas próximas ao lóbulo.",
     available: true,
     imageUrl: "/assets/sol/img-sol-8.webp",
-    notes: ["Exclusivo", "Design diferenciado"],
+    notes: ["Joias pequenas", "Estética sutil"],
     category: "piercing",
-  },
-  {
+    materials: [
+     
+    { type: "Joia simples", price: 80 },
+         { type: "Aço cirúrgico", price: 120 },
+             { type: "Titânio", price: 220 }
+    ]
+  },{
     id: "piercing9",
-    name: "Aplicações Personalizadas",
-    description: "Furo lateral superior da orelha.",
-    price: 70,
+name: "Aplicação Personalizada",
+    description: "Perfurações personalizadas próximas ao lóbulo.",
     available: true,
     imageUrl: "/assets/sol/img-sol-9.webp",
-    notes: ["Estilo discreto", "Cicatrização lenta"],
+    notes: ["Joias pequenas", "Estética sutil"],
     category: "piercing",
+    materials: [
+     
+    { type: "Joia simples", price: 80 },
+         { type: "Aço cirúrgico", price: 120 },
+             { type: "Titânio", price: 220 }
+    ]
   },
+
+
   {
     id: "piercing10",
-    name: "Piercing Orelha Snug ",
-    description: "Perfuração Snug.",
-    price: 90,
+    name: "Piercing Orelha Conch",
+    description: "Perfuração Conch com joia decorada.",
     available: true,
     imageUrl: "/assets/sol/img-sol-10.webp",
-    notes: ["Diferenciado", "Visual ousado"],
     category: "piercing",
+    materials: [
+      { type: "Joia decorada dourada aço PVD", price: 90 },
+      
+      { type: "Joia simples", price: 80 },
+         { type: "Aço cirúrgico", price: 120 },
+             { type: "Titânio", price: 220 }
+    ]
   },
   {
     id: "piercing11",
-    name: "Aplicações Personalizada ",
-    description: "Dois furos na cartilagem com joias combinadas.",
-    price: 95,
+    name: "Aplicação Personalizada",
+    description: "Perfurações personalizadas próximas ao lóbulo.",
     available: true,
     imageUrl: "/assets/sol/img-sol-11.webp",
-    notes: ["Estilo moderno", "Muito procurado"],
     category: "piercing",
-  },  {
-    id: "piercing12",
-    name: "Aplicações Personalizadas",
-    description: "Argola ou ponto de luz discreto.",
-    price: 60,
-    available: true,
-    imageUrl: "/assets/sol/img-sol-1.webp",
-    notes: ["Cicatrização rápida", "Material hipoalergênico"],
-    category: "piercing",
+    materials: [
+       { type: "Joia simples", price: 80 },
+         { type: "Aço cirúrgico", price: 120 },
+             { type: "Titânio", price: 220 }
+      
+    ]
   },
+   {
+  id: "piercing12",
+  name: "Piercing Nostril",
+  description: "Argola ou ponto de luz discreto, ideal para quem busca estilo com delicadeza.",
+  available: true,
+  imageUrl: "/assets/sol/img-sol-12.webp",
+  category: "piercing",
+  materials: [
+    { type: "Joia simples", price: 60 }
+  ]
+}
+,
+    {
+    id: "piercing13",
+    name: "Perfuração íntima",
+    description: "Perfuração delicada em região íntima.",
+    available: true,
+    imageUrl: "/assets/sol/img-sol-13.jpeg",
+    category: "piercing",
+    materials: [
+      { type: "Aço cirúrgico", price: 120 },
+      { type: "Titânio", price: 160 }
+    ]
+  },
+  // ...demais piercings (mantém o campo price ou converte para materials conforme desejar)
 ];
+

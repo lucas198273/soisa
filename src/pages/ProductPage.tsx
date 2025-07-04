@@ -11,6 +11,7 @@ const ProductPage = () => {
   const { id } = useParams<{ id?: string }>();
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [showScroll, setShowScroll] = useState(false);
+  const [selectedMaterials, setSelectedMaterials] = useState<Record<string, string>>({});
   const { addItem } = useCart();
 
   useEffect(() => {
@@ -37,14 +38,21 @@ const ProductPage = () => {
   };
 
   const handleAddToCart = (product: any) => {
-    if (product.available && product.price) {
+    const selectedType = selectedMaterials[product.id] || "";
+    const selectedMaterial = product.materials?.find((m: any) => m.type === selectedType);
+
+    const uniqueId = `${product.id}${selectedMaterial ? `-${selectedMaterial.type}` : ""}`;
+    const itemName = `${product.name}${selectedMaterial ? ` - ${selectedMaterial.type}` : ""}`;
+    const itemPrice = selectedMaterial ? selectedMaterial.price : product.price;
+
+    if (product.available && itemPrice) {
       addItem({
-        id: product.id,
-        name: product.name,
-        price: product.price,
+        id: uniqueId,
+        name: itemName,
+        price: itemPrice,
         imageUrl: product.imageUrl,
       });
-      toast.success(`${product.name} adicionado ao carrinho!`, {
+      toast.success(`${itemName} adicionado ao carrinho!`, {
         position: "top-right",
         autoClose: 3000,
       });
@@ -57,15 +65,25 @@ const ProductPage = () => {
   };
 
   const handleWhatsApp = (product: any) => {
+    const selectedType = selectedMaterials[product.id] || "";
+    const selectedMaterial = product.materials?.find((m: any) => m.type === selectedType);
+    const price = selectedMaterial ? selectedMaterial.price.toFixed(2) : product.price?.toFixed(2) || "a combinar";
+    const itemName = `${product.name}${selectedMaterial ? ` - ${selectedMaterial.type}` : ""}`;
     const mensagem = encodeURIComponent(
-      `Olá! Tenho interesse no serviço "${product.name}" por R$${product.price?.toFixed(2) || "valor a combinar"}.`
+      `Olá! Tenho interesse no serviço "${itemName}" por R$${price}. Pode me ajudar?`
     );
     const whatsappLink = `https://wa.me/5531971705728?text=${mensagem}`;
     window.open(whatsappLink, "_blank");
-    toast.info(`Mensagem enviada para o WhatsApp sobre ${product.name}!`, {
+    toast.info(`Mensagem enviada para o WhatsApp sobre ${itemName}!`, {
       position: "top-right",
       autoClose: 3000,
     });
+  };
+
+  const handleMaterialSelect = (type: string) => {
+    if (selectedProduct && selectedProduct.materials) {
+      setSelectedMaterials((prev) => ({ ...prev, [selectedProduct.id]: type }));
+    }
   };
 
   const isTattoo = (product: any) => product.category === "tattoo";
@@ -77,8 +95,8 @@ const ProductPage = () => {
           <h1 className="text-3xl font-bold text-blue-400 mb-10 text-center">Tatuagens e Piercings</h1>
 
           {/* Tatuagens */}
-          <div className="mb-12 ">
-            <h2 className="text-2xl  font-semibold text-blue-400 mb-6 text-center">Tatuagens</h2>
+          <div className="mb-12">
+            <h2 className="text-2xl font-semibold text-blue-400 mb-6 text-center">Tatuagens</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {products
                 .filter((p) => p.category === "tattoo")
@@ -169,26 +187,66 @@ const ProductPage = () => {
             {selectedProduct.description && (
               <p className="text-blue-200">{selectedProduct.description}</p>
             )}
-            {!isTattoo(selectedProduct) && selectedProduct.price && (
-              <p className="text-xl font-bold text-yellow-400">R$ {selectedProduct.price.toFixed(2)}</p>
+            {!isTattoo(selectedProduct) && selectedProduct.materials && (
+              <div className="mb-4">
+                <h4 className="text-lg font-medium text-blue-300 mb-2">Escolha o Material:</h4>
+                <div className="flex flex-wrap gap-2">
+                  {selectedProduct.materials.map((material: any) => (
+                    <button
+                      key={material.type}
+                      onClick={() => handleMaterialSelect(material.type)}
+                      className={`
+                        px-3 py-1 md:px-4 md:py-2 
+                        rounded-full 
+                        text-sm md:text-base 
+                        font-semibold 
+                        bg-gradient-to-b from-gray-800 to-gray-900 
+                        text-white 
+                        shadow-md 
+                        hover:bg-gradient-to-r hover:from-[#00b4d8] hover:to-[#009ac1] 
+                        hover:shadow-xl 
+                        transition-all duration-300 
+                        ${selectedMaterials[selectedProduct.id] === material.type ? "ring-2 ring-[#00b4d8]" : ""}
+                      `}
+                    >
+                      {material.type}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+            {!isTattoo(selectedProduct) && (
+              <p className="text-xl font-bold text-yellow-400">
+                R$ {selectedProduct.materials?.find((m: any) => m.type === selectedMaterials[selectedProduct.id])?.price?.toFixed(2) || selectedProduct.price?.toFixed(2) || "a combinar"}
+              </p>
             )}
             <div className="flex flex-col sm:flex-row gap-4">
               {!isTattoo(selectedProduct) && selectedProduct.available !== undefined && (
                 <>
                   <button
                     onClick={() => handleAddToCart(selectedProduct)}
-                    className={`px-6 py-2 font-semibold rounded-full transition ${
-                      selectedProduct.available
-                        ? "bg-blue-600 hover:bg-blue-700 text-white"
-                        : "bg-gray-400 text-white cursor-not-allowed"
-                    }`}
-                    disabled={!selectedProduct.available}
+                    className={`
+                      px-6 py-2 font-semibold rounded-full transition 
+                      bg-gradient-to-b from-blue-800 to-blue-900 
+                      text-white shadow-md 
+                      hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-700 
+                      hover:shadow-xl 
+                      ${!selectedProduct.available || (selectedProduct.materials?.length && !selectedMaterials[selectedProduct.id]) ? "opacity-50 cursor-not-allowed" : ""}
+                    `}
+                    disabled={!selectedProduct.available || (selectedProduct.materials?.length && !selectedMaterials[selectedProduct.id])}
                   >
                     Adicionar ao Carrinho
                   </button>
                   <button
                     onClick={() => handleWhatsApp(selectedProduct)}
-                    className="px-6 py-2 rounded-lg font-semibold bg-green-700 text-white hover:bg-green-800"
+                    className={`
+                      px-6 py-2 rounded-lg font-semibold 
+                      bg-gradient-to-b from-green-800 to-green-900 
+                      text-white shadow-md 
+                      hover:bg-gradient-to-r hover:from-green-600 hover:to-green-700 
+                      hover:shadow-xl 
+                      transition-all duration-300
+                    `}
                   >
                     {selectedProduct.available ? "Pedir pelo WhatsApp" : "Encomendar pelo WhatsApp"}
                   </button>
@@ -197,7 +255,14 @@ const ProductPage = () => {
               {isTattoo(selectedProduct) && (
                 <button
                   onClick={() => handleWhatsApp(selectedProduct)}
-                  className="px-6 py-2 rounded-lg font-semibold bg-green-700 text-white hover:bg-green-800"
+                  className={`
+                    px-6 py-2 rounded-lg font-semibold 
+                    bg-gradient-to-b from-green-800 to-green-900 
+                    text-white shadow-md 
+                    hover:bg-gradient-to-r hover:from-green-600 hover:to-green-700 
+                    hover:shadow-xl 
+                    transition-all duration-300
+                  `}
                 >
                   Consultar Valor no WhatsApp
                 </button>
@@ -266,59 +331,58 @@ const ProductPage = () => {
 
         {/* Carrossel da outra categoria */}
         <Carousel
-  showArrows
-  showThumbs={false}
-  infiniteLoop
-  centerMode
-  centerSlidePercentage={33.33}
-  emulateTouch
-  showStatus={false}
-  showIndicators={false}
-  dynamicHeight={false}
-  className="carousel-custom mx-auto"
-  renderArrowPrev={(onClickHandler, hasPrev, label) =>
-    hasPrev && (
-      <button
-        type="button"
-        onClick={onClickHandler}
-        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-blue-700 hover:bg-blue-800 text-white p-2 rounded-full shadow-lg z-10"
-        aria-label={label}
-      >
-        <ChevronLeft size={20} />
-      </button>
-    )
-  }
-  renderArrowNext={(onClickHandler, hasNext, label) =>
-    hasNext && (
-      <button
-        type="button"
-        onClick={onClickHandler}
-        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue-700 hover:bg-blue-800 text-white p-2 rounded-full shadow-lg z-10"
-        aria-label={label}
-      >
-        <ChevronRight size={20} />
-      </button>
-    )
-  }
->
-  {products
-    .filter((p) => p.category === otherCategory)
-    .slice(0, 6)
-    .map((p) => (
-      <div key={p.id} className="cursor-pointer p-2" onClick={() => handleProductClick(p.id)}>
-        <img
-          src={p.imageUrl}
-          alt={p.name}
-          className="w-full h-32 object-cover rounded-md shadow-md border-2 border-blue-800 mx-auto"
-        />
-        <p className="mt-2 text-center font-medium text-blue-300">{p.name}</p>
-        {!isTattoo(p) && p.price && (
-          <p className="text-center font-bold text-yellow-500">R$ {p.price.toFixed(2)}</p>
-        )}
-      </div>
-    ))}
-</Carousel>
-
+          showArrows
+          showThumbs={false}
+          infiniteLoop
+          centerMode
+          centerSlidePercentage={33.33}
+          emulateTouch
+          showStatus={false}
+          showIndicators={false}
+          dynamicHeight={false}
+          className="carousel-custom mx-auto"
+          renderArrowPrev={(onClickHandler, hasPrev, label) =>
+            hasPrev && (
+              <button
+                type="button"
+                onClick={onClickHandler}
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-blue-700 hover:bg-blue-800 text-white p-2 rounded-full shadow-lg z-10"
+                aria-label={label}
+              >
+                <ChevronLeft size={20} />
+              </button>
+            )
+          }
+          renderArrowNext={(onClickHandler, hasNext, label) =>
+            hasNext && (
+              <button
+                type="button"
+                onClick={onClickHandler}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue-700 hover:bg-blue-800 text-white p-2 rounded-full shadow-lg z-10"
+                aria-label={label}
+              >
+                <ChevronRight size={20} />
+              </button>
+            )
+          }
+        >
+          {products
+            .filter((p) => p.category === otherCategory)
+            .slice(0, 6)
+            .map((p) => (
+              <div key={p.id} className="cursor-pointer p-2" onClick={() => handleProductClick(p.id)}>
+                <img
+                  src={p.imageUrl}
+                  alt={p.name}
+                  className="w-full h-32 object-cover rounded-md shadow-md border-2 border-blue-800 mx-auto"
+                />
+                <p className="mt-2 text-center font-medium text-blue-300">{p.name}</p>
+                {!isTattoo(p) && p.price && (
+                  <p className="text-center font-bold text-yellow-500">R$ {p.price.toFixed(2)}</p>
+                )}
+              </div>
+            ))}
+        </Carousel>
       </section>
 
       {showScroll && (
