@@ -77,15 +77,15 @@ const ProductPage = () => {
           <h1 className="text-3xl font-bold text-blue-400 mb-10 text-center">Tatuagens e Piercings</h1>
 
           {/* Tatuagens */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-semibold text-blue-400 mb-6 text-center">Tatuagens</h2>
+          <div className="mb-12 ">
+            <h2 className="text-2xl  font-semibold text-blue-400 mb-6 text-center">Tatuagens</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {products
                 .filter((p) => p.category === "tattoo")
                 .map((p) => (
                   <div
                     key={p.id}
-                    className="bg-zinc-900 p-4 rounded-lg shadow-lg border-2 border-blue-800 flex flex-col items-center text-center relative"
+                    className="bg-black p-4 rounded-lg shadow-lg border-2 border-blue-800 flex flex-col items-center text-center relative"
                   >
                     <img
                       src={p.imageUrl}
@@ -113,7 +113,7 @@ const ProductPage = () => {
                 .map((p) => (
                   <div
                     key={p.id}
-                    className="bg-zinc-900 p-4 rounded-lg shadow-lg border-2 border-blue-800 flex flex-col items-center text-center relative"
+                    className="bg-black p-4 rounded-lg shadow-lg border-2 border-blue-800 flex flex-col items-center text-center relative"
                   >
                     <img
                       src={p.imageUrl}
