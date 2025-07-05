@@ -12,34 +12,35 @@ interface CategorySectionProps {
 }
 
 export default function PiercingSection({ category }: CategorySectionProps) {
+  const filteredItems = products.filter((item) => item.category === category);
+  const [selectedMaterials, setSelectedMaterials] = useState<Record<string, string>>({});
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const { addItem } = useCart();
+
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
   }, []);
 
-  const filteredItems = products.filter((item) => item.category === category);
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
-  const { addItem } = useCart();
-
-  const [selectedMaterials, setSelectedMaterials] = useState<Record<string, string>>({});
-
   const handleAddToCart = (product: any) => {
-    const selectedType = selectedMaterials[product.id] || (product.materials?.length === 1 ? product.materials[0].type : "");
-    const selectedMaterial = product.materials?.find((m: any) => m.type === selectedType) || (product.materials?.length === 1 ? product.materials[0] : null);
-    const uniqueId = `${product.id}${selectedMaterial ? `-${selectedMaterial.type}` : ""}`;
+    const selectedType = selectedMaterials[product.id];
+    const selectedMaterial = product.materials?.find((m: any) => m.type === selectedType);
 
-    if (product.available && (selectedMaterial || product.price)) {
+    const uniqueId = `${product.id}-${selectedMaterial?.type || "indefinido"}`;
+
+    if (product.available && selectedMaterial) {
       addItem({
         id: uniqueId,
-        name: `${product.name}${selectedMaterial ? ` - ${selectedMaterial.type}` : ""}`,
-        price: selectedMaterial ? selectedMaterial.price : product.price || 0,
+        name: `${product.name} - ${selectedMaterial.type}`,
+        price: selectedMaterial.price,
         imageUrl: product.imageUrl,
       });
-      toast.success(`${product.name}${selectedMaterial ? ` - ${selectedMaterial.type}` : ""} adicionado ao carrinho!`, {
+
+      toast.success(`${product.name} - ${selectedMaterial.type} adicionado ao carrinho!`, {
         position: "top-right",
         autoClose: 3000,
       });
     } else {
-      toast.error("Este item não pode ser adicionado ao carrinho!", {
+      toast.error("Por favor, selecione um material para adicionar ao carrinho!", {
         position: "top-right",
         autoClose: 3000,
       });
@@ -47,15 +48,16 @@ export default function PiercingSection({ category }: CategorySectionProps) {
   };
 
   const handleWhatsApp = (product: any) => {
-    const selectedType = selectedMaterials[product.id] || (product.materials?.length === 1 ? product.materials[0].type : "");
-    const selectedMaterial = product.materials?.find((m: any) => m.type === selectedType) || (product.materials?.length === 1 ? product.materials[0] : null);
-    const price = selectedMaterial ? selectedMaterial.price : product.price;
+    const selectedType = selectedMaterials[product.id];
+    const selectedMaterial = product.materials?.find((m: any) => m.type === selectedType);
+    const price = selectedMaterial?.price;
 
     const mensagem = encodeURIComponent(
-      `Olá! Tenho interesse no serviço "${product.name}${selectedMaterial ? ` - ${selectedMaterial.type}` : ""}" por R$${price?.toFixed(2).replace(".", ",") || "valor a combinar"}.`
+      `Olá! Tenho interesse no serviço "${product.name} - ${selectedMaterial?.type}" por R$${price?.toFixed(2).replace(".", ",") || "valor a combinar"}.`
     );
     const whatsappLink = `https://wa.me/5531994340017?text=${mensagem}`;
     window.open(whatsappLink, "_blank");
+
     toast.info(`Mensagem enviada para o WhatsApp sobre ${product.name}!`, {
       position: "top-right",
       autoClose: 3000,
@@ -72,10 +74,13 @@ export default function PiercingSection({ category }: CategorySectionProps) {
         <div className="overflow-hidden w-full" ref={emblaRef}>
           <div className="flex gap-4 px-2">
             {filteredItems.map((item, idx) => {
-              const currentMaterial = item.materials?.find((m) => m.type === selectedMaterials[item.id]) || (item.materials?.length === 1 ? item.materials[0] : null);
+              const currentMaterial = item.materials?.find(
+                (m) => m.type === selectedMaterials[item.id]
+              );
+
               return (
                 <div
-                  key={item.id + (currentMaterial ? `-${currentMaterial.type}` : "")}
+                  key={item.id}
                   className="flex-none w-[60%] sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5"
                   data-aos="fade-up"
                   data-aos-delay={idx * 50}
@@ -86,27 +91,39 @@ export default function PiercingSection({ category }: CategorySectionProps) {
                       alt={item.name}
                       className="w-full h-[60%] object-cover transition-transform duration-300 ease-in-out hover:scale-105"
                     />
-                    {item.materials && (
+
+                    {item.materials && item.materials.length > 0 && (
                       <div className="p-3 bg-black text-white rounded-b-xl shadow-inner">
-                        <label className="text-sm block mb-1 font-medium text-gray-300">Escolher material:</label>
+                        <label className="text-sm block mb-1 font-medium text-gray-300">
+                          Escolher material:
+                        </label>
                         <select
                           className="w-full bg-gray-900 text-white border border-gray-700 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                          onChange={(e) => setSelectedMaterials((prev) => ({ ...prev, [item.id]: e.target.value }))}
-                          value={selectedMaterials[item.id] || (item.materials.length === 1 ? item.materials[0].type : "")}
+                          onChange={(e) =>
+                            setSelectedMaterials((prev) => ({
+                              ...prev,
+                              [item.id]: e.target.value,
+                            }))
+                          }
+                          value={selectedMaterials[item.id] || ""}
                         >
+                          <option value="" disabled>
+                            Selecione o material
+                          </option>
                           {item.materials.map((material: any, index: number) => (
-                            <option key={index} value={material.type} className="text-white bg-black">
+                            <option key={index} value={material.type}>
                               {material.type} - R${material.price.toFixed(2).replace(".", ",")}
                             </option>
                           ))}
                         </select>
                       </div>
                     )}
+
                     <div className="absolute bottom-0 left-0 w-full p-3 bg-black bg-opacity-70 flex justify-center gap-2">
                       <button
                         onClick={() => handleAddToCart(item)}
                         className="px-4 py-2 font-semibold rounded-full bg-gradient-to-b from-blue-800 to-blue-900 text-white shadow-md hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-700 hover:shadow-xl transition-all duration-300 disabled:opacity-50"
-                        disabled={!!(!item.available || (item.materials && item.materials.length > 1 && !selectedMaterials[item.id]))}
+                        disabled={!item.available || !selectedMaterials[item.id]}
                       >
                         Adicionar
                       </button>
