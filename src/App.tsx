@@ -16,8 +16,7 @@ import AboutPiercer from "./components/AboutPiercer/AboutPiercer";
 import ScrollTop from "./components/ScrollTop/ScrollTop";
 import CategorySection from "./components/CategorySection/CategorySection";
 import ScrollToTopOnRouteChange from "./components/ScrollToTopOnRouteChange/ScrollToTopOnRouteChange";
-
-
+import PiercingSection from "./components/PiercingSection/PiercingSection";
 // dentro do componente AppContent
 function AppContent() {
   const { items, total, toggleCart } = useCart();
@@ -44,10 +43,11 @@ function AppContent() {
               <Hero />
                  <section className="bg-white py-10">
                   <CategorySection category="tattoo" />
+                 
                 </section>
               <AboutPiercer />
                <section className="bg-white" >
-                  <CategorySection category="piercing" />
+                  <PiercingSection category="piercing" />
                 </section>
               <ProductInfoSection />
               <SocialMediaSection />
