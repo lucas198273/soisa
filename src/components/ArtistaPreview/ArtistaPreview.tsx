@@ -14,14 +14,30 @@ export default function ArtistaPreview() {
         data-aos="fade-up"
       >
         {/* Card Tatuador */}
+     
         <div className="bg-black bg-opacity-60 rounded-xl shadow-lg p-4 md:p-5 w-full md:flex-1 hover:scale-[1.02] transition-transform duration-300 min-h-[300px]">
+          <img
+            src="/assets/bz/image.png"
+            alt="Tatuador"
+            className="w-full h-40 md:h-48 object-contain rounded-md mb-3 md:mb-4 bg-black"
+          />
+          <div className="text-white px-2 md:px-0">
+            <h3 className="text-2xl font-bold mb-2 text-[#00b4d8]">Tatuador BZ</h3>
+            <p className="text-gray-300 mb-4">
+              Descrição
+            </p>
+          </div>
+        </div>
+
+ {/* Card Tatuador */}
+           <div className="bg-black bg-opacity-60 rounded-xl shadow-lg p-4 md:p-5 w-full md:flex-1 hover:scale-[1.02] transition-transform duration-300 min-h-[300px]">
           <img
             src="/assets/imgsoisa.jpg"
             alt="Tatuador"
             className="w-full h-40 md:h-48 object-contain rounded-md mb-3 md:mb-4 bg-black"
           />
           <div className="text-white px-2 md:px-0">
-            <h3 className="text-2xl font-bold mb-2 text-[#00b4d8]">Tatuador</h3>
+            <h3 className="text-2xl font-bold mb-2 text-[#00b4d8]">Tatuador Soisa</h3>
             <p className="text-gray-300 mb-4">
             Sou Ítalo, mais conhecido como Soisa.
 Com 20 anos de experiência na tatuagem, atuo com especialidade em lettering, tattoos coloridas, blackwork, preto e sombra e newschool. Em 2019, tive trabalhos premiados nas categorias lettering e newschool, reconhecendo meu compromisso com a técnica e a criatividade.
@@ -29,7 +45,7 @@ Com 20 anos de experiência na tatuagem, atuo com especialidade em lettering, ta
 Prezando sempre por respeito, dedicação e um atendimento personalizado, meu objetivo é transformar cada tatuagem em uma experiência única e marcante para quem confia no meu trabalho.
             </p>
           </div>
-        </div>
+        </div> 
 
         {/* Card Piercer */}
         <div className="bg-black bg-opacity-60 rounded-xl shadow-lg p-4 md:p-5 w-full md:flex-1 hover:scale-[1.02] transition-transform duration-300 min-h-[300px]">

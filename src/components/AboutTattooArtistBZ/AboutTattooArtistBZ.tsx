@@ -10,7 +10,7 @@ export default function AboutTattooArtistBZ() {
       const message = encodeURIComponent(
         "Olá! Tenho interesse em agendar uma tatuagem com o tatuador BZ. Pode me ajudar?"
       );
-      const whatsappLink = `https://wa.me/5531994340017?text=${message}`;
+      const whatsappLink = `https://wa.me/5531971393567?text=${message}`;
       window.open(whatsappLink, "_blank");
       toast.info("Mensagem enviada para o WhatsApp!", {
         position: "top-right",

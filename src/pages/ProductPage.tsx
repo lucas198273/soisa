@@ -94,12 +94,40 @@ const ProductPage = () => {
         <section className="px-4 max-w-7xl mx-auto">
           <h1 className="text-3xl font-bold text-blue-400 mb-10 text-center">Tatuagens e Piercings</h1>
 
-          {/* Tatuagens */}
+          {/* Tatuagens Soisa */}
           <div className="mb-12">
-            <h2 className="text-2xl font-semibold text-blue-400 mb-6 text-center">Tatuagens</h2>
+            <h2 className="text-2xl font-semibold text-blue-400 mb-6 text-center">Tatuagens Soisa</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {products
                 .filter((p) => p.category === "tattoo")
+                .map((p) => (
+                  <div
+                    key={p.id}
+                    className="bg-black p-4 rounded-lg shadow-lg border-2 border-blue-800 flex flex-col items-center text-center relative"
+                  >
+                    <img
+                      src={p.imageUrl}
+                      alt={p.name}
+                      className="w-full h-48 object-cover rounded-md mx-auto"
+                    />
+                    <h3 className="text-lg font-medium text-blue-300 mt-2">{p.name}</h3>
+                    <Link
+                      to={`/product/${p.id}`}
+                      className="mt-3 inline-block px-4 py-2 bg-blue-700 text-white rounded-full hover:bg-blue-800 transition"
+                    >
+                      Ver mais
+                    </Link>
+                  </div>
+                ))}
+            </div>
+          </div>
+
+          {/*Tatuagens BZ*/}
+            <div className="mb-12">
+            <h2 className="text-2xl font-semibold text-blue-400 mb-6 text-center">Tatuagens BZ </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {products
+                .filter((p) => p.category === "bz")
                 .map((p) => (
                   <div
                     key={p.id}

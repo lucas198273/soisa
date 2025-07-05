@@ -4,12 +4,10 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { products } from "../../data/Product";
-
 import { toast } from "react-toastify";
 
 interface CategorySectionProps {
-  category: "tattoo" | "bz";  // Restrito a "tattoo" apenas
-   // Restrito a "tattoo" apenas
+  category: "tattoo" | "bz";
 }
 
 export default function CategorySectionTatto({ category }: CategorySectionProps) {
@@ -19,13 +17,19 @@ export default function CategorySectionTatto({ category }: CategorySectionProps)
 
   const filteredItems = products.filter((item) => item.category === category);
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
-  
+
+  // ✅ Mapeamento dos números por categoria
+  const whatsappNumbers: Record<"tattoo" | "bz", string> = {
+    tattoo: "5531971705728", // número do Soisa, por exemplo
+    bz: "5531971393567",     // número do BZ
+  };
 
   const handleWhatsApp = (product: any) => {
+    const phone = whatsappNumbers[category]; // Pega o número correto
     const mensagem = encodeURIComponent(
-      `Olá! Tenho interesse no serviço "${product.name}" por R$${product.price?.toFixed(2).replace(".", ",") || "valor a combinar"}. Quero usar como inspiração!`
+      `Olá! Tenho interesse no serviço "${product.name}". Quero usar como inspiração!`
     );
-    const whatsappLink = `https://wa.me/5531994340017?text=${mensagem}`;
+    const whatsappLink = `https://wa.me/${phone}?text=${mensagem}`;
     window.open(whatsappLink, "_blank");
     toast.info(`Mensagem enviada para o WhatsApp sobre ${product.name}!`, {
       position: "top-right",
@@ -35,8 +39,11 @@ export default function CategorySectionTatto({ category }: CategorySectionProps)
 
   return (
     <div className="mb-16">
-      <h3 className="text-3xl font-semibold text-center text-white mb-6 capitalize" data-aos="fade-up">
-        Tatuagens
+      <h3
+        className="text-3xl font-semibold text-center text-white mb-6 capitalize"
+        data-aos="fade-up"
+      >
+        {category === "tattoo" ? "Tatuagens - Soisa" : "Tatuagens - BZ"}
       </h3>
 
       <div className="relative">
@@ -71,14 +78,14 @@ export default function CategorySectionTatto({ category }: CategorySectionProps)
 
         <button
           onClick={() => emblaApi?.scrollPrev()}
-          className="absolute top-1/2 left-2 -translate-y-1/2 bg-[#e84c3d] text-white p-2 rounded-full z-10 hover:bg-[#d43c2d]"
+          className="absolute top-1/2 left-2 -translate-y-1/2 bg-[#00b4d8] text-white p-2 rounded-full z-10 hover:bg-[#d43c2d]"
           aria-label="Anterior"
         >
           <ChevronLeft size={20} />
         </button>
         <button
           onClick={() => emblaApi?.scrollNext()}
-          className="absolute top-1/2 right-2 -translate-y-1/2 bg-[#e84c3d] text-white p-2 rounded-full z-10 hover:bg-[#d43c2d]"
+          className="absolute top-1/2 right-2 -translate-y-1/2 bg-[#00b4d8] text-white p-2 rounded-full z-10 hover:bg-[#d43c2d]"
           aria-label="Próximo"
         >
           <ChevronRight size={20} />

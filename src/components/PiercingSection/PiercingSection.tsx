@@ -139,14 +139,14 @@ export default function PiercingSection({ category }: CategorySectionProps) {
 
         <button
           onClick={() => emblaApi?.scrollPrev()}
-          className="absolute top-1/2 left-2 -translate-y-1/2 bg-[#e84c3d] text-white p-2 rounded-full z-10 hover:bg-[#d43c2d]"
+          className="absolute top-1/2 left-2 -translate-y-1/2 bg-[#00b4d8] text-white p-2 rounded-full z-10 hover:bg-[#d43c2d]"
           aria-label="Anterior"
         >
           <ChevronLeft size={20} />
         </button>
         <button
           onClick={() => emblaApi?.scrollNext()}
-          className="absolute top-1/2 right-2 -translate-y-1/2 bg-[#e84c3d] text-white p-2 rounded-full z-10 hover:bg-[#d43c2d]"
+          className="absolute top-1/2 right-2 -translate-y-1/2 bg-[#00b4d8] text-white p-2 rounded-full z-10 hover:bg-[#d43c2d]"
           aria-label="Próximo"
         >
           <ChevronRight size={20} />

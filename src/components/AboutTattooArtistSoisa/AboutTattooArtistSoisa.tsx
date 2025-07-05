@@ -10,7 +10,7 @@ export default function AboutTattooArtistSoisa() {
       const message = encodeURIComponent(
         "Olá! Tenho interesse em agendar uma tatuagem com o Soisa. Pode me ajudar?"
       );
-      const whatsappLink = `https://wa.me/5531994340017?text=${message}`;
+      const whatsappLink = `https://wa.me/5531971705728?text=${message}`;
       window.open(whatsappLink, "_blank");
       toast.info("Mensagem enviada para o WhatsApp!", {
         position: "top-right",
@@ -21,7 +21,7 @@ export default function AboutTattooArtistSoisa() {
   };
 
   return (
-    <section className="bg-black border-t-4 border-[#e84c3d] py-12 px-4 md:px-8 text-white">
+    <section className="bg-black border-t-4 border-[#00b4d8] py-12 px-4 md:px-8 text-white">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8">
         {/* Imagem do tatuador Soisa */}
         <div className="w-full md:w-1/2 flex justify-center">
