@@ -277,7 +277,7 @@ name: "Aplicação Personalizada",
     category: "piercing",
     materials: [
       { type: "Aço cirúrgico", price: 120 },
-      { type: "Titânio", price: 160 }
+      { type: "Titânio", price: 130 }
     ]
   },
   // ...demais piercings (mantém o campo price ou converte para materials conforme desejar)
