@@ -8,7 +8,8 @@ import { products } from "../../data/Product";
 import { toast } from "react-toastify";
 
 interface CategorySectionProps {
-  category: "tattoo"; // Restrito a "tattoo" apenas
+  category: "tattoo" | "bz";  // Restrito a "tattoo" apenas
+   // Restrito a "tattoo" apenas
 }
 
 export default function CategorySectionTatto({ category }: CategorySectionProps) {

@@ -17,6 +17,8 @@ import ScrollTop from "./components/ScrollTop/ScrollTop";
 import CategorySection from "./components/CategorySection/CategorySection";
 import ScrollToTopOnRouteChange from "./components/ScrollToTopOnRouteChange/ScrollToTopOnRouteChange";
 import PiercingSection from "./components/PiercingSection/PiercingSection";
+import AboutTattooArtistBZ from "./components/AboutTattooArtistBZ/AboutTattooArtistBZ";
+import AboutTattooArtistSoisa from "./components/AboutTattooArtistSoisa/AboutTattooArtistSoisa";
 // dentro do componente AppContent
 function AppContent() {
   const { items, total, toggleCart } = useCart();
@@ -41,10 +43,14 @@ function AppContent() {
           element={
             <main className="pt-20 min-h-screen flex flex-col">
               <Hero />
-                 <section className="bg-white py-10">
-                  <CategorySection category="tattoo" />
-                 
-                </section>
+              <AboutTattooArtistSoisa />
+                <section className="bg-white py-10">
+                  <CategorySection category="tattoo" />     
+                </section> 
+                <AboutTattooArtistBZ />
+                <section className="bg-white py-10">
+                  <CategorySection category="bz" />     
+                </section> 
               <AboutPiercer />
                <section className="bg-white" >
                   <PiercingSection category="piercing" />

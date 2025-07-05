@@ -9,7 +9,7 @@ export interface Product {
   available?: boolean;
   imageUrl: string;
   notes?: string[];
-  category: "tattoo" | "piercing";
+  category: "tattoo" | "piercing" | "bz";
   materials?: {
     type: string;
     price: number;
@@ -86,7 +86,12 @@ export const products: Product[] = [
   },
 
   // ...demais tatuagens (sem alterações)
-
+  // INICIO BZ
+    {  id: "tattoo1",
+    name: "Tatuagem 11",
+    imageUrl: "/assets/soisa/img-s11.webp",
+    category: "bz",
+  },
   // --- Piercings com múltiplos materiais ---
   {
     id: "piercing1",
