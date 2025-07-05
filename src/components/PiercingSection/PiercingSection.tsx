@@ -24,7 +24,6 @@ export default function PiercingSection({ category }: CategorySectionProps) {
   const handleAddToCart = (product: any) => {
     const selectedType = selectedMaterials[product.id];
     const selectedMaterial = product.materials?.find((m: any) => m.type === selectedType);
-
     const uniqueId = `${product.id}-${selectedMaterial?.type || "indefinido"}`;
 
     if (product.available && selectedMaterial) {
@@ -34,16 +33,9 @@ export default function PiercingSection({ category }: CategorySectionProps) {
         price: selectedMaterial.price,
         imageUrl: product.imageUrl,
       });
-
-      toast.success(`${product.name} - ${selectedMaterial.type} adicionado ao carrinho!`, {
-        position: "top-right",
-        autoClose: 3000,
-      });
+      toast.success(`${product.name} - ${selectedMaterial.type} adicionado!`, { autoClose: 3000 });
     } else {
-      toast.error("Por favor, selecione um material para adicionar ao carrinho!", {
-        position: "top-right",
-        autoClose: 3000,
-      });
+      toast.error("Selecione um material para adicionar!", { autoClose: 3000 });
     }
   };
 
@@ -55,13 +47,8 @@ export default function PiercingSection({ category }: CategorySectionProps) {
     const mensagem = encodeURIComponent(
       `Olá! Tenho interesse no serviço "${product.name} - ${selectedMaterial?.type}" por R$${price?.toFixed(2).replace(".", ",") || "valor a combinar"}.`
     );
-    const whatsappLink = `https://wa.me/5531994340017?text=${mensagem}`;
-    window.open(whatsappLink, "_blank");
-
-    toast.info(`Mensagem enviada para o WhatsApp sobre ${product.name}!`, {
-      position: "top-right",
-      autoClose: 3000,
-    });
+    window.open(`https://wa.me/5531994340017?text=${mensagem}`, "_blank");
+    toast.info(`Mensagem enviada para o WhatsApp!`, { autoClose: 3000 });
   };
 
   return (
@@ -85,54 +72,63 @@ export default function PiercingSection({ category }: CategorySectionProps) {
                   data-aos="fade-up"
                   data-aos-delay={idx * 50}
                 >
-                  <div className="relative rounded-xl overflow-hidden h-[400px] shadow-lg transition-transform duration-300 ease-out hover:-translate-y-2 bg-zinc-900">
+                  <div className="flex flex-col h-[460px] rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2 bg-zinc-900">
                     <img
                       src={item.imageUrl}
                       alt={item.name}
-                      className="w-full h-[60%] object-cover transition-transform duration-300 ease-in-out hover:scale-105"
+                      className="object-cover h-[60%] w-full transition-transform duration-300 hover:scale-105"
                     />
 
-                    {item.materials && item.materials.length > 0 && (
-                      <div className="p-3 bg-black text-white rounded-b-xl shadow-inner">
-                        <label className="text-sm block mb-1 font-medium text-gray-300">
-                          Escolher material:
-                        </label>
-                        <select
-                          className="w-full bg-gray-900 text-white border border-gray-700 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                          onChange={(e) =>
-                            setSelectedMaterials((prev) => ({
-                              ...prev,
-                              [item.id]: e.target.value,
-                            }))
-                          }
-                          value={selectedMaterials[item.id] || ""}
-                        >
-                          <option value="" disabled>
-                            Selecione o material
-                          </option>
-                          {item.materials.map((material: any, index: number) => (
-                            <option key={index} value={material.type}>
-                              {material.type} - R${material.price.toFixed(2).replace(".", ",")}
+                    <div className="flex-1 flex flex-col justify-between">
+                      {item.materials && item.materials.length > 0 && (
+                        <div className="p-3 bg-black text-white">
+                          <label className="text-sm font-medium text-gray-300 block mb-1">
+                            Escolher material:
+                          </label>
+                          <select
+                            className="w-full bg-gray-900 text-white border border-gray-700 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 transition-all duration-200"
+                            onChange={(e) =>
+                              setSelectedMaterials((prev) => ({
+                                ...prev,
+                                [item.id]: e.target.value,
+                              }))
+                            }
+                            value={selectedMaterials[item.id] || ""}
+                          >
+                            <option value="" disabled>
+                              Selecione um material
                             </option>
-                          ))}
-                        </select>
-                      </div>
-                    )}
+                            {item.materials.map((material: any, i: number) => (
+                              <option key={i} value={material.type}>
+                                {material.type} - R${material.price.toFixed(2).replace(".", ",")}
+                              </option>
+                            ))}
+                          </select>
 
-                    <div className="absolute bottom-0 left-0 w-full p-3 bg-black bg-opacity-70 flex justify-center gap-2">
-                      <button
-                        onClick={() => handleAddToCart(item)}
-                        className="px-4 py-2 font-semibold rounded-full bg-gradient-to-b from-blue-800 to-blue-900 text-white shadow-md hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-700 hover:shadow-xl transition-all duration-300 disabled:opacity-50"
-                        disabled={!item.available || !selectedMaterials[item.id]}
-                      >
-                        Adicionar
-                      </button>
-                      <button
-                        onClick={() => handleWhatsApp(item)}
-                        className="px-4 py-2 rounded-lg font-semibold bg-gradient-to-b from-green-800 to-green-900 text-white shadow-md hover:bg-gradient-to-r hover:from-green-600 hover:to-green-700 hover:shadow-xl transition-all duration-300"
-                      >
-                        WhatsApp
-                      </button>
+                          {currentMaterial && (
+                            <p className="text-sm text-gray-400 mt-2">
+                              Selecionado: {currentMaterial.type} - R$
+                              {currentMaterial.price.toFixed(2).replace(".", ",")}
+                            </p>
+                          )}
+                        </div>
+                      )}
+
+                      <div className="p-3 bg-black bg-opacity-70 mt-auto flex justify-center gap-2">
+                        <button
+                          onClick={() => handleAddToCart(item)}
+                          className="px-4 py-2 font-semibold rounded-full bg-gradient-to-b from-blue-800 to-blue-900 text-white shadow-md hover:from-blue-600 hover:to-blue-700 transition-all duration-300 disabled:opacity-50"
+                          disabled={!item.available || !selectedMaterials[item.id]}
+                        >
+                          Adicionar
+                        </button>
+                        <button
+                          onClick={() => handleWhatsApp(item)}
+                          className="px-4 py-2 font-semibold rounded-lg bg-gradient-to-b from-green-800 to-green-900 text-white shadow-md hover:from-green-600 hover:to-green-700 transition-all duration-300"
+                        >
+                          WhatsApp
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
