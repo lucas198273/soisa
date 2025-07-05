@@ -111,8 +111,8 @@ export const products: Product[] = [
     notes: ["Joias pequenas", "Estética sutil"],
     category: "piercing",
     materials: [
-     
-      { type: "Titânio", price: 220 }
+      { type: "Aço cirúrgico", price: 80 },
+      { type: "Titânio", price: 110 }
     ]
   }, {
     id: "piercing3",
