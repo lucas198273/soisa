@@ -4,7 +4,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useCart } from "../../contexts/CartContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { products } from "../data/Product"; // Ajuste o caminho se necessário
+import { products } from "../data/Product";
+import ProductCarousel from "../components/ProductCarousel/ProductCarousel";
 
 const ProductDetailPage = () => {
   const { id } = useParams<{ id?: string }>();
@@ -22,7 +23,7 @@ const ProductDetailPage = () => {
   }, [id]);
 
   const handleMaterialSelect = (type: string) => {
-    if (selectedProduct && selectedProduct.materials) {
+    if (selectedProduct?.materials) {
       setSelectedMaterials((prev) => ({ ...prev, [selectedProduct.id]: type }));
     }
   };
@@ -32,24 +33,13 @@ const ProductDetailPage = () => {
     const selectedMaterial = product.materials?.find((m: any) => m.type === selectedType) || (product.materials?.length === 1 ? product.materials[0] : null);
     const uniqueId = `${product.id}${selectedMaterial ? `-${selectedMaterial.type}` : ""}`;
     const itemName = `${product.name}${selectedMaterial ? ` - ${selectedMaterial.type}` : ""}`;
-    const itemPrice = selectedMaterial ? selectedMaterial.price : product.price;
+    const itemPrice = selectedMaterial?.price || product.price;
 
     if (product.available && itemPrice) {
-      addItem({
-        id: uniqueId,
-        name: itemName,
-        price: itemPrice,
-        imageUrl: product.imageUrl,
-      });
-      toast.success(`${itemName} adicionado ao carrinho!`, {
-        position: "top-right",
-        autoClose: 3000,
-      });
+      addItem({ id: uniqueId, name: itemName, price: itemPrice, imageUrl: product.imageUrl });
+      toast.success(`${itemName} adicionado ao carrinho!`, { position: "top-right", autoClose: 3000 });
     } else {
-      toast.error("Este item não pode ser adicionado ao carrinho!", {
-        position: "top-right",
-        autoClose: 3000,
-      });
+      toast.error("Este item não pode ser adicionado ao carrinho!", { position: "top-right", autoClose: 3000 });
     }
   };
 
@@ -57,16 +47,30 @@ const ProductDetailPage = () => {
     const selectedType = selectedMaterials[product.id] || (product.materials?.length === 1 ? product.materials[0].type : "");
     const selectedMaterial = product.materials?.find((m: any) => m.type === selectedType) || (product.materials?.length === 1 ? product.materials[0] : null);
     const itemName = `${product.name}${selectedMaterial ? ` - ${selectedMaterial.type}` : ""}`;
-    const price = selectedMaterial ? selectedMaterial.price.toFixed(2) : product.price?.toFixed(2) || "a combinar";
-    const message = product.category === "tattoo" || product.category === "bz"
-      ? `Olá! Gostaria de um orçamento/inspiração para "${itemName}".`
-      : `Olá! Tenho interesse no serviço "${itemName}" por R$${price}.`;
-    const whatsappLink = `https://wa.me/5531971705728?text=${encodeURIComponent(message)}`;
+    const price = selectedMaterial?.price?.toFixed(2) || product.price?.toFixed(2) || "a combinar";
+    let message, whatsappNumber;
+
+    switch (product.category) {
+      case "tattoo":
+        whatsappNumber = "5531971705728";
+        message = `Olá! Gostaria de agendar ou me inspirar com a arte \"${itemName}\". Pode me orientar?`;
+        break;
+      case "bz":
+        whatsappNumber = "5531971393567";
+        message = `Olá! Gostaria de agendar ou me inspirar com a arte \"${itemName}\". Pode me orientar?`;
+        break;
+      case "piercing":
+        whatsappNumber = "5531994340017";
+        message = `Olá! Tenho interesse no serviço \"${itemName}\" por R$${price}.`;
+        break;
+      default:
+        whatsappNumber = "5531971705728";
+        message = `Olá! Tenho interesse no serviço \"${itemName}\" por R$${price}.`;
+    }
+
+    const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappLink, "_blank");
-    toast.info(`Mensagem enviada para o WhatsApp sobre ${itemName}!`, {
-      position: "top-right",
-      autoClose: 3000,
-    });
+    toast.info(`Mensagem enviada para o WhatsApp sobre ${itemName}!`, { position: "top-right", autoClose: 3000 });
   };
 
   const isTattoo = (product: any) => product.category === "tattoo" || product.category === "bz";
@@ -107,7 +111,9 @@ const ProductDetailPage = () => {
             )}
             {!isTattoo(selectedProduct) && (
               <p className="text-xl font-bold text-yellow-400">
-                R$ {selectedProduct.materials?.find((m: any) => m.type === selectedMaterials[selectedProduct.id])?.price?.toFixed(2) || selectedProduct.price?.toFixed(2) || "a combinar"}
+                {selectedProduct.materials?.find((m: any) => m.type === selectedMaterials[selectedProduct.id])?.price?.toFixed(2) ||
+                  selectedProduct.price?.toFixed(2) ||
+                  "Selecione o material"}
               </p>
             )}
             <div className="flex flex-col sm:flex-row gap-4">
@@ -115,23 +121,23 @@ const ProductDetailPage = () => {
                 <>
                   <button
                     onClick={() => handleAddToCart(selectedProduct)}
-                    className={`px-6 py-2 font-semibold rounded-full transition bg-gradient-to-b from-blue-800 to-blue-900 text-white shadow-md hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-700 hover:shadow-xl ${!selectedProduct.available || (selectedProduct.materials?.length && !selectedMaterials[selectedProduct.id]) ? "opacity-50 cursor-not-allowed" : ""}`}
+                    className={`px-6 py-2 font-semibold rounded-full transition bg-gradient-to-b from-blue-600 to-blue-800 text-white shadow-md hover:bg-gradient-to-r hover:from-blue-400 hover:to-blue-700 hover:shadow-xl ${!selectedProduct.available || (selectedProduct.materials?.length && !selectedMaterials[selectedProduct.id]) ? "opacity-50 cursor-not-allowed" : ""}`}
                     disabled={!selectedProduct.available || (selectedProduct.materials?.length && !selectedMaterials[selectedProduct.id])}
                   >
                     Adicionar ao Carrinho
                   </button>
                   <button
                     onClick={() => handleWhatsApp(selectedProduct)}
-                    className={`px-6 py-2 rounded-lg font-semibold bg-gradient-to-b from-green-800 to-green-900 text-white shadow-md hover:bg-gradient-to-r hover:from-green-600 hover:to-green-700 hover:shadow-xl transition-all duration-300`}
+                    className="px-6 py-2 rounded-lg font-semibold bg-gradient-to-b from-green-600 to-green-800 text-white shadow-md hover:bg-gradient-to-r hover:from-green-400 hover:to-green-700 hover:shadow-xl transition-all duration-300"
                   >
-                    {selectedProduct.available ? "Pedir pelo WhatsApp" : "Encomendar pelo WhatsApp"}
+                    {selectedProduct.available ? "Solicitar a Perfuração" : "Encomendar a Perfuração"}
                   </button>
                 </>
               )}
               {isTattoo(selectedProduct) && (
                 <button
                   onClick={() => handleWhatsApp(selectedProduct)}
-                  className={`px-6 py-2 rounded-lg font-semibold bg-gradient-to-b from-green-800 to-green-900 text-white shadow-md hover:bg-gradient-to-r hover:from-green-600 hover:to-green-700 hover:shadow-xl transition-all duration-300`}
+                  className="px-6 py-2 rounded-lg font-semibold bg-gradient-to-b from-green-600 to-green-800 text-white shadow-md hover:bg-gradient-to-r hover:from-green-400 hover:to-green-700 hover:shadow-xl transition-all duration-300"
                 >
                   Consultar Valor no WhatsApp
                 </button>
@@ -145,6 +151,22 @@ const ProductDetailPage = () => {
             </button>
           </div>
         </div>
+
+        {/* Carrossel de tatuagens de outro tatuador */}
+        {(selectedProduct.category === "tattoo" || selectedProduct.category === "bz") && (
+          <ProductCarousel
+            displayCategory={selectedProduct.category === "tattoo" ? "bz" : "tattoo"}
+            currentProductId={selectedProduct.id}
+            products={products}
+          />
+        )}
+
+        {/* Carrossel de piercings */}
+        <ProductCarousel
+          displayCategory="piercing"
+          currentProductId={selectedProduct.id}
+          products={products}
+        />
       </section>
     </div>
   );
