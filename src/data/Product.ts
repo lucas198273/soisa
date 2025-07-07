@@ -284,7 +284,7 @@ name: "Aplicação Personalizada",
   },
    {
   id: "piercing12",
-  name: "Piercing Nostril",
+  name: "Piercing Nariz Nostril",
   description: "Argola ou ponto de luz discreto, ideal para quem busca estilo com delicadeza.",
   available: true,
   imageUrl: "/assets/sol/img-sol-12.webp",

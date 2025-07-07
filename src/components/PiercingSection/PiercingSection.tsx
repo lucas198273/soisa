@@ -72,7 +72,7 @@ export default function PiercingSection({ category }: CategorySectionProps) {
                   data-aos="fade-up"
                   data-aos-delay={idx * 50}
                 >
-                  <div className="flex flex-col min-h-[500px] rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2 bg-zinc-900">
+                  <div className="flex flex-col h-full min-h-[520px] rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2 bg-zinc-900">
                     <img
                       src={item.imageUrl}
                       alt={item.name}
@@ -80,9 +80,9 @@ export default function PiercingSection({ category }: CategorySectionProps) {
                     />
 
                     <div className="flex flex-col flex-1 justify-between">
-                      <div className="p-3 bg-black text-white">
+                      <div className="p-3 bg-black text-white flex-1">
                         <h3
-                          className="text-lg font-semibold text-center text-white mb-2 capitalize"
+                          className="text-lg font-semibold text-center text-white mb-2 capitalize line-clamp-2"
                           data-aos="fade-up"
                         >
                           {item.name}
@@ -108,7 +108,7 @@ export default function PiercingSection({ category }: CategorySectionProps) {
                               </option>
                               {item.materials.map((material: any, i: number) => (
                                 <option key={i} value={material.type}>
-                                  {material.type} A partir de R${material.price.toFixed(2).replace(".", ",")}
+                                  {material.type} - A partir de R${material.price.toFixed(2).replace(".", ",")}
                                 </option>
                               ))}
                             </select>
@@ -123,7 +123,7 @@ export default function PiercingSection({ category }: CategorySectionProps) {
                         )}
                       </div>
 
-                      <div className="p-3 bg-black bg-opacity-70 flex justify-center gap-2 mt-4">
+                      <div className="p-3 bg-black bg-opacity-70 flex justify-center gap-2">
                         <button
                           onClick={() => handleAddToCart(item)}
                           className="px-4 py-2 font-semibold rounded-full bg-blue-800 text-white transition-all duration-300 disabled:opacity-50"
