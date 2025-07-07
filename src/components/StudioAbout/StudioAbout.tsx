@@ -35,7 +35,7 @@ const StudioAbout: React.FC = () => {
         {/* Imagem */}
         <div className="md:w-1/2 flex justify-center" data-aos="fade-left">
           <img
-            src="/assets/grafit.jpg"
+            src="/assets/grafit.webp"
             alt="Estúdio com grafite colorido"
             className="w-full max-w-md md:max-w-2xl rounded-xl shadow-xl border-4 border-dodger-blue object-cover transition-transform duration-300 hover:scale-105"
           />
