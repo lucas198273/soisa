@@ -26,7 +26,7 @@ export default function AboutPiercer() {
         {/* Imagem da profissional à esquerda */}
         <div className="w-full md:w-1/2 flex justify-center">
           <img
-            src="/assets/imgsol.png"
+            src="/assets/imgsol.webp"
             alt="Body Piercer residente"
             className="max-w-xs md:max-w-md rounded-lg shadow-xl hover:scale-105 transition-transform duration-300 ease-in-out"
             loading="lazy"

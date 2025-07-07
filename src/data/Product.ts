@@ -303,7 +303,7 @@ name: "Aplicação Personalizada",
     name: "Perfuração íntima",
     description: "Perfuração delicada em região íntima.",
     available: true,
-    imageUrl: "/assets/sol/img-sol-13.jpeg",
+    imageUrl: "/assets/sol/img-sol-13.webp",
     category: "piercing",
     materials: [
       { type: "Aço cirúrgico", price: 110 },

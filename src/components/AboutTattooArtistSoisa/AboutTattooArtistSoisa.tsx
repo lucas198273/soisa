@@ -26,7 +26,7 @@ export default function AboutTattooArtistSoisa() {
         {/* Imagem do tatuador Soisa */}
         <div className="w-full md:w-1/2 flex justify-center">
           <img
-            src="/assets/imgsoisa.jpg" // Substitua pela imagem real do Soisa
+            src="/assets/imgsoisa.webp" // Substitua pela imagem real do Soisa
             alt="Tatuador Soisa"
             className="max-w-xs md:max-w-md rounded-lg shadow-xl hover:scale-105 transition-transform duration-300 ease-in-out"
             loading="lazy"
