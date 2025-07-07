@@ -72,14 +72,14 @@ export default function PiercingSection({ category }: CategorySectionProps) {
                   data-aos="fade-up"
                   data-aos-delay={idx * 50}
                 >
-                  <div className="flex flex-col h-[460px] rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2 bg-zinc-900">
+                  <div className="flex flex-col min-h-[500px] rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2 bg-zinc-900">
                     <img
                       src={item.imageUrl}
                       alt={item.name}
                       className="object-cover h-[60%] w-full transition-transform duration-300 hover:scale-105"
                     />
 
-                    <div className="flex-1 flex flex-col justify-between">
+                    <div className="flex flex-col flex-1 justify-between">
                       <div className="p-3 bg-black text-white">
                         <h3
                           className="text-lg font-semibold text-center text-white mb-2 capitalize"
@@ -123,17 +123,17 @@ export default function PiercingSection({ category }: CategorySectionProps) {
                         )}
                       </div>
 
-                      <div className="p-3 bg-black bg-opacity-70 mt-auto flex justify-center gap-2">
+                      <div className="p-3 bg-black bg-opacity-70 flex justify-center gap-2 mt-4">
                         <button
                           onClick={() => handleAddToCart(item)}
-                          className="px-4 py-2 font-semibold rounded-full bg-gradient-to-b from-blue-800 to-blue-900 text-white shadow-md hover:from-blue-600 hover:to-blue-700 transition-all duration-300 disabled:opacity-50"
+                          className="px-4 py-2 font-semibold rounded-full bg-blue-800 text-white transition-all duration-300 disabled:opacity-50"
                           disabled={!item.available || !selectedMaterials[item.id]}
                         >
                           Adicionar
                         </button>
                         <button
                           onClick={() => handleWhatsApp(item)}
-                          className="px-4 py-2 font-semibold rounded-lg bg-gradient-to-b from-green-800 to-green-900 text-white shadow-md hover:from-green-600 hover:to-green-700 transition-all duration-300"
+                          className="px-4 py-2 font-semibold rounded-lg bg-green-700 text-white shadow-md transition-all duration-300"
                         >
                           WhatsApp
                         </button>

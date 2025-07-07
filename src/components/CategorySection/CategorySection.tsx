@@ -65,7 +65,7 @@ export default function CategorySectionTatto({ category }: CategorySectionProps)
                   <div className="absolute bottom-0 left-0 w-full p-3 bg-black bg-opacity-70 flex justify-center">
                     <button
                       onClick={() => handleWhatsApp(item)}
-                      className="px-4 py-2 rounded-lg font-semibold bg-gradient-to-b from-green-800 to-green-900 text-white shadow-md hover:bg-gradient-to-r hover:from-green-600 hover:to-green-700 hover:shadow-xl transition-all duration-300"
+                      className="px-4 py-2 rounded-lg font-semibold bg-green-700 text-white shadow-md  hover:shadow-xl transition-all duration-300"
                     >
                       Consultar Inspiração
                     </button>
