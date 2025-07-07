@@ -53,7 +53,7 @@ export default function PiercingSection({ category }: CategorySectionProps) {
 
   return (
     <div className="mb-16">
-      <h3 className="text-3xl font-semibold text-center text-white mb-6 capitalize" data-aos="fade-up">
+      <h3 className="text-3xl font-semibold text-center text-black mb-6 capitalize" data-aos="fade-up">
         Piercings
       </h3>
 
@@ -80,39 +80,48 @@ export default function PiercingSection({ category }: CategorySectionProps) {
                     />
 
                     <div className="flex-1 flex flex-col justify-between">
-                      {item.materials && item.materials.length > 0 && (
-                        <div className="p-3 bg-black text-white">
-                          <label className="text-sm font-medium text-gray-300 block mb-1">
-                            Escolher material:
-                          </label>
-                          <select
-                            className="w-full bg-gray-900 text-white border border-gray-700 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 transition-all duration-200"
-                            onChange={(e) =>
-                              setSelectedMaterials((prev) => ({
-                                ...prev,
-                                [item.id]: e.target.value,
-                              }))
-                            }
-                            value={selectedMaterials[item.id] || ""}
-                          >
-                            <option value="" disabled>
-                              Selecione um material
-                            </option>
-                            {item.materials.map((material: any, i: number) => (
-                              <option key={i} value={material.type}>
-                                {material.type} Apartir de R${material.price.toFixed(2).replace(".", ",")}
-                              </option>
-                            ))}
-                          </select>
+                      <div className="p-3 bg-black text-white">
+                        <h3
+                          className="text-lg font-semibold text-center text-white mb-2 capitalize"
+                          data-aos="fade-up"
+                        >
+                          {item.name}
+                        </h3>
 
-                          {currentMaterial && (
-                            <p className="text-sm text-gray-400 mt-2">
-                              Selecionado: {currentMaterial.type} - R$
-                              {currentMaterial.price.toFixed(2).replace(".", ",")}
-                            </p>
-                          )}
-                        </div>
-                      )}
+                        {item.materials && item.materials.length > 0 && (
+                          <>
+                            <label className="text-sm font-medium text-gray-300 block mb-1">
+                              Escolher material:
+                            </label>
+                            <select
+                              className="w-full bg-gray-900 text-white border border-gray-700 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 transition-all duration-200"
+                              onChange={(e) =>
+                                setSelectedMaterials((prev) => ({
+                                  ...prev,
+                                  [item.id]: e.target.value,
+                                }))
+                              }
+                              value={selectedMaterials[item.id] || ""}
+                            >
+                              <option value="" disabled>
+                                Selecione um material
+                              </option>
+                              {item.materials.map((material: any, i: number) => (
+                                <option key={i} value={material.type}>
+                                  {material.type} A partir de R${material.price.toFixed(2).replace(".", ",")}
+                                </option>
+                              ))}
+                            </select>
+
+                            {currentMaterial && (
+                              <p className="text-sm text-gray-400 mt-2">
+                                Selecionado: {currentMaterial.type} - R$
+                                {currentMaterial.price.toFixed(2).replace(".", ",")}
+                              </p>
+                            )}
+                          </>
+                        )}
+                      </div>
 
                       <div className="p-3 bg-black bg-opacity-70 mt-auto flex justify-center gap-2">
                         <button

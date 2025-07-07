@@ -179,8 +179,7 @@ export const products: Product[] = [
     category: "piercing",
     materials: [
      
- { type: "Joia simples", price: 220 },
-      { type: "Joia decorada dourada aço PVD", price: 220 },
+
          { type: "Aço cirúrgico", price: 220 },
              { type: "Titânio", price: 220 }
     ]
@@ -276,10 +275,10 @@ name: "Aplicação Personalizada",
     imageUrl: "/assets/sol/img-sol-11.webp",
     category: "piercing",
     materials: [
-       { type: "Joia simples", price: 80 },
+     
+      { type: "Aço cirúrgico", price: 80 },
       { type: "Joia decorada dourada aço PVD", price: 90 },
-         { type: "Aço cirúrgico", price: 120 },
-             { type: "Titânio", price: 220 }
+      { type: "Titânio", price: 100 }
       
     ]
   },
@@ -291,10 +290,10 @@ name: "Aplicação Personalizada",
   imageUrl: "/assets/sol/img-sol-12.webp",
   category: "piercing",
   materials: [
-    { type: "Joia simples", price: 80 },
+    
+      { type: "Aço cirúrgico", price: 80 },
       { type: "Joia decorada dourada aço PVD", price: 90 },
-         { type: "Aço cirúrgico", price: 120 },
-             { type: "Titânio", price: 220 }
+      { type: "Titânio", price: 100 }
     
   ]
 }
