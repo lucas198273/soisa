@@ -100,7 +100,7 @@ export default function PiercingSection({ category }: CategorySectionProps) {
                             </option>
                             {item.materials.map((material: any, i: number) => (
                               <option key={i} value={material.type}>
-                                {material.type} - R${material.price.toFixed(2).replace(".", ",")}
+                                {material.type} Apartir de R${material.price.toFixed(2).replace(".", ",")}
                               </option>
                             ))}
                           </select>

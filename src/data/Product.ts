@@ -140,10 +140,9 @@ export const products: Product[] = [
     notes: ["Joias pequenas", "Estética sutil"],
     category: "piercing",
     materials: [
- { type: "Joia simples", price: 80 },
+    { type: "Aço cirúrgico", price: 80 },
       { type: "Joia decorada dourada aço PVD", price: 90 },
-         { type: "Aço cirúrgico", price: 120 },
-             { type: "Titânio", price: 220 }
+      { type: "Titânio", price: 100 }
     ]
   },  {
     id: "piercing2",
@@ -155,7 +154,7 @@ export const products: Product[] = [
     category: "piercing",
     materials: [
       { type: "Aço cirúrgico", price: 80 },
-      { type: "Titânio", price: 110 }
+      { type: "Titânio", price: 90 }
     ]
   }, {
     id: "piercing3",
@@ -166,10 +165,9 @@ export const products: Product[] = [
     notes: ["Joias pequenas", "Estética sutil"],
     category: "piercing",
     materials: [
-   { type: "Joia simples", price: 80 },
+    { type: "Aço cirúrgico", price: 80 },
       { type: "Joia decorada dourada aço PVD", price: 90 },
-         { type: "Aço cirúrgico", price: 120 },
-             { type: "Titânio", price: 220 }
+      { type: "Titânio", price: 100 }
     ]
   },{
     id: "piercing4",
@@ -195,11 +193,9 @@ export const products: Product[] = [
     notes: ["Joias pequenas", "Estética sutil"],
     category: "piercing",
     materials: [
-     
- { type: "Joia simples", price: 80 },
+    { type: "Aço cirúrgico", price: 80 },
       { type: "Joia decorada dourada aço PVD", price: 90 },
-         { type: "Aço cirúrgico", price: 120 },
-             { type: "Titânio", price: 220 }
+      { type: "Titânio", price: 100 }
     ]
   },{
     id: "piercing6",
@@ -210,11 +206,9 @@ export const products: Product[] = [
     notes: ["Joias pequenas", "Estética sutil"],
     category: "piercing",
     materials: [
-     
- { type: "Joia simples", price: 80 },
+    { type: "Aço cirúrgico", price: 80 },
       { type: "Joia decorada dourada aço PVD", price: 90 },
-         { type: "Aço cirúrgico", price: 120 },
-             { type: "Titânio", price: 220 }
+      { type: "Titânio", price: 100 }
     ]
   },{
     id: "piercing7",
@@ -226,10 +220,9 @@ export const products: Product[] = [
     category: "piercing",
     materials: [
      
-  { type: "Joia simples", price: 80 },
+      { type: "Aço cirúrgico", price: 80 },
       { type: "Joia decorada dourada aço PVD", price: 90 },
-         { type: "Aço cirúrgico", price: 120 },
-             { type: "Titânio", price: 220 }
+      { type: "Titânio", price: 100 }
     ]
   },{
     id: "piercing8",
@@ -240,11 +233,9 @@ name: "Aplicação Personalizada",
     notes: ["Joias pequenas", "Estética sutil"],
     category: "piercing",
     materials: [
-     
- { type: "Joia simples", price: 80 },
+    { type: "Aço cirúrgico", price: 80 },
       { type: "Joia decorada dourada aço PVD", price: 90 },
-         { type: "Aço cirúrgico", price: 120 },
-             { type: "Titânio", price: 220 }
+      { type: "Titânio", price: 100 }
     ]
   },{
     id: "piercing9",
@@ -256,10 +247,9 @@ name: "Aplicação Personalizada",
     category: "piercing",
     materials: [
      
- { type: "Joia simples", price: 80 },
+    { type: "Aço cirúrgico", price: 80 },
       { type: "Joia decorada dourada aço PVD", price: 90 },
-         { type: "Aço cirúrgico", price: 120 },
-             { type: "Titânio", price: 220 }
+      { type: "Titânio", price: 100 }
     ]
   },
 
@@ -273,11 +263,9 @@ name: "Aplicação Personalizada",
     category: "piercing",
     materials: [
       
-      { type: "Joia simples", price: 80 },
+      { type: "Aço cirúrgico", price: 80 },
       { type: "Joia decorada dourada aço PVD", price: 90 },
-
-         { type: "Aço cirúrgico", price: 120 },
-             { type: "Titânio", price: 220 }
+      { type: "Titânio", price: 100 }
     ]
   },
   {
@@ -319,8 +307,8 @@ name: "Aplicação Personalizada",
     imageUrl: "/assets/sol/img-sol-13.jpeg",
     category: "piercing",
     materials: [
-      { type: "Aço cirúrgico", price: 120 },
-      { type: "Titânio", price: 130 }
+      { type: "Aço cirúrgico", price: 90 },
+      { type: "Titânio", price: 110 }
     ]
   },
   // ...demais piercings (mantém o campo price ou converte para materials conforme desejar)
