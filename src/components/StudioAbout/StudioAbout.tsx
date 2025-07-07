@@ -9,15 +9,11 @@ const StudioAbout: React.FC = () => {
 
   return (
     <section className="bg-black text-dodger-blue min-h-screen">
-      {/* Offset para evitar sobreposição do header */}
       <div className="h-24" /> {/* Espaço superior para header fixo */}
 
       <div className="container mx-auto px-4 py-8 md:py-12 max-w-7xl flex flex-col md:flex-row items-center md:items-start justify-between gap-12">
         {/* Texto */}
-        <div
-          className="md:w-1/2 text-left space-y-6"
-          data-aos="fade-right"
-        >
+        <div className="md:w-1/2 text-left space-y-6" data-aos="fade-right">
           <h2 className="text-4xl md:text-5xl font-bold text-white">
             Sobre o Estúdio
           </h2>
@@ -37,10 +33,7 @@ const StudioAbout: React.FC = () => {
         </div>
 
         {/* Imagem */}
-        <div
-          className="md:w-1/2 flex justify-center"
-          data-aos="fade-left"
-        >
+        <div className="md:w-1/2 flex justify-center" data-aos="fade-left">
           <img
             src="/assets/grafit.jpg"
             alt="Estúdio com grafite colorido"
