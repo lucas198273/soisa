@@ -306,7 +306,7 @@ name: "Aplicação Personalizada",
     imageUrl: "/assets/sol/img-sol-13.jpeg",
     category: "piercing",
     materials: [
-      { type: "Aço cirúrgico", price: 90 },
+      { type: "Aço cirúrgico", price: 110 },
       { type: "Titânio", price: 110 }
     ]
   },
