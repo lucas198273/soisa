@@ -153,13 +153,19 @@ const ProductDetailPage = () => {
         </div>
 
         {/* Carrossel de tatuagens de outro tatuador */}
-        {(selectedProduct.category === "tattoo" || selectedProduct.category === "bz") && (
-          <ProductCarousel
-            displayCategory={selectedProduct.category === "tattoo" ? "bz" : "tattoo"}
-            currentProductId={selectedProduct.id}
-            products={products}
-          />
-        )}
+        {/* Carrossel de tatuagens (artista principal) */}
+        <ProductCarousel
+          displayCategory="tattoo"
+          currentProductId={selectedProduct.id}
+          products={products}
+        />
+
+        {/* Carrossel de tatuagens do outro artista */}
+        <ProductCarousel
+          displayCategory="bz"
+          currentProductId={selectedProduct.id}
+          products={products}
+        />
 
         {/* Carrossel de piercings */}
         <ProductCarousel
@@ -167,6 +173,7 @@ const ProductDetailPage = () => {
           currentProductId={selectedProduct.id}
           products={products}
         />
+
       </section>
     </div>
   );
