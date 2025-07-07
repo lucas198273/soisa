@@ -109,13 +109,15 @@ const ProductDetailPage = () => {
                 </div>
               </div>
             )}
-            {!isTattoo(selectedProduct) && (
-              <p className="text-xl font-bold text-yellow-400">
-                {selectedProduct.materials?.find((m: any) => m.type === selectedMaterials[selectedProduct.id])?.price?.toFixed(2) ||
-                  selectedProduct.price?.toFixed(2) ||
-                  "Selecione o material"}
-              </p>
-            )}
+       {!isTattoo(selectedProduct) && (
+  <p className="text-xl font-bold text-yellow-400">
+    A partir de R$ 
+    {selectedProduct.materials?.find((m: any) => m.type === selectedMaterials[selectedProduct.id])?.price?.toFixed(2) ||
+      selectedProduct.price?.toFixed(2) ||
+      " Selecione o material"}
+  </p>
+)}
+
             <div className="flex flex-col sm:flex-row gap-4">
               {!isTattoo(selectedProduct) && selectedProduct.available !== undefined && (
                 <>
