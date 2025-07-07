@@ -139,7 +139,7 @@ const ProductDetailPage = () => {
                   onClick={() => handleWhatsApp(selectedProduct)}
                   className="px-6 py-2 rounded-lg font-semibold bg-gradient-to-b from-green-600 to-green-800 text-white shadow-md hover:bg-gradient-to-r hover:from-green-400 hover:to-green-700 hover:shadow-xl transition-all duration-300"
                 >
-                  Consultar Valor no WhatsApp
+                  Consultar Inspiração no WhatsApp
                 </button>
               )}
             </div>
