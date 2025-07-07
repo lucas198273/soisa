@@ -1,3 +1,4 @@
+// src/App.tsx
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import AOS from "aos";
@@ -19,7 +20,8 @@ import ScrollToTopOnRouteChange from "./components/ScrollToTopOnRouteChange/Scro
 import PiercingSection from "./components/PiercingSection/PiercingSection";
 import AboutTattooArtistBZ from "./components/AboutTattooArtistBZ/AboutTattooArtistBZ";
 import AboutTattooArtistSoisa from "./components/AboutTattooArtistSoisa/AboutTattooArtistSoisa";
-// dentro do componente AppContent
+import ProductDetailPage from "./pages/ProductDetailPage";
+
 function AppContent() {
   const { items, total, toggleCart } = useCart();
 
@@ -44,25 +46,25 @@ function AppContent() {
             <main className="pt-20 min-h-screen flex flex-col">
               <Hero />
               <AboutTattooArtistSoisa />
-                <section className="bg-white py-10">
-                  <CategorySection category="tattoo" />     
-                </section> 
-                <AboutTattooArtistBZ />
-                <section className="bg-white py-10">
-                  <CategorySection category="bz" />     
-                </section> 
+              <section className="bg-white py-10">
+                <CategorySection category="tattoo" />
+              </section>
+              <AboutTattooArtistBZ />
+              <section className="bg-white py-10">
+                <CategorySection category="bz" />
+              </section>
               <AboutPiercer />
-               <section className="bg-white" >
-                  <PiercingSection category="piercing" />
-                </section>
+              <section className="bg-white">
+                <PiercingSection category="piercing" />
+              </section>
               <ProductInfoSection />
               <SocialMediaSection />
             </main>
           }
         />
         <Route path="/about" element={<About />} />
-        <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/products" element={<ProductPage />} />
+        <Route path="/product/:id" element={<ProductDetailPage />} />
       </Routes>
 
       <Footer />
@@ -74,7 +76,6 @@ function AppContent() {
     </div>
   );
 }
-
 
 export default function App() {
   return (

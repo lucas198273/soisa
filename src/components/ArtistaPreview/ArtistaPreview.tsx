@@ -17,7 +17,7 @@ export default function ArtistaPreview() {
      
         <div className="bg-black bg-opacity-60 rounded-xl shadow-lg p-4 md:p-5 w-full md:flex-1 hover:scale-[1.02] transition-transform duration-300 min-h-[300px]">
           <img
-            src="/assets/bz/image.png"
+            src="/assets/bz/image.webp"
             alt="Tatuador"
             className="w-full h-40 md:h-48 object-contain rounded-md mb-3 md:mb-4 bg-black"
           />

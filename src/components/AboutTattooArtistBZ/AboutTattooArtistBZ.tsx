@@ -26,7 +26,7 @@ export default function AboutTattooArtistBZ() {
         {/* Imagem do tatuador */}
         <div className="w-full md:w-1/2 flex justify-center">
           <img
-            src="/assets/bz/image.png" // Altere para a imagem real do BZ
+            src="/assets/bz/image.webp" // Altere para a imagem real do BZ
             alt="Tatuador BZ"
             className="max-w-xs md:max-w-md rounded-lg shadow-xl hover:scale-105 transition-transform duration-300 ease-in-out"
             loading="lazy"
