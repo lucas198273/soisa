@@ -21,7 +21,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative w-full bg-black text-white flex items-center justify-center px-4 py-8 md:py-12 border-b-4 border-[#00b4d8]">
+    <section className="relative w-full bg-black text-white flex items-center justify-center px- py-48 md:py-12 border-b-4 border-[#00b4d8]">
       <div className="flex flex-col-reverse md:flex-row w-full max-w-6xl items-center gap-8">
         {/* Texto e call-to-action */}
         <div className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left space-y-4">
