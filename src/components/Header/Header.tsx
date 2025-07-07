@@ -37,7 +37,7 @@ export default function Header({ onCartClick, cartItemCount }: HeaderProps) {
            <img
           src="/assets/logo.webp"
           alt="Tattoo Studio"
-          className="h-23 w-auto object-contain"
+          className="h-20 w-auto object-contain"
         />
 
           </Link>
