@@ -13,8 +13,8 @@ export default function ArtistaPreview() {
         className="flex flex-col md:flex-row justify-center gap-6 md:gap-8 w-full max-w-6xl"
         data-aos="fade-up"
       >
-        {/* Card Tatuador */}
-     
+       
+{/*      
         <div className="bg-black bg-opacity-60 rounded-xl shadow-lg p-4 md:p-5 w-full md:flex-1 hover:scale-[1.02] transition-transform duration-300 min-h-[300px]">
           <img
             src="/assets/bz/image.webp"
@@ -27,7 +27,7 @@ export default function ArtistaPreview() {
               Descrição
             </p>
           </div>
-        </div>
+        </div> */}
 
  {/* Card Tatuador */}
            <div className="bg-black bg-opacity-60 rounded-xl shadow-lg p-4 md:p-5 w-full md:flex-1 hover:scale-[1.02] transition-transform duration-300 min-h-[300px]">
