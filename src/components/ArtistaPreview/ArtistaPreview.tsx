@@ -14,7 +14,7 @@ export default function ArtistaPreview() {
         data-aos="fade-up"
       >
        
-{/*      
+/*      
         <div className="bg-black bg-opacity-60 rounded-xl shadow-lg p-4 md:p-5 w-full md:flex-1 hover:scale-[1.02] transition-transform duration-300 min-h-[300px]">
           <img
             src="/assets/bz/image.webp"
@@ -24,10 +24,11 @@ export default function ArtistaPreview() {
           <div className="text-white px-2 md:px-0">
             <h3 className="text-2xl font-bold mb-2 text-[#00b4d8]">Tatuador BZ</h3>
             <p className="text-gray-300 mb-4">
-              Descrição
+              Meu nome é João Bazilio, conhecido como Bazilio tattoo ou Bz, estou a mais de 4 anos no mercado, sou especializado em trabalho preto e cinza, porém faço diversos estilos como floral, lettering, Blackwork ou old school.
+Trabalhei em studios renomados na região de Betim e Belo Horizonte, carregando uma bagagem de experiências que me formam como profissional, sempre me preocupo com a qualidade dos meus trabalhos, desde o desenvolvimento da arte, até a tinta na pele prezando sempre pela melhor experiência para o cliente.
             </p>
           </div>
-        </div> */}
+        </div> */
 
  {/* Card Tatuador */}
            <div className="bg-black bg-opacity-60 rounded-xl shadow-lg p-4 md:p-5 w-full md:flex-1 hover:scale-[1.02] transition-transform duration-300 min-h-[300px]">
