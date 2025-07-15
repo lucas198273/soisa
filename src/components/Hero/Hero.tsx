@@ -74,9 +74,9 @@ export default function Hero() {
           {/* Imagem do artista */}
           <div className="w-full md:w-1/2 flex justify-center">
             <img
-              src="/assets/grafit.webp"
+              src="/assets/businesimg/img-es-1.webp"
               alt="Artista tatuador"
-              className="w-full max-w-lg rounded-lg shadow-2xl transition-transform duration-300 hover:scale-105 object-contain"
+              className="w-[50%] max-w-lg rounded-lg shadow-2xl transition-transform duration-300 hover:scale-105 object-contain"
               loading="lazy"
             />
           </div>
