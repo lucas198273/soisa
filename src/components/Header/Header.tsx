@@ -29,6 +29,7 @@ export default function Header({ onCartClick, cartItemCount }: HeaderProps) {
             <Link to="/about" className="hover:text-[#00b4d8] transition-colors duration-200">Sobre</Link>
             <Link to="/products" className="hover:text-[#00b4d8] transition-colors duration-200">Tatuagens e Piercings</Link>
             <Link to="/afiliados" className="hover:text-[#00b4d8] transition-colors duration-200">Afiliados</Link>
+            <Link to="/politicas" className="hover:text-[#00b4d8] transition-colors duration-200">Politicas</Link>
           </nav>
         </div>
 
@@ -99,6 +100,12 @@ export default function Header({ onCartClick, cartItemCount }: HeaderProps) {
             className="block text-white hover:text-[#00b4d8] transition-colors duration-200"
           >
             Afiliados
+          </Link><Link
+            to="/politicas"
+            onClick={() => setMenuOpen(false)}
+            className="block text-white hover:text-[#00b4d8] transition-colors duration-200"
+          >
+            Politicas
           </Link>
         </nav>
       </div>

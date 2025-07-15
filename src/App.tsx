@@ -23,6 +23,7 @@ import AboutTattooArtistSoisa from "./components/AboutTattooArtistSoisa/AboutTat
 import ProductDetailPage from "./pages/ProductDetailPage";
 import { HelmetProvider, Helmet } from "react-helmet-async";
 import Amazon from "./pages/Amazon";
+import PoliticaEPrivacidade from "./pages/PoliticasEPrivacidade";
 
 function AppContent() {
   const { items, total, toggleCart } = useCart();
@@ -75,6 +76,7 @@ function AppContent() {
         <Route path="/products" element={<ProductPage />} />
         <Route path="/product/:id" element={<ProductDetailPage />} />
         <Route path="/afiliados" element={<Amazon />} />
+        <Route path="/Politicas" element={<PoliticaEPrivacidade />} />
       </Routes>
 
       <Footer />
