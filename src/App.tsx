@@ -22,6 +22,7 @@ import AboutTattooArtistBZ from "./components/AboutTattooArtistBZ/AboutTattooArt
 import AboutTattooArtistSoisa from "./components/AboutTattooArtistSoisa/AboutTattooArtistSoisa";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import { HelmetProvider, Helmet } from "react-helmet-async";
+import Amazon from "./pages/Amazon";
 
 function AppContent() {
   const { items, total, toggleCart } = useCart();
@@ -73,6 +74,7 @@ function AppContent() {
         <Route path="/about" element={<About />} />
         <Route path="/products" element={<ProductPage />} />
         <Route path="/product/:id" element={<ProductDetailPage />} />
+        <Route path="/afiliados" element={<Amazon />} />
       </Routes>
 
       <Footer />
