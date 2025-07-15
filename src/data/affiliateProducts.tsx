@@ -30,4 +30,26 @@ export const tattooProducts: Product[] = [
     imageUrl: "https://m.media-amazon.com/images/I/413hpTA2luL.__AC_SX300_SY300_QL70_ML2_.jpg",
     customText: "Maleta portátil para organizar seu material de tatuagem com praticidade.",
   },
+   {
+    title: "Máquina de Tatuagem OG Produce - Edição Especial",
+    asin: "B0F3D2CRL4",
+    affiliateTag: "ofertaspixels-20",
+    imageUrl: "https://m.media-amazon.com/images/I/41l4+MDVGwL._AC_SX679_.jpg",
+    customText: "Máquina de tatuagem profissional com design moderno e desempenho confiável.",
+  },
+  {
+  title: "Impressora Portátil para Tatuagem - Estêncil Bluetooth",
+  asin: "B0DZV99RLS",
+  affiliateTag: "ofertaspixels-20",
+  imageUrl: "https://m.media-amazon.com/images/I/71qbmZHiu0L.__AC_SX300_SY300_QL70_ML2_.jpg",
+  customText: "Impressora térmica portátil para estêncil de tatuagem via Bluetooth.",
+},
+{
+  title: "Fonte de Alimentação para Tatuagem com Base Magnética",
+  asin: "B0C2YTWZ7T",
+  affiliateTag: "ofertaspixels-20",
+  imageUrl: "https://m.media-amazon.com/images/I/618C9HPM3WL._AC_SX679_.jpg",
+  customText: "Fonte de energia profissional com suporte magnético e regulagem precisa.",
+}
+
 ];
