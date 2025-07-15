@@ -21,6 +21,7 @@ import PiercingSection from "./components/PiercingSection/PiercingSection";
 import AboutTattooArtistBZ from "./components/AboutTattooArtistBZ/AboutTattooArtistBZ";
 import AboutTattooArtistSoisa from "./components/AboutTattooArtistSoisa/AboutTattooArtistSoisa";
 import ProductDetailPage from "./pages/ProductDetailPage";
+import { HelmetProvider, Helmet } from "react-helmet-async";
 
 function AppContent() {
   const { items, total, toggleCart } = useCart();
@@ -30,7 +31,7 @@ function AppContent() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col ">
+    <div className="min-h-screen flex flex-col">
       <Header onCartClick={() => toggleCart(true)} cartItemCount={items.length} />
 
       {/* Scroll automático para topo em mudança de rota */}
@@ -43,23 +44,30 @@ function AppContent() {
         <Route
           path="/"
           element={
-            <main className="pt-20 min-h-screen flex flex-col">
-              <Hero />
-              <AboutTattooArtistSoisa />
-              <section className="bg-white py-10">
-                <CategorySection category="tattoo" />
-              </section>
-              <AboutTattooArtistBZ />
-              <section className="bg-white py-10">
-                <CategorySection category="bz" />
-              </section>
-              <AboutPiercer />
-              <section className="bg-white">
-                <PiercingSection category="piercing" />
-              </section>
-              <ProductInfoSection />
-              <SocialMediaSection />
-            </main>
+            <>
+              <Helmet>
+                <title>Soisa Tattoo Studio | Tatuagens e Piercings Profissionais</title>
+                <meta name="description" content="Estúdio de tatuagem e piercing com profissionais experientes. Agende sua sessão com nossos artistas." />
+                <meta name="keywords" content="tatuagem, piercing, estúdio, betim, soisa, tatuadores" />
+              </Helmet>
+              <main className="pt-20 min-h-screen flex flex-col">
+                <Hero />
+                <AboutTattooArtistSoisa />
+                <section className="bg-white py-10">
+                  <CategorySection category="tattoo" />
+                </section>
+                <AboutTattooArtistBZ />
+                <section className="bg-white py-10">
+                  <CategorySection category="bz" />
+                </section>
+                <AboutPiercer />
+                <section className="bg-white">
+                  <PiercingSection category="piercing" />
+                </section>
+                <ProductInfoSection />
+                <SocialMediaSection />
+              </main>
+            </>
           }
         />
         <Route path="/about" element={<About />} />
@@ -79,10 +87,12 @@ function AppContent() {
 
 export default function App() {
   return (
-    <CartProvider>
-      <Router>
-        <AppContent />
-      </Router>
-    </CartProvider>
+    <HelmetProvider>
+      <CartProvider>
+        <Router>
+          <AppContent />
+        </Router>
+      </CartProvider>
+    </HelmetProvider>
   );
 }
