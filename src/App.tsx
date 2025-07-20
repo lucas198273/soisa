@@ -24,7 +24,7 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 import { HelmetProvider, Helmet } from "react-helmet-async";
 import Amazon from "./pages/Amazon";
 import PoliticaEPrivacidade from "./pages/PoliticasEPrivacidade";
-
+import GaleriaSoisa from "./components/GaleriaSoisa/GaleriaSoisa.tsx";
 function AppContent() {
   const { items, total, toggleCart } = useCart();
 
@@ -54,6 +54,7 @@ function AppContent() {
               </Helmet>
               <main className="pt-20 min-h-screen flex flex-col">
                 <Hero />
+                <GaleriaSoisa />
                 <AboutTattooArtistSoisa />
                 <section className="bg-white py-10">
                   <CategorySection category="tattoo" />
@@ -77,6 +78,7 @@ function AppContent() {
         <Route path="/product/:id" element={<ProductDetailPage />} />
         <Route path="/afiliados" element={<Amazon />} />
         <Route path="/Politicas" element={<PoliticaEPrivacidade />} />
+        <Route path="/galeria" element={<GaleriaSoisa />} />
       </Routes>
 
       <Footer />
