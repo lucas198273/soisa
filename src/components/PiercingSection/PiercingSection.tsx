@@ -1,14 +1,14 @@
-import useEmblaCarousel from "embla-carousel-react";
-import { useEffect, useState } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { products } from "../../data/Product";
-import { useCart } from "../../../contexts/CartContext";
-import { toast } from "react-toastify";
+import useEmblaCarousel from 'embla-carousel-react';
+import { useEffect, useState } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { products } from '../../data/Product';
+import { useCart } from '../../../contexts/CartContext';
+import { toast } from 'react-toastify';
 
 interface CategorySectionProps {
-  category: "piercing";
+  category: 'piercing';
 }
 
 export default function PiercingSection({ category }: CategorySectionProps) {
@@ -24,7 +24,7 @@ export default function PiercingSection({ category }: CategorySectionProps) {
   const handleAddToCart = (product: any) => {
     const selectedType = selectedMaterials[product.id];
     const selectedMaterial = product.materials?.find((m: any) => m.type === selectedType);
-    const uniqueId = `${product.id}-${selectedMaterial?.type || "indefinido"}`;
+    const uniqueId = `${product.id}-${selectedMaterial?.type || 'indefinido'}`;
 
     if (product.available && selectedMaterial) {
       addItem({
@@ -35,7 +35,7 @@ export default function PiercingSection({ category }: CategorySectionProps) {
       });
       toast.success(`${product.name} - ${selectedMaterial.type} adicionado!`, { autoClose: 3000 });
     } else {
-      toast.error("Selecione um material para adicionar!", { autoClose: 3000 });
+      toast.error('Selecione um material para adicionar!', { autoClose: 3000 });
     }
   };
 
@@ -45,10 +45,10 @@ export default function PiercingSection({ category }: CategorySectionProps) {
     const price = selectedMaterial?.price;
 
     const mensagem = encodeURIComponent(
-      `Olá! Tenho interesse no serviço "${product.name} - ${selectedMaterial?.type}" por R$${price?.toFixed(2).replace(".", ",") || "valor a combinar"}.`
+      `Olá! Tenho interesse no serviço "${product.name} - ${selectedMaterial?.type}" por R$${price?.toFixed(2).replace('.', ',') || 'valor a combinar'}.`
     );
-    window.open(`https://wa.me/5531994340017?text=${mensagem}`, "_blank");
-    toast.info(`Mensagem enviada para o WhatsApp!`, { autoClose: 3000 });
+    window.open(`https://wa.me/5531994340017?text=${mensagem}`, '_blank');
+    toast.info('Mensagem enviada para o WhatsApp!', { autoClose: 3000 });
   };
 
   return (
@@ -68,72 +68,71 @@ export default function PiercingSection({ category }: CategorySectionProps) {
               return (
                 <div
                   key={item.id}
-                  className="flex-none w-[60%] sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5"
+                  className="flex-none w-[85%] sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5"
                   data-aos="fade-up"
                   data-aos-delay={idx * 50}
                 >
-                  <div className="flex flex-col h-full min-h-[520px] rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2 bg-zinc-900">
+                  <div className="flex flex-col h-full rounded-xl overflow-hidden shadow-md transition-transform duration-300 hover:-translate-y-1 bg-zinc-900">
                     <img
                       src={item.imageUrl}
                       alt={item.name}
-                      className="object-cover h-[60%] w-full transition-transform duration-300 hover:scale-105"
+                      className="object-cover h-40 sm:h-44 md:h-48 lg:h-52 w-full transition-transform duration-300 hover:scale-105"
                     />
 
-                    <div className="flex flex-col flex-1 justify-between">
+                    <div className="flex flex-col justify-between flex-1">
                       <div className="p-3 bg-black text-white flex-1">
-                        <h3
-                          className="text-lg font-semibold text-center text-white mb-2 capitalize line-clamp-2"
-                          data-aos="fade-up"
-                        >
+                        <h3 className="text-base font-semibold text-center mb-2 capitalize line-clamp-2">
                           {item.name}
                         </h3>
 
-                        {item.materials && item.materials.length > 0 && (
+                        {item.materials?.length ? (
                           <>
                             <label className="text-sm font-medium text-gray-300 block mb-1">
                               Escolher material:
                             </label>
                             <select
-                              className="w-full bg-gray-900 text-white border border-gray-700 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 transition-all duration-200"
+                              className="w-full bg-gray-900 text-white border border-gray-700 rounded px-3 py-1 text-sm focus:ring-2 focus:ring-blue-500"
                               onChange={(e) =>
                                 setSelectedMaterials((prev) => ({
                                   ...prev,
                                   [item.id]: e.target.value,
                                 }))
                               }
-                              value={selectedMaterials[item.id] || ""}
+                              value={selectedMaterials[item.id] || ''}
                             >
                               <option value="" disabled>
-                                Selecione um material
+                                Selecione
                               </option>
                               {item.materials.map((material: any, i: number) => (
                                 <option key={i} value={material.type}>
-                                  {material.type} - A partir de R${material.price.toFixed(2).replace(".", ",")}
+                                  {material.type} - R${material.price.toFixed(2).replace('.', ',')}
                                 </option>
                               ))}
                             </select>
 
                             {currentMaterial && (
-                              <p className="text-sm text-gray-400 mt-2">
+                              <p className="text-sm text-gray-400 mt-1">
                                 Selecionado: {currentMaterial.type} - R$
-                                {currentMaterial.price.toFixed(2).replace(".", ",")}
+                                {currentMaterial.price.toFixed(2).replace('.', ',')}
                               </p>
                             )}
                           </>
+                        ) : (
+                          <p className="text-sm text-gray-400 mt-1">Sem materiais disponíveis</p>
                         )}
                       </div>
 
                       <div className="p-3 bg-black bg-opacity-70 flex justify-center gap-2">
                         <button
                           onClick={() => handleAddToCart(item)}
-                          className="px-4 py-2 font-semibold rounded-full bg-blue-800 text-white transition-all duration-300 disabled:opacity-50"
+                          className="px-3 py-1 text-sm rounded-full bg-blue-700 text-white transition-all duration-300 disabled:opacity-50"
                           disabled={!item.available || !selectedMaterials[item.id]}
                         >
                           Adicionar
                         </button>
                         <button
                           onClick={() => handleWhatsApp(item)}
-                          className="px-4 py-2 font-semibold rounded-lg bg-green-700 text-white shadow-md transition-all duration-300"
+                          className="px-3 py-1 text-sm rounded bg-green-600 text-white transition-all duration-300"
                         >
                           WhatsApp
                         </button>
