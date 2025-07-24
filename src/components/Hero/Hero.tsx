@@ -7,24 +7,26 @@ export default function Hero() {
   const [form, setForm] = useState({
     nome: "",
     telefone: "",
+    tipoServico: "",
     data: "",
-    localTatuagem: "",
-    idade: "",
-    tamanhoEstimado: "",
+    hora: "",
   });
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const msg = `Olá! Gostaria de agendar...\nNome: ${form.nome}\n...`;
-    window.open(
-      `https://wa.me/5531971705728?text=${encodeURIComponent(msg)}`,
-      "_blank"
-    );
+    const msg = `Olá! Gostaria de agendar uma sessão:\n
+Nome: ${form.nome}\n
+Telefone: ${form.telefone}\n
+Tipo de serviço: ${form.tipoServico}\n
+Data: ${form.data}\n
+Hora: ${form.hora}`;
+
+    window.open(`https://wa.me/5531971705728?text=${encodeURIComponent(msg)}`, "_blank");
     setIsOpen(false);
   };
 
@@ -36,10 +38,7 @@ export default function Hero() {
           name="description"
           content="Tatuagens feitas com propósito, arte e personalidade em Betim - Soisa Tattoo Studio. Agende sua sessão conosco!"
         />
-        <meta
-          name="keywords"
-          content="tatuagem, piercing, estúdio de tatuagem, Betim, Soisa Tattoo, arte corporal"
-        />
+        <meta name="keywords" content="tatuagem, piercing, estúdio de tatuagem, Betim, Soisa Tattoo, arte corporal" />
         <meta property="og:title" content="Soisa Tattoo Studio | Arte e Tatuagens em Betim" />
         <meta
           property="og:description"
@@ -47,9 +46,8 @@ export default function Hero() {
         />
       </Helmet>
 
-      <section className="relative w-full bg-black text-white flex items-center justify-center px- py-48 md:py-12 border-b-4 border-[#00b4d8]">
+      <section className="relative w-full bg-black text-white flex items-center justify-center px-4 py-48 md:py-12 border-b-4 border-[#00b4d8]">
         <div className="flex flex-col-reverse md:flex-row w-full max-w-6xl items-center gap-8">
-          {/* Texto e call-to-action */}
           <div className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left space-y-4">
             <h1 className="text-3xl md:text-5xl font-bold leading-tight">
               Dê vida à sua ideia <br />
@@ -58,7 +56,6 @@ export default function Hero() {
             <p className="text-base md:text-xl text-gray-300 leading-relaxed">
               Tatuagens feitas com propósito, arte e personalidade. Agende agora mesmo.
             </p>
-            {/* Cidade e endereço adicionados */}
             <p className="text-base md:text-lg text-gray-400 leading-relaxed font-semibold">
               Localizado em Betim - MG <br />
               Av. Amazonas, 608
@@ -71,7 +68,6 @@ export default function Hero() {
             </button>
           </div>
 
-          {/* Imagem do artista */}
           <div className="w-full md:w-1/2 flex justify-center">
             <img
               src="/assets/businesimg/img-es-1.webp"
@@ -84,47 +80,98 @@ export default function Hero() {
 
         {/* Modal */}
         {isOpen && (
-          <div
-            className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 px-4"
-          >
+          <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 px-4">
             <div className="bg-white rounded-xl p-6 w-full max-w-md shadow-xl relative animate-[scale_0.3s_ease-in-out]">
               <button
                 onClick={() => setIsOpen(false)}
                 className="absolute top-3 right-4 text-gray-500 hover:text-black text-2xl"
-                aria-label="Fechar"
+                aria-label="Fechar formulário"
               >
                 ×
               </button>
-              <h3 className="text-2xl font-bold mb-4 text-black text-center">
-                Agendar Sessão
-              </h3>
-              <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
-                {[
-                  "nome",
-                  "idade",
-                  "telefone",
-                  "data",
-                  "localTatuagem",
-                  "tamanhoEstimado",
-                ].map((name) => (
+              <h3 className="text-2xl font-bold mb-4 text-black text-center">Agendar Sessão</h3>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label htmlFor="nome" className="block text-gray-700 font-semibold mb-1">
+                    Nome completo
+                  </label>
                   <input
-                    key={name}
-                    type={name === "data" ? "date" : name === "idade" ? "number" : "tel"}
-                    name={name}
-                    value={(form as any)[name]}
+                    type="text"
+                    id="nome"
+                    name="nome"
+                    value={form.nome}
                     onChange={handleChange}
                     required
-                    placeholder={{
-                      nome: "Seu nome completo",
-                      idade: "Sua idade",
-                      telefone: "Telefone para contato",
-                      data: "",
-                      localTatuagem: "Local a ser tatuado",
-                      tamanhoEstimado: "Tamanho estimado",
-                    }[name]}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-[#00b4d8]"
+                    className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+                    placeholder="Digite seu nome completo"
                   />
-                ))}
+                </div>
+
+                <div>
+                  <label htmlFor="telefone" className="block text-gray-700 font-semibold mb-1">
+                    Telefone
+                  </label>
+                  <input
+                    type="tel"
+                    id="telefone"
+                    name="telefone"
+                    value={form.telefone}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+                    placeholder="(00) 00000-0000"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="tipoServico" className="block text-gray-700 font-semibold mb-1">
+                    Tipo de serviço
+                  </label>
+                  <select
+                    id="tipoServico"
+                    name="tipoServico"
+                    value={form.tipoServico}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+                    aria-label="Selecione o tipo de serviço"
+                  >
+                    <option value="">Selecione</option>
+                    <option value="Tatuagem">Tatuagem</option>
+                    <option value="Piercing">Piercing</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="data" className="block text-gray-700 font-semibold mb-1">
+                    Data
+                  </label>
+                  <input
+                    type="date"
+                    id="data"
+                    name="data"
+                    value={form.data}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="hora" className="block text-gray-700 font-semibold mb-1">
+                    Hora
+                  </label>
+                  <input
+                    type="time"
+                    id="hora"
+                    name="hora"
+                    value={form.hora}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+                  />
+                </div>
+
                 <button
                   type="submit"
                   className="w-full py-3 bg-[#00b4d8] hover:bg-[#009ac1] transition-shadow shadow-md rounded-lg text-white font-semibold"
