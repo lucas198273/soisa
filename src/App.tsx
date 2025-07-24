@@ -48,13 +48,13 @@ function AppContent() {
           element={
             <>
               <Helmet>
-                <title>Soisa Tattoo Studio | Tatuagens e Piercings Profissionais</title>
+                <title>Estúdio de Tatuagem em Betim | Soisa Tattoo Studio</title>
                 <meta name="description" content="Estúdio de tatuagem e piercing com profissionais experientes. Agende sua sessão com nossos artistas." />
                 <meta name="keywords" content="tatuagem, piercing, estúdio, betim, soisa, tatuadores" />
               </Helmet>
               <main className="pt-20 min-h-screen flex flex-col">
                 <Hero />
-                <GaleriaSoisa />
+               
                 <AboutTattooArtistSoisa />
                 <section className="bg-white py-10">
                   <CategorySection category="tattoo" />

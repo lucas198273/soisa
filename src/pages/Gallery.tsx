@@ -7,7 +7,8 @@ const GaleriaPage: React.FC = () => {
   return (
     <main className="min-h-screen bg-black text-white px-4" lang="pt-BR">
       <Helmet>
-        <title>Galeria de Artes Underground - {new Date().toLocaleDateString()}</title>
+        <title>Galeria de Artes Underground | Estúdio de Tatuagem em Betim - {new Date().toLocaleDateString()}</title>
+
         <meta
           name="description"
           content="Explore a galeria underground de pinturas únicas do artista Soisa, com obras originais que misturam rebeldia e criatividade em uma pegada urbana e alternativa."
