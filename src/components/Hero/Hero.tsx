@@ -54,7 +54,7 @@ Hora: ${form.hora}`;
               com traços precisos
             </h1>
             <p className="text-base md:text-xl text-gray-300 leading-relaxed">
-              Tatuagens feitas com propósito, arte e personalidade. Agende agora mesmo.
+              Tatuagens feitas com propósito, arte e personalidade.
             </p>
             <p className="text-base md:text-lg text-gray-400 leading-relaxed font-semibold">
               Localizado em Betim - MG <br />
