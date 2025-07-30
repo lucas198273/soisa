@@ -1,16 +1,8 @@
+/* Importações */
 @import "tailwindcss";
 @plugin "flowbite-react/plugin/tailwindcss";
 @source "../.flowbite-react/class-list.json";
-/* index.css (ou App.css) */
+@import "https://cdn.jsdelivr.net/npm/flowbite@latest/dist/flowbite.min.css"; /* Carregar Flowbite via CDN */
 
-
-
-/* 2) Plugin do Flowbite */
-@import "flowbite";               /* habilita @layer base/components/utilities do Flowbite 
-                                     e injeta seu CSS corretamente :contentReference[oaicite:0]{index=0} */
-/* src/index.css */
-
+/* Camada utilities */
 @tailwind utilities;
-
-
-@import "flowbite"; /* injeta camadas base/components/utilities do Flowbite */

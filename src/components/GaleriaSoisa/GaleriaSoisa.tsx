@@ -24,8 +24,8 @@ export default function GaleriaSoisa() {
           {quadros.map((quadro, index) => (
             <div
               key={index}
-              className="rounded-xl overflow-hidden shadow-lg transition-transform hover:scale-105 bg-[#1e293b]"
-              style={{ maxWidth: "220px" }}
+              className=" max-w-[220px] rounded-xl overflow-hidden shadow-lg transition-transform hover:scale-105 bg-[#1e293b]"
+            
               data-aos="fade-up"
               data-aos-delay={index * 100}
             >

@@ -1,8 +1,8 @@
-// src/App.tsx
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import "./App.css"; // Ajustado para o caminho correto
 
 import Header from "./components/Header/Header";
 import Hero from "./components/Hero/Hero";
@@ -25,6 +25,7 @@ import { HelmetProvider, Helmet } from "react-helmet-async";
 import Amazon from "./pages/Amazon";
 import PoliticaEPrivacidade from "./pages/PoliticasEPrivacidade";
 import GaleriaSoisa from "./components/GaleriaSoisa/GaleriaSoisa.tsx";
+
 function AppContent() {
   const { items, total, toggleCart } = useCart();
 
@@ -33,7 +34,7 @@ function AppContent() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gray-100 text-gray-800">
       <Header onCartClick={() => toggleCart(true)} cartItemCount={items.length} />
 
       {/* Scroll automático para topo em mudança de rota */}
@@ -49,12 +50,17 @@ function AppContent() {
             <>
               <Helmet>
                 <title>Estúdio de Tatuagem em Betim | Soisa Tattoo Studio</title>
-                <meta name="description" content="Estúdio de tatuagem e piercing com profissionais experientes. Agende sua sessão com nossos artistas." />
-                <meta name="keywords" content="tatuagem, piercing, estúdio, betim, soisa, tatuadores" />
+                <meta
+                  name="description"
+                  content="Estúdio de tatuagem e piercing com profissionais experientes. Agende sua sessão com nossos artistas."
+                />
+                <meta
+                  name="keywords"
+                  content="tatuagem, piercing, estúdio, betim, soisa, tatuadores"
+                />
               </Helmet>
               <main className="pt-20 min-h-screen flex flex-col">
                 <Hero />
-               
                 <AboutTattooArtistSoisa />
                 <section className="bg-white py-10">
                   <CategorySection category="tattoo" />
