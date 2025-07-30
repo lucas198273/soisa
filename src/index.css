@@ -1,8 +1,5 @@
 /* Importações */
 @import "tailwindcss";
-@plugin "flowbite-react/plugin/tailwindcss";
-@source "../.flowbite-react/class-list.json";
-@import "https://cdn.jsdelivr.net/npm/flowbite@latest/dist/flowbite.min.css"; /* Carregar Flowbite via CDN */
 
 /* Camada utilities */
 @tailwind utilities;
