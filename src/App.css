@@ -2,7 +2,7 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0.2rem; /* Layout compacto */
+ /* Layout compacto */
   -webkit-text-size-adjust: 100%; /* Compatibilidade Chrome 18+, Safari 3+ */
   text-size-adjust: 100%; /* Padrão moderno Chrome 54+, Edge 79+ */
 }
