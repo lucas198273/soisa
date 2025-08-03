@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { ArrowUp } from "lucide-react";
 import { products } from "../data/Product"; // Ajuste o caminho se necessário
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 
 const ProductPage = () => {
   const { id } = useParams<{ id?: string }>();
