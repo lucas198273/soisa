@@ -56,18 +56,18 @@ const ProductCard = ({ product, phone }: { product: Product; phone: string }) =>
 
   return (
     <div className="embla__slide px-2 flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.3333%]">
-      <div className="relative rounded-xl overflow-hidden aspect-[3/4] shadow-lg bg-black">
+      <div className="relative rounded-xl overflow-hidden aspect-[3/4] sm:aspect-[4/5] shadow-lg bg-black">
         <img
           src={imgs[index]}
           alt={product.name}
           className="w-full h-full object-cover object-center transition-opacity duration-300"
         />
         <Link to={`/product/${product.id}`} className="absolute inset-0 z-10" />
-        <div className="absolute bottom-0 left-0 w-full p-2 bg-black/70 flex justify-between items-center">
+        <div className="absolute bottom-0 left-0 w-full p-3 bg-black/70 flex justify-between items-center">
           <span className="text-white font-medium truncate">{product.name}</span>
           <button
             onClick={handleClick}
-            className="px-3 py-1 bg-green-800 text-white rounded-md text-sm hover:bg-green-700 transition"
+            className="px-3 py-1 bg-green-800 text-white rounded-md text-sm hover:bg-green-700 transition focus:outline-none focus:ring-2 focus:ring-green-500"
           >
             Ver mais
           </button>
@@ -94,44 +94,43 @@ const ProductCarousel = ({ displayCategory, currentProductId, products }: Props)
 
   const phone = WHATSAPP_NUMBERS[displayCategory] || WHATSAPP_NUMBERS.tattoo;
 
-  // Título dinâmico com base na categoria
-  let title = "";
-  if (displayCategory === "tattoo") {
-    title = "Tatuagens Soisa";
-  } else if (displayCategory === "bz") {
-    title = "Tatuagens BZ";
-  } else if (displayCategory === "piercing") {
-    title = "Piercings";
-  }
+  const titleMap: Record<string, string> = {
+    tattoo: "Tatuagens Soisa",
+    bz: "Tatuagens BZ",
+    piercing: "Piercings",
+  };
+
+  const title = titleMap[displayCategory] || "Galeria";
 
   return (
-    <section className="mb-12 px-4">
+    <section className="mb-12 px-4 pt-6 pb-10">
       <h2
         className="text-2xl md:text-3xl font-semibold text-center text-white mb-6 capitalize"
         data-aos="fade-up"
       >
         {title}
       </h2>
+
       <div className="relative" data-aos="fade-up">
         <div className="overflow-hidden" ref={emblaRef}>
-          <div className="embla__container flex">
+          <div className="embla__container flex gap-x-4">
             {filteredProducts.map((product) => (
               <ProductCard key={product.id} product={product} phone={phone} />
             ))}
           </div>
         </div>
 
-        {/* Botões de navegação */}
+        {/* Navegação */}
         <button
           onClick={scrollPrev}
-          className="absolute top-1/2 left-0 -translate-y-1/2 bg-[#00b4d8] text-white p-2 rounded-full hover:bg-[#009ac1] z-10"
+          className="absolute top-1/2 left-2 -translate-y-1/2 bg-[#00b4d8] text-white p-2 rounded-full hover:bg-[#009ac1] z-10 focus:outline-none focus:ring-2 focus:ring-white"
           aria-label="Anterior"
         >
           <ChevronLeft size={20} />
         </button>
         <button
           onClick={scrollNext}
-          className="absolute top-1/2 right-0 -translate-y-1/2 bg-[#00b4d8] text-white p-2 rounded-full hover:bg-[#009ac1] z-10"
+          className="absolute top-1/2 right-2 -translate-y-1/2 bg-[#00b4d8] text-white p-2 rounded-full hover:bg-[#009ac1] z-10 focus:outline-none focus:ring-2 focus:ring-white"
           aria-label="Próximo"
         >
           <ChevronRight size={20} />

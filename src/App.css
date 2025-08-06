@@ -1,43 +1,40 @@
-/* Estilos globais */
-/* Estilos globais */
+/* === Estilos globais === */
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  /* Layout compacto */
-  text-size-adjust: 100%; /* Padrão moderno Chrome 54+, Edge 79+ */
+  text-size-adjust: 100%;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
-
-
-
-
-/* Estilos dos botões */
-
-/* Animação */
-.animate-fade-in {
-  animation: fadeIn 0.3s ease-in-out;
-}
-
+/* === Animações personalizadas === */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Sobrescrever regras do Flowbite para compatibilidade */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* === Estilos base com Tailwind === */
 @layer base {
   html,
   :host {
-    -webkit-text-size-adjust: 100% !important;
-    text-size-adjust: 100% !important;
+    text-size-adjust: 100%;
   }
-
-  select:not([size]),
-  [multiple],
-  [type=checkbox],
-  [type=radio],
-  [type=checkbox]:checked,
-  [type=checkbox]:indeterminate {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
+}
+@layer utilities {
+  .no-font-boost {
+    max-height: 1000000px;
   }
+}
+/* Evita que o Chrome Android aplique zoom forçado em fontes pequenas */
+.no-font-boost {
+  max-height: 1000000px;
+  font-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
 }
