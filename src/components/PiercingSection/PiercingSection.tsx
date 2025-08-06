@@ -18,7 +18,7 @@ interface Product {
   category: string;
   imageUrl: string;
   materials?: Material[];
-  available?: boolean; // Tornando opcional para alinhar com o tipo importado
+  available?: boolean;
 }
 
 interface CategorySectionProps {
@@ -38,7 +38,7 @@ export default function PiercingSection({ category }: CategorySectionProps) {
   const handleAddToCart = (product: Product) => {
     const selectedType = selectedMaterials[product.id] || '';
     const selectedMaterial = product.materials?.find((m) => m.type === selectedType);
-    const isAvailable = product.available !== undefined ? product.available : true; // Default true se undefined
+    const isAvailable = product.available !== undefined ? product.available : true;
 
     if (isAvailable && selectedMaterial) {
       const uniqueId = `${product.id}-${selectedType}`;
@@ -68,50 +68,48 @@ export default function PiercingSection({ category }: CategorySectionProps) {
   };
 
   return (
-    <div className="mb-16 px-2 sm:px-4 padding-left-8">
-      <h3 className="text-3xl font-semibold text-center text-black mb-6 capitalize" data-aos="fade-up">
+    <section className="mb-16 px-4">
+      <h3 className="text-3xl font-bold text-center text-white mb-8" data-aos="fade-up">
         Piercings
       </h3>
 
-      <div className="relative">
+      <div className="relative" data-aos="fade-up">
         <div className="overflow-hidden w-full" ref={emblaRef}>
           <div className="flex gap-4">
             {filteredItems.map((item, idx) => {
-              const currentMaterial = item.materials?.find(
-                (m) => m.type === selectedMaterials[item.id]
-              );
+              const currentMaterial = item.materials?.find((m) => m.type === selectedMaterials[item.id]);
 
               return (
                 <div
                   key={item.id}
-                  className="flex-none w-full left-1.5 sm:w-1/2 md:w-1/3 lg:w-1/4 min-w-[250px]"
+                  className="flex-none w-full sm:w-1/2 md:w-1/3 lg:w-1/4 min-w-[250px]"
                   data-aos="fade-up"
                   data-aos-delay={idx * 50}
                 >
-                  <div className="flex flex-col h-full rounded-xl overflow-hidden shadow-md transition-transform duration-300 hover:-translate-y-1 bg-zinc-900">
+                  <div className="flex flex-col h-full rounded-xl overflow-hidden shadow-md hover:-translate-y-1 transition-transform duration-300 bg-zinc-900">
                     <img
                       src={item.imageUrl}
                       alt={item.name}
-                      className="object-cover h-40 sm:h-44 md:h-48 lg:h-52 w-full transition-transform duration-300 hover:scale-105"
+                      className="object-cover h-48 w-full transition-transform duration-300 hover:scale-105"
                     />
 
                     <div className="flex flex-col justify-between flex-1">
-                      <div className="p-3 bg-black text-white flex-1">
-                        <h3 className="text-base font-semibold text-center mb-2 capitalize line-clamp-2">
+                      <div className="p-4 text-white flex-1">
+                        <h4 className="text-base font-semibold text-center mb-2 capitalize line-clamp-2">
                           {item.name}
-                        </h3>
+                        </h4>
 
                         {item.materials?.length ? (
                           <>
                             <label
                               htmlFor={`material-select-${item.id}`}
-                              className="text-sm font-medium text-gray-300 block mb-1"
+                              className="text-sm text-gray-300 mb-1 block"
                             >
                               Escolher material:
                             </label>
                             <select
                               id={`material-select-${item.id}`}
-                              className="w-full bg-gray-900 text-white border border-gray-700 rounded px-3 py-1 text-sm focus:ring-2 focus:ring-blue-500"
+                              className="w-full bg-gray-800 text-white border border-gray-700 rounded px-3 py-1 text-sm focus:ring-2 focus:ring-blue-500"
                               onChange={(e) =>
                                 setSelectedMaterials((prev) => ({
                                   ...prev,
@@ -123,7 +121,7 @@ export default function PiercingSection({ category }: CategorySectionProps) {
                               <option value="" disabled>
                                 Selecione
                               </option>
-                              {item.materials.map((material: Material, i: number) => (
+                              {item.materials.map((material, i) => (
                                 <option key={i} value={material.type}>
                                   {material.type} - R${material.price.toFixed(2).replace('.', ',')}
                                 </option>
@@ -132,8 +130,7 @@ export default function PiercingSection({ category }: CategorySectionProps) {
 
                             {currentMaterial && (
                               <p className="text-sm text-gray-400 mt-1">
-                                Selecionado: {currentMaterial.type} - R$
-                                {currentMaterial.price.toFixed(2).replace('.', ',')}
+                                Selecionado: {currentMaterial.type} - R${currentMaterial.price.toFixed(2).replace('.', ',')}
                               </p>
                             )}
                           </>
@@ -142,17 +139,17 @@ export default function PiercingSection({ category }: CategorySectionProps) {
                         )}
                       </div>
 
-                      <div className="p-3 bg-black bg-opacity-70 flex justify-center gap-2">
+                      <div className="p-3 bg-black/80 flex justify-center gap-2">
                         <button
                           onClick={() => handleAddToCart(item)}
-                          className="px-3 py-1 text-sm rounded-full bg-blue-700 text-white transition-all duration-300 disabled:opacity-50"
+                          className="px-4 py-1 text-sm rounded-full bg-blue-700 text-white transition duration-300 disabled:opacity-50"
                           disabled={!item.available && item.available !== undefined || !selectedMaterials[item.id]}
                         >
                           Adicionar
                         </button>
                         <button
                           onClick={() => handleWhatsApp(item)}
-                          className="px-3 py-1 text-sm rounded bg-green-600 text-white transition-all duration-300"
+                          className="px-4 py-1 text-sm rounded bg-green-600 text-white transition duration-300"
                         >
                           WhatsApp
                         </button>
@@ -167,19 +164,19 @@ export default function PiercingSection({ category }: CategorySectionProps) {
 
         <button
           onClick={() => emblaApi?.scrollPrev()}
-          className="absolute top-1/2 left-2 -translate-y-1/2 bg-[#00b4d8] text-white p-2 rounded-full z-10 hover:bg-[#d43c2d] focus:outline-none focus:ring-2 focus:ring-[#00b4d8]"
+          className="absolute top-1/2 left-2 -translate-y-1/2 bg-[#00b4d8] text-white p-2 rounded-full z-10 hover:bg-[#009ac1] focus:outline-none focus:ring-2 focus:ring-[#00b4d8]"
           aria-label="Anterior"
         >
           <ChevronLeft size={20} />
         </button>
         <button
           onClick={() => emblaApi?.scrollNext()}
-          className="absolute top-1/2 right-2 -translate-y-1/2 bg-[#00b4d8] text-white p-2 rounded-full z-10 hover:bg-[#d43c2d] focus:outline-none focus:ring-2 focus:ring-[#00b4d8]"
+          className="absolute top-1/2 right-2 -translate-y-1/2 bg-[#00b4d8] text-white p-2 rounded-full z-10 hover:bg-[#009ac1] focus:outline-none focus:ring-2 focus:ring-[#00b4d8]"
           aria-label="Próximo"
         >
           <ChevronRight size={20} />
         </button>
       </div>
-    </div>
+    </section>
   );
 }

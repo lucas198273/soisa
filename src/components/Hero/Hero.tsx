@@ -73,7 +73,6 @@ Hora: ${form.hora}`;
               src="/assets/businesimg/img-es-1.webp"
               alt="Artista tatuador"
               className="w-[50%] max-w-lg rounded-lg shadow-2xl transition-transform duration-300 hover:scale-105 object-contain"
-              loading="lazy"
             />
           </div>
         </div>
