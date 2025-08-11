@@ -58,7 +58,7 @@ Hora: ${form.hora}`;
             </p>
             <p className="text-base md:text-lg text-gray-400 leading-relaxed font-semibold">
               Localizado em Betim - MG <br />
-              Av. Amazonas, 608
+              Av. Amazonas nº608
             </p>
             <button
               onClick={() => setIsOpen(true)}
