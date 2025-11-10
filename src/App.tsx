@@ -13,16 +13,13 @@ import ProductInfoSection from "./components/ProductInfoSection/ProductInfoSecti
 import { CartProvider, useCart } from "../contexts/CartContext";
 import Cart from "./components/Cart/Cart";
 import ProductPage from "./pages/ProductPage";
-import AboutPiercer from "./components/AboutPiercer/AboutPiercer";
 import ScrollTop from "./components/ScrollTop/ScrollTop";
 import CategorySection from "./components/CategorySection/CategorySection";
 import ScrollToTopOnRouteChange from "./components/ScrollToTopOnRouteChange/ScrollToTopOnRouteChange";
-import PiercingSection from "./components/PiercingSection/PiercingSection";
 import AboutTattooArtistBZ from "./components/AboutTattooArtistBZ/AboutTattooArtistBZ";
 import AboutTattooArtistSoisa from "./components/AboutTattooArtistSoisa/AboutTattooArtistSoisa";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import { HelmetProvider, Helmet } from "react-helmet-async";
-import Amazon from "./pages/Amazon";
 import PoliticaEPrivacidade from "./pages/PoliticasEPrivacidade";
 import GaleriaSoisa from "./components/GaleriaSoisa/GaleriaSoisa.tsx";
 
@@ -69,10 +66,7 @@ function AppContent() {
                 <section className="bg-white py-10">
                   <CategorySection category="bz" />
                 </section>
-                <AboutPiercer />
-                <section className="bg-white">
-                  <PiercingSection category="piercing" />
-                </section>
+           
                 <ProductInfoSection />
                 <SocialMediaSection />
               </main>
@@ -82,7 +76,6 @@ function AppContent() {
         <Route path="/about" element={<About />} />
         <Route path="/products" element={<ProductPage />} />
         <Route path="/product/:id" element={<ProductDetailPage />} />
-        <Route path="/afiliados" element={<Amazon />} />
         <Route path="/Politicas" element={<PoliticaEPrivacidade />} />
         <Route path="/galeria" element={<GaleriaSoisa />} />
       </Routes>
