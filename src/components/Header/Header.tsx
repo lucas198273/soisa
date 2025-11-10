@@ -51,7 +51,6 @@ export default function Header({ onCartClick, cartItemCount }: HeaderProps) {
 
         {/* Menu desktop - direita */}
         <nav className="hidden md:flex items-center space-x-3 sm:space-x-4 lg:space-x-5 text-white text-xs sm:text-sm lg:text-base font-bold">
-          <Link to="/afiliados" className="hover:text-[#00b4d8]">Afiliados</Link>
           <Link to="/politicas" className="hover:text-[#00b4d8]">Políticas</Link>
           <Link to="/galeria" className="hover:text-[#00b4d8]">Galeria</Link>
         </nav>
@@ -87,7 +86,6 @@ export default function Header({ onCartClick, cartItemCount }: HeaderProps) {
           { to: "/", label: "Início" },
           { to: "/about", label: "Sobre" },
           { to: "/products", label: "Tatuagens e Piercings" },
-          { to: "/afiliados", label: "Afiliados" },
           { to: "/politicas", label: "Políticas" },
           { to: "/galeria", label: "Galeria" },
         ].map((link) => (

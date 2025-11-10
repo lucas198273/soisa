@@ -16,7 +16,6 @@ import ProductPage from "./pages/ProductPage";
 import ScrollTop from "./components/ScrollTop/ScrollTop";
 import CategorySection from "./components/CategorySection/CategorySection";
 import ScrollToTopOnRouteChange from "./components/ScrollToTopOnRouteChange/ScrollToTopOnRouteChange";
-import AboutTattooArtistBZ from "./components/AboutTattooArtistBZ/AboutTattooArtistBZ";
 import AboutTattooArtistSoisa from "./components/AboutTattooArtistSoisa/AboutTattooArtistSoisa";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import { HelmetProvider, Helmet } from "react-helmet-async";
@@ -62,10 +61,8 @@ function AppContent() {
                 <section className="bg-white py-10">
                   <CategorySection category="tattoo" />
                 </section>
-                <AboutTattooArtistBZ />
-                <section className="bg-white py-10">
-                  <CategorySection category="bz" />
-                </section>
+               
+              
            
                 <ProductInfoSection />
                 <SocialMediaSection />
