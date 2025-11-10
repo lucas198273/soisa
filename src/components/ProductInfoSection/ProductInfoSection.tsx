@@ -11,7 +11,7 @@ const TattooStudioInfoSection: React.FC = () => {
   const linkWhatsApp = `https://wa.me/5531971705728?text=${encodeURIComponent(mensagemWhatsApp)}`;
 
   return (
-    <section className="py-16 px-4 bg-[#0a0a1a] text-white" data-aos="fade-up">
+    <section className="py-16 px-4 bg-black text-white" data-aos="fade-up">
       <div className="max-w-4xl mx-auto text-center no-font-boost">
         <h2 className="text-4xl md:text-5xl font-bold mb-8 text-[#00BFFF] drop-shadow-md">
           Sobre Nosso Estúdio
