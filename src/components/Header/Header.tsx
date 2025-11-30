@@ -53,6 +53,7 @@ export default function Header({ onCartClick, cartItemCount }: HeaderProps) {
         <nav className="hidden md:flex items-center space-x-3 sm:space-x-4 lg:space-x-5 text-white text-xs sm:text-sm lg:text-base font-bold">
           <Link to="/politicas" className="hover:text-[#00b4d8]">Políticas</Link>
           <Link to="/galeria" className="hover:text-[#00b4d8]">Galeria</Link>
+          <Link to="/contact" className="hover:text-[#00b4d8]">Contato</Link>
         </nav>
 
         {/* Carrinho */}
@@ -88,6 +89,7 @@ export default function Header({ onCartClick, cartItemCount }: HeaderProps) {
           { to: "/products", label: "Tatuagens e Piercings" },
           { to: "/politicas", label: "Políticas" },
           { to: "/galeria", label: "Galeria" },
+          { to: "/contact", label: "Contato" },
         ].map((link) => (
           <Link
             key={link.to}

@@ -21,6 +21,7 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 import { HelmetProvider, Helmet } from "react-helmet-async";
 import PoliticaEPrivacidade from "./pages/PoliticasEPrivacidade";
 import GaleriaSoisa from "./components/GaleriaSoisa/GaleriaSoisa.tsx";
+import ContactPage from "./pages/ContactPage.tsx";
 
 function AppContent() {
   const { items, total, toggleCart } = useCart();
@@ -75,6 +76,8 @@ function AppContent() {
         <Route path="/product/:id" element={<ProductDetailPage />} />
         <Route path="/Politicas" element={<PoliticaEPrivacidade />} />
         <Route path="/galeria" element={<GaleriaSoisa />} />
+        <Route path="/contact" element={<ContactPage />} />
+
       </Routes>
 
       <Footer />
