@@ -1,4 +1,5 @@
 "use client";
+import { Link } from "react-router-dom"; 
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 
@@ -60,12 +61,13 @@ Hora: ${form.hora}`;
               Localizado em Betim - MG <br />
               Av. Amazonas nº608
             </p>
-            <button
-              onClick={() => setIsOpen(true)}
-              className="px-6 py-2 md:px-8 md:py-3 bg-[#00b4d8] hover:bg-[#009ac1] transition-shadow shadow-md text-white font-semibold rounded-md"
+           <Link
+              to="/contact"
+              className="px-8 py-3 bg-blue-600 hover:bg-blue-500 transition-all shadow-lg shadow-blue-500/30 text-white font-semibold rounded-md hover:shadow-blue-400/40"
             >
-              Agendar Sessão
-            </button>
+              Agendar
+            </Link>
+           
           </div>
 
           <div className="w-full md:w-1/2 flex justify-center">
@@ -170,7 +172,7 @@ Hora: ${form.hora}`;
                     className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
                   />
                 </div>
-
+               
                 <button
                   type="submit"
                   className="w-full py-3 bg-[#00b4d8] hover:bg-[#009ac1] transition-shadow shadow-md rounded-lg text-white font-semibold"
