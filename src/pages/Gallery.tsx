@@ -1,58 +1,163 @@
 // src/pages/GaleriaPage.tsx
-import React from "react";
-import { Helmet } from "react-helmet-async"; // SEO com React 18
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import SEO from "../components/SEO/SEO";
 import GaleriaSoisa from "../components/GaleriaSoisa/GaleriaSoisa";
 
+// Paleta centralizada
+const COLORS = {
+  orange: "#E87A20",
+  orangeLight: "#F59E42",
+  blueDark: "#1A2B4C",
+  black: "#000000",
+  white: "#FFFFFF",
+  gray: "#AAAAAA",
+};
+
 const GaleriaPage: React.FC = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+      easing: "ease-out-cubic",
+    });
+  }, []);
+
+  // Dados estruturados (JSON-LD) para a galeria
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Galeria de Artes Underground - Soisa Tattoo",
+    description:
+      "Explore a galeria underground do artista Soisa em Betim, com pinturas que misturam rebeldia, criatividade e arte urbana.",
+    url: "https://estudiosoisa.online/galeria",
+    image: "https://estudiosoisa.online/assets/og-galeria.jpg",
+    author: {
+      "@type": "Person",
+      name: "Ítalo Soisa",
+    },
+    about: {
+      "@type": "Thing",
+      name: "Arte Underground",
+    },
+  };
+
   return (
-    <main className="min-h-screen bg-black text-white px-4" lang="pt-BR">
-      <Helmet>
-        <title>Galeria de Artes Underground | Estúdio de Tatuagem em Betim</title>
+    <>
+      <SEO
+        title="Galeria de Artes Underground | Soisa Tattoo Studio"
+        description="Explore a galeria underground do artista Soisa em Betim, com pinturas que misturam rebeldia, criatividade e arte urbana em uma pegada alternativa."
+        keywords="estúdio de tatuagem em Betim, galeria de arte Betim, pinturas underground, arte urbana, artista Soisa, tatuagem e arte"
+        url="https://estudiosoisa.online/galeria"
+        image="https://estudiosoisa.online/assets/og-galeria.jpg"
+        type="website"
+        author="Ítalo Soisa"
+      />
 
-        <meta
-          name="description"
-          content="Explore a galeria underground do artista Soisa em Betim, com pinturas que misturam rebeldia, criatividade e arte urbana em uma pegada alternativa."
-        />
-        <meta
-          name="keywords"
-          content="estúdio de tatuagem em Betim, galeria de arte Betim, pinturas underground, arte urbana, artista Soisa"
-        />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="Soisa" />
+      {/* JSON-LD */}
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
 
-        {/* SEO Social - Open Graph */}
-        <meta property="og:title" content="Galeria de Artes Underground em Betim - Soisa" />
-        <meta
-          property="og:description"
-          content="Descubra as obras originais do artista Soisa em Betim. Pinturas com um toque underground que desafiam o convencional."
-        />
-        <meta property="og:image" content="https://seusite.com/images/capa-galeria.jpg" />
-        <meta property="og:url" content="https://seusite.com/galeria" />
-        <meta property="og:type" content="website" />
+      <main className="min-h-screen bg-black text-white px-4" lang="pt-BR">
+        <section className="container mx-auto py-12 sm:py-16 md:py-20 lg:py-24">
+          {/* Título com animação */}
+          <div
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            className="text-center"
+          >
+            <h1
+              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
+              style={{ color: COLORS.orange }}
+            >
+              🎨 Galeria de Artes
+            </h1>
+            <div
+              className="w-20 h-1 mx-auto mb-6 rounded-full"
+              style={{ backgroundColor: COLORS.orange }}
+            />
+          </div>
 
-        {/* Canonical e responsividade */}
-        <link rel="canonical" href="https://seusite.com/galeria" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          {/* Descrição com animação */}
+          <div
+            data-aos="fade-up"
+            data-aos-delay="200"
+            className="max-w-3xl mx-auto text-center mb-10"
+          >
+            <p className="text-base md:text-lg leading-relaxed" style={{ color: COLORS.gray }}>
+              Mergulhe no universo underground das pinturas originais do artista Soisa,
+              direto de Betim. Com traços crus e uma energia rebelde, essas obras trazem
+              a essência da arte urbana, desafiando padrões e inspirando mentes inquietas.
+            </p>
+          </div>
 
-        {/* Compatibilidade de ajuste de texto */}
-        <style>{`
-          html {
-            -webkit-text-size-adjust: 100%;
-            text-size-adjust: 100%;
-          }
-        `}</style>
-      </Helmet>
+          {/* Selos de confiança (ou badges) */}
+          <div
+            className="flex flex-wrap justify-center gap-4 mb-10"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <span
+              className="px-4 py-2 rounded-full text-sm font-semibold bg-opacity-20 border"
+              style={{
+                backgroundColor: `${COLORS.blueDark}40`,
+                borderColor: COLORS.blueDark,
+                color: COLORS.white,
+              }}
+            >
+              🖌️ Obras originais
+            </span>
+            <span
+              className="px-4 py-2 rounded-full text-sm font-semibold bg-opacity-20 border"
+              style={{
+                backgroundColor: `${COLORS.blueDark}40`,
+                borderColor: COLORS.blueDark,
+                color: COLORS.white,
+              }}
+            >
+              🎭 Estilo underground
+            </span>
+            <span
+              className="px-4 py-2 rounded-full text-sm font-semibold bg-opacity-20 border"
+              style={{
+                backgroundColor: `${COLORS.blueDark}40`,
+                borderColor: COLORS.blueDark,
+                color: COLORS.white,
+              }}
+            >
+              📍 Betim - MG
+            </span>
+          </div>
 
-      <section className="container mx-auto py-12 sm:py-16 md:py-20 lg:py-24">
-        <h1 className="text-3xl font-bold mb-6 text-center text-blue-400 drop-shadow" itemProp="headline">
-          Galeria de Artes
-        </h1>
-        <p className="text-center text-lg mb-8 text-gray-300 max-w-2xl mx-auto">
-          Mergulhe no universo underground das pinturas originais do artista Soisa, direto de Betim. Com traços crus e uma energia rebelde, essas obras trazem a essência da arte urbana, desafiando padrões e inspirando mentes inquietas.
-        </p>
-        <GaleriaSoisa />
-      </section>
-    </main>
+          {/* Componente da galeria com animação */}
+          <div data-aos="fade-up" data-aos-delay="400">
+            <GaleriaSoisa />
+          </div>
+
+          {/* Call to Action no final da página */}
+          <div
+            className="mt-16 text-center"
+            data-aos="fade-up"
+            data-aos-delay="600"
+          >
+            <p className="text-sm md:text-base mb-4" style={{ color: COLORS.gray }}>
+              Gostou do estilo? Conheça nosso trabalho em tatuagens.
+            </p>
+            <a
+              href="/products"
+              className="inline-block px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black"
+              style={{
+                backgroundColor: COLORS.orange,
+                color: COLORS.white,
+                boxShadow: `0 4px 15px ${COLORS.orange}60`,
+              }}
+            >
+              Ver Tatuagens →
+            </a>
+          </div>
+        </section>
+      </main>
+    </>
   );
 };
 

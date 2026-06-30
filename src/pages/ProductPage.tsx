@@ -1,128 +1,175 @@
 // src/pages/ProductPage.tsx
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ArrowUp } from "lucide-react";
-import { products } from "../data/Product"; // Ajuste o caminho se necessário
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { products } from "../data/Product";
+import SEO from "../components/SEO/SEO";
 
+// Paleta centralizada
+const COLORS = {
+  orange: "#E87A20",
+  orangeLight: "#F59E42",
+  blueDark: "#1A2B4C",
+  black: "#000000",
+  white: "#FFFFFF",
+  gray: "#AAAAAA",
+};
 
 const ProductPage = () => {
-  const { id } = useParams<{ id?: string }>();
   const [showScroll, setShowScroll] = useState(false);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-    if (!id) {
-      setShowScroll(false); // Reset scroll button state when no id
-    }
+
+    AOS.init({
+      duration: 800,
+      once: true,
+      easing: "ease-out-cubic",
+    });
+
     const handleScroll = () => setShowScroll(window.scrollY > 200);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [id]);
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  return (
-    <div className="relative pt-24 bg-black text-white">
-      <section className="px-4 max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold text-blue-400 mb-10 text-center">Tatuagens e Piercings</h1>
+  // Função para renderizar uma seção de produtos
+  const renderProductSection = (category: string, title: string, emoji: string) => {
+    const filtered = products.filter((p) => p.category === category);
+    if (filtered.length === 0) return null;
 
-        {/* Tatuagens Soisa */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-semibold text-blue-400 mb-6 text-center">Tatuagens Soisa</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {products
-              .filter((p) => p.category === "tattoo")
-              .map((p) => (
-                <div
-                  key={p.id}
-                  className="bg-black p-4 rounded-lg shadow-lg border-2 border-blue-800 flex flex-col items-center text-center hover:shadow-xl transition-shadow duration-300"
+    return (
+      <div className="mb-16" data-aos="fade-up" data-aos-delay="100">
+        <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center" style={{ color: COLORS.orange }}>
+          {emoji} {title}
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {filtered.map((product) => (
+            <div
+              key={product.id}
+              className="bg-black rounded-xl overflow-hidden border transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+              style={{
+                borderColor: COLORS.blueDark,
+                boxShadow: `0 8px 30px rgba(0,0,0,0.6)`,
+              }}
+            >
+              <Link to={`/product/${product.id}`}>
+                <img
+                  src={product.imageUrl}
+                  alt={product.name}
+                  className="w-full h-56 object-cover transition-transform duration-500 hover:scale-105"
+                  loading="lazy"
+                />
+              </Link>
+              <div className="p-4 text-center">
+                <h3 className="text-lg font-semibold mb-3 line-clamp-2" style={{ color: COLORS.white }}>
+                  {product.name}
+                </h3>
+                <Link
+                  to={`/product/${product.id}`}
+                  className="inline-block px-6 py-2 rounded-full font-semibold transition-all duration-300 hover:shadow-lg transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black"
+                  style={{
+                    backgroundColor: COLORS.orange,
+                    color: COLORS.white,
+                    boxShadow: `0 4px 12px ${COLORS.orange}40`,
+                  }}
                 >
-                  <img
-                    src={p.imageUrl}
-                    alt={p.name}
-                    className="w-full h-48 object-cover rounded-md mx-auto hover:opacity-90 transition-opacity"
-                  />
-                  <h3 className="text-lg font-medium text-blue-300 mt-2 line-clamp-2">{p.name}</h3>
-                  <Link
-                    to={`/product/${p.id}`}
-                    className="mt-3 inline-block px-4 py-2 bg-blue-700 text-white rounded-full hover:bg-blue-800 transition-all duration-300"
-                  >
-                    Ver mais
-                  </Link>
-                </div>
-              ))}
-          </div>
+                  Ver Detalhes
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
+      </div>
+    );
+  };
 
-        {/* Tatuagens BZ */}
-        {/* <div className="mb-12">
-          <h2 className="text-2xl font-semibold text-blue-400 mb-6 text-center">Tatuagens BZ</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {products
-              .filter((p) => p.category === "bz")
-              .map((p) => (
-                <div
-                  key={p.id}
-                  className="bg-black p-4 rounded-lg shadow-lg border-2 border-blue-800 flex flex-col items-center text-center hover:shadow-xl transition-shadow duration-300"
-                >
-                  <img
-                    src={p.imageUrl}
-                    alt={p.name}
-                    className="w-full h-48 object-cover rounded-md mx-auto hover:opacity-90 transition-opacity"
-                  />
-                  <h3 className="text-lg font-medium text-blue-300 mt-2 line-clamp-2">{p.name}</h3>
-                  <Link
-                    to={`/product/${p.id}`}
-                    className="mt-3 inline-block px-4 py-2 bg-blue-700 text-white rounded-full hover:bg-blue-800 transition-all duration-300"
-                  >
-                    Ver mais
-                  </Link>
-                </div>
-              ))}
+  // JSON-LD para página de produtos
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Tatuagens e Piercings - Soisa Tattoo Studio",
+    description:
+      "Galeria de tatuagens e piercings do Soisa Tattoo Studio em Betim. Inspirações para sua próxima arte na pele.",
+    url: "https://estudiosoisa.online/products",
+    about: {
+      "@type": "ProfessionalService",
+      name: "Soisa Tattoo Studio",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Av. Amazonas, 608",
+        addressLocality: "Betim",
+        addressRegion: "MG",
+        postalCode: "32600-000",
+        addressCountry: "BR",
+      },
+      telephone: "+5531971705728",
+    },
+  };
+
+  return (
+    <>
+      {/* SEO Helmet */}
+      <SEO
+        title="Tatuagens e Piercings - Soisa Tattoo"
+        description="Confira todas as tatuagens e piercings disponíveis no Soisa Tattoo Studio em Betim. Inspirações para sua próxima arte na pele."
+        keywords="tatuagens, piercings, estúdio de tatuagem Betim, tatuador profissional, Soisa Tattoo, galeria de tatuagens"
+        url="https://estudiosoisa.online/products"
+        image="https://estudiosoisa.online/assets/og-image.jpg"
+      />
+
+      {/* JSON-LD */}
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+
+      <div className="pt-24 bg-black text-white min-h-screen">
+        <section className="px-4 max-w-7xl mx-auto py-8">
+          {/* Título principal */}
+          <div data-aos="fade-up" data-aos-duration="1000">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-center" style={{ color: COLORS.orange }}>
+              🖌️ Nossas Obras
+            </h1>
+            <p
+              className="text-center max-w-2xl mx-auto text-base md:text-lg leading-relaxed mb-12"
+              style={{ color: COLORS.gray }}
+            >
+              Explore nossa galeria de tatuagens autorais, realistas, blackwork e piercings. 
+              Cada peça é única e feita com dedicação, técnica e biossegurança. 
+              Encontre sua próxima inspiração!
+            </p>
           </div>
-        </div> */}
 
-        {/* Piercings */}
-        {/* <div className="mb-12">
-          <h2 className="text-2xl font-semibold text-blue-400 mb-6 text-center">Piercings</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {products
-              .filter((p) => p.category === "piercing")
-              .map((p) => (
-                <div
-                  key={p.id}
-                  className="bg-black p-4 rounded-lg shadow-lg border-2 border-blue-800 flex flex-col items-center text-center hover:shadow-xl transition-shadow duration-300"
-                >
-                  <img
-                    src={p.imageUrl}
-                    alt={p.name}
-                    className="w-full h-48 object-cover rounded-md mx-auto hover:opacity-90 transition-opacity"
-                  />
-                  <h3 className="text-lg font-medium text-blue-300 mt-2 line-clamp-2">{p.name}</h3>
-                  <Link
-                    to={`/product/${p.id}`}
-                    className="mt-3 inline-block px-4 py-2 bg-blue-700 text-white rounded-full hover:bg-blue-800 transition-all duration-300"
-                  >
-                    Ver mais
-                  </Link>
-                </div>
-              ))}
-          </div>
-        </div> */}
-      </section>
+          {/* Seção: Tatuagens Soisa */}
+          {renderProductSection("tattoo", "Tatuagens Soisa", "🎨")}
 
-      {showScroll && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-5 right-5 z-50 bg-blue-700 hover:bg-blue-800 text-white p-3 rounded-full shadow-lg"
-          aria-label="Voltar ao topo"
-        >
-          <ArrowUp size={22} />
-        </button>
-      )}
-    </div>
+          {/* Seção: Tatuagens BZ (Artista Convidado) */}
+          {renderProductSection("bz", "Tatuagens - Artista Convidado", "🖼️")}
+
+          {/* Seção: Piercings */}
+          {renderProductSection("piercing", "Piercings", "💎")}
+        </section>
+
+        {/* Botão Voltar ao Topo */}
+        {showScroll && (
+          <button
+            onClick={scrollToTop}
+            className="fixed bottom-5 right-5 z-50 p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black"
+            style={{
+              backgroundColor: COLORS.orange,
+              color: COLORS.white,
+              boxShadow: `0 4px 15px ${COLORS.orange}60`,
+            }}
+            aria-label="Voltar ao topo"
+          >
+            <ArrowUp size={22} />
+          </button>
+        )}
+      </div>
+    </>
   );
 };
 

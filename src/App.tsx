@@ -22,6 +22,7 @@ import { HelmetProvider, Helmet } from "react-helmet-async";
 import PoliticaEPrivacidade from "./pages/PoliticasEPrivacidade";
 import GaleriaSoisa from "./components/GaleriaSoisa/GaleriaSoisa.tsx";
 import ContactPage from "./pages/ContactPage.tsx";
+import AboutCp from "./components/AboutCp/AboutCp.tsx";
 
 function AppContent() {
   const { items, total, toggleCart } = useCart();
@@ -32,7 +33,7 @@ function AppContent() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-100 text-gray-800">
-      <Header onCartClick={() => toggleCart(true)} cartItemCount={items.length} />
+      <Header />
 
       {/* Scroll automático para topo em mudança de rota */}
       <ScrollToTopOnRouteChange />
@@ -62,7 +63,7 @@ function AppContent() {
                 <section className="bg-white py-10">
                   <CategorySection category="tattoo" />
                 </section>
-               
+                <AboutCp/>              
               
            
                 <ProductInfoSection />

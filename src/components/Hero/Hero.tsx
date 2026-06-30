@@ -1,7 +1,19 @@
 "use client";
-import { Link } from "react-router-dom"; 
-import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useState, useEffect, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+// Paleta de cores (usada apenas para estilos inline válidos)
+const COLORS = {
+  orange: "#E87A20",
+  orangeLight: "#F59E42",
+  blueDark: "#1A2B4C",
+  black: "#000000",
+  white: "#FFFFFF",
+  gray: "#888888",
+};
 
 export default function Hero() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,7 +25,17 @@ export default function Hero() {
     hora: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+      easing: "ease-out-cubic",
+    });
+  }, []);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
@@ -27,163 +49,283 @@ Tipo de serviço: ${form.tipoServico}\n
 Data: ${form.data}\n
 Hora: ${form.hora}`;
 
-    window.open(`https://wa.me/5531971705728?text=${encodeURIComponent(msg)}`, "_blank");
+    window.open(
+      `https://wa.me/5531971705728?text=${encodeURIComponent(msg)}`,
+      "_blank"
+    );
     setIsOpen(false);
+    setForm({ nome: "", telefone: "", tipoServico: "", data: "", hora: "" });
   };
+
+  const toggleModal = useCallback(() => {
+    setIsOpen((prev) => !prev);
+  }, []);
 
   return (
     <>
       <Helmet>
-        <title>Soisa Tattoo Studio | Arte e Tatuagens em Betim</title>
+        <title>Soisa Tattoo Studio | Arte e Tatuagens em Betim - Agende sua Sessão</title>
         <meta
           name="description"
-          content="Tatuagens feitas com propósito, arte e personalidade em Betim - Soisa Tattoo Studio. Agende sua sessão conosco!"
+          content="Soisa Tattoo Studio em Betim - Tatuagens com propósito, arte e personalidade. Agende sua sessão de tatuagem ou piercing. Localizado na Av. Amazonas nº608."
         />
-        <meta name="keywords" content="tatuagem, piercing, estúdio de tatuagem, Betim, Soisa Tattoo, arte corporal" />
+        <meta
+          name="keywords"
+          content="tatuagem, piercing, estúdio de tatuagem, Betim, Soisa Tattoo, arte corporal, tatuador profissional, agendamento"
+        />
+        <meta name="robots" content="index, follow" />
         <meta property="og:title" content="Soisa Tattoo Studio | Arte e Tatuagens em Betim" />
         <meta
           property="og:description"
-          content="Tatuagens feitas com propósito, arte e personalidade em Betim - Soisa Tattoo Studio. Agende sua sessão conosco!"
+          content="Tatuagens feitas com propósito, arte e personalidade. Estúdio em Betim - Agende sua sessão agora!"
         />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://soisatattoo.com.br" />
+        <meta property="og:image" content="https://soisatattoo.com.br/assets/logo.webp" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            name: "Soisa Tattoo Studio",
+            image: "https://soisatattoo.com.br/assets/logo.webp",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "Av. Amazonas, 608",
+              addressLocality: "Betim",
+              addressRegion: "MG",
+              postalCode: "32600-000",
+              addressCountry: "BR",
+            },
+            telephone: "+5531971705728",
+            openingHours: "Mo-Fr 09:00-18:00",
+            priceRange: "$$",
+            description:
+              "Estúdio de tatuagem e piercing em Betim, com atendimento personalizado e arte de qualidade.",
+          })}
+        </script>
       </Helmet>
 
-      <section className="relative w-full bg-black text-white flex items-center justify-center px-4 py-48 md:py-12 border-b-4 border-[#00b4d8]">
+      <section
+        className="relative w-full bg-black text-white flex items-center justify-center px-4 py-48 md:py-12 border-b-4"
+        style={{ borderBottomColor: COLORS.blueDark }}
+      >
         <div className="flex flex-col-reverse md:flex-row w-full max-w-6xl items-center gap-8">
-          <div className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left space-y-4">
+          {/* Texto */}
+          <div
+            className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left space-y-4"
+            data-aos="fade-right"
+            data-aos-duration="1000"
+          >
             <h1 className="text-3xl md:text-5xl font-bold leading-tight">
               Dê vida à sua ideia <br />
               com traços precisos
             </h1>
-            <p className="text-base md:text-xl text-gray-300 leading-relaxed">
+            <p
+              className="text-base md:text-xl leading-relaxed"
+              style={{ color: COLORS.gray }}
+              data-aos="fade-right"
+              data-aos-delay="200"
+            >
               Tatuagens feitas com propósito, arte e personalidade.
             </p>
-            <p className="text-base md:text-lg text-gray-400 leading-relaxed font-semibold">
-              Localizado em Betim - MG <br />
-              Av. Amazonas nº608
-            </p>
-           <Link
-              to="/contact"
-              className="px-8 py-3 bg-blue-600 hover:bg-blue-500 transition-all shadow-lg shadow-blue-500/30 text-white font-semibold rounded-md hover:shadow-blue-400/40"
+            <address
+              className="not-italic text-base md:text-lg font-semibold"
+              style={{ color: COLORS.gray }}
+              data-aos="fade-right"
+              data-aos-delay="400"
             >
-              Agendar
-            </Link>
-           
+              <span className="block">📍 Localizado em Betim - MG</span>
+              <span className="block">Av. Amazonas nº 608</span>
+            </address>
+
+            <div
+              className="flex flex-col sm:flex-row gap-4 pt-4"
+              data-aos="fade-up"
+              data-aos-delay="600"
+            >
+              <button
+                onClick={toggleModal}
+                className="px-8 py-3 rounded-md font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                style={{
+                  backgroundColor: COLORS.orange,
+                  color: COLORS.white,
+                  boxShadow: `0 4px 14px ${COLORS.orange}40`,
+                }}
+                aria-label="Abrir formulário de agendamento"
+              >
+                Agendar Agora
+              </button>
+              <Link
+                to="/galeria"
+                className="px-8 py-3 rounded-md font-semibold transition-all duration-300 border-2 hover:bg-white/10 transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-white"
+                style={{
+                  borderColor: COLORS.white,
+                  color: COLORS.white,
+                }}
+              >
+                Ver Galeria
+              </Link>
+            </div>
           </div>
 
-          <div className="w-full md:w-1/2 flex justify-center">
+          {/* Imagem */}
+          <div
+            className="w-full md:w-1/2 flex justify-center"
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            data-aos-delay="300"
+          >
             <img
               src="/assets/businesimg/img-es-1.webp"
-              alt="Artista tatuador"
-              className="w-[50%] max-w-lg rounded-lg shadow-2xl transition-transform duration-300 hover:scale-105 object-contain"
+              alt="Artista tatuador profissional realizando uma tatuagem no estúdio Soisa Tattoo em Betim"
+              className="w-[50%] max-w-lg rounded-lg shadow-2xl transition-transform duration-500 hover:scale-105 hover:shadow-2xl object-contain"
+              style={{
+                boxShadow: `0 20px 40px -10px ${COLORS.orange}30`,
+              }}
+              loading="lazy"
             />
           </div>
         </div>
-
-        {/* Modal */}
-        {isOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 px-4">
-            <div className="bg-white rounded-xl p-6 w-full max-w-md shadow-xl relative animate-[scale_0.3s_ease-in-out]">
-              <button
-                onClick={() => setIsOpen(false)}
-                className="absolute top-3 right-4 text-gray-500 hover:text-black text-2xl"
-                aria-label="Fechar formulário"
-              >
-                ×
-              </button>
-              <h3 className="text-2xl font-bold mb-4 text-black text-center">Agendar Sessão</h3>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label htmlFor="nome" className="block text-gray-700 font-semibold mb-1">
-                    Nome completo
-                  </label>
-                  <input
-                    type="text"
-                    id="nome"
-                    name="nome"
-                    value={form.nome}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
-                    placeholder="Digite seu nome completo"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="telefone" className="block text-gray-700 font-semibold mb-1">
-                    Telefone
-                  </label>
-                  <input
-                    type="tel"
-                    id="telefone"
-                    name="telefone"
-                    value={form.telefone}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
-                    placeholder="(00) 00000-0000"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="tipoServico" className="block text-gray-700 font-semibold mb-1">
-                    Tipo de serviço
-                  </label>
-                  <select
-                    id="tipoServico"
-                    name="tipoServico"
-                    value={form.tipoServico}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
-                    aria-label="Selecione o tipo de serviço"
-                  >
-                    <option value="">Selecione</option>
-                    <option value="Tatuagem">Tatuagem</option>
-                    <option value="Piercing">Piercing</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label htmlFor="data" className="block text-gray-700 font-semibold mb-1">
-                    Data
-                  </label>
-                  <input
-                    type="date"
-                    id="data"
-                    name="data"
-                    value={form.data}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="hora" className="block text-gray-700 font-semibold mb-1">
-                    Hora
-                  </label>
-                  <input
-                    type="time"
-                    id="hora"
-                    name="hora"
-                    value={form.hora}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
-                  />
-                </div>
-               
-                <button
-                  type="submit"
-                  className="w-full py-3 bg-[#00b4d8] hover:bg-[#009ac1] transition-shadow shadow-md rounded-lg text-white font-semibold"
-                >
-                  Enviar no WhatsApp
-                </button>
-              </form>
-            </div>
-          </div>
-        )}
       </section>
+
+      {/* Modal */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 px-4 animate-fadeIn"
+          onClick={toggleModal}
+        >
+          <div
+            className="bg-white rounded-xl p-6 w-full max-w-md shadow-xl relative animate-scaleIn"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={toggleModal}
+              className="absolute top-3 right-4 text-gray-500 hover:text-black text-2xl transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-orange-500 rounded"
+              aria-label="Fechar formulário"
+            >
+              ×
+            </button>
+            <h3 className="text-2xl font-bold mb-4 text-center" style={{ color: COLORS.black }}>
+              Agendar Sessão
+            </h3>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label htmlFor="nome" className="block font-semibold mb-1" style={{ color: COLORS.black }}>
+                  Nome completo
+                </label>
+                <input
+                  type="text"
+                  id="nome"
+                  name="nome"
+                  value={form.nome}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-orange-500 transition-shadow"
+                  style={{ borderColor: COLORS.gray }}
+                  placeholder="Digite seu nome completo"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="telefone" className="block font-semibold mb-1" style={{ color: COLORS.black }}>
+                  Telefone
+                </label>
+                <input
+                  type="tel"
+                  id="telefone"
+                  name="telefone"
+                  value={form.telefone}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-orange-500 transition-shadow"
+                  style={{ borderColor: COLORS.gray }}
+                  placeholder="(00) 00000-0000"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="tipoServico" className="block font-semibold mb-1" style={{ color: COLORS.black }}>
+                  Tipo de serviço
+                </label>
+                <select
+                  id="tipoServico"
+                  name="tipoServico"
+                  value={form.tipoServico}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-orange-500 transition-shadow"
+                  style={{ borderColor: COLORS.gray }}
+                >
+                  <option value="">Selecione</option>
+                  <option value="Tatuagem">Tatuagem</option>
+                  <option value="Piercing">Piercing</option>
+                </select>
+              </div>
+
+              <div>
+                <label htmlFor="data" className="block font-semibold mb-1" style={{ color: COLORS.black }}>
+                  Data
+                </label>
+                <input
+                  type="date"
+                  id="data"
+                  name="data"
+                  value={form.data}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-orange-500 transition-shadow"
+                  style={{ borderColor: COLORS.gray }}
+                />
+              </div>
+
+              <div>
+                <label htmlFor="hora" className="block font-semibold mb-1" style={{ color: COLORS.black }}>
+                  Hora
+                </label>
+                <input
+                  type="time"
+                  id="hora"
+                  name="hora"
+                  value={form.hora}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-orange-500 transition-shadow"
+                  style={{ borderColor: COLORS.gray }}
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full py-3 rounded-lg font-semibold transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                style={{
+                  backgroundColor: COLORS.orange,
+                  color: COLORS.white,
+                }}
+              >
+                Enviar no WhatsApp
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes scaleIn {
+          from { transform: scale(0.9); opacity: 0; }
+          to { transform: scale(1); opacity: 1; }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out;
+        }
+        .animate-scaleIn {
+          animation: scaleIn 0.3s ease-out;
+        }
+      `}</style>
     </>
   );
 }
